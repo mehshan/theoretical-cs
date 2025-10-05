@@ -1,0 +1,43 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 5: Reducibility}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{5.13}
+A \textbf{\textit{useless state}} in a Turing machine is one that is never entered on any input string. Consider the problem of determining whether a Turing machine has any useless states. Formulate this problem as a language and show that it is undecidable.
+\end{problem}
+
+\begin{proof}
+Let $T = \{\langle M \rangle \ | \ M \text{ is a \textbf{TM}, which has a useless state}\}$. Show that $A_{TM}$\ reduces to $T$, where $A_{TM} = \{\langle M, w \rangle \ | \ M \text{ is a \textbf{TM} and } M \text{ accepts } w\}$. Assume for the sake of contradiction that \textbf{TM} $R$ decides $T$. Then construct a \textbf{TM} $S$ that uses $R$ to decide $A_{TM}$. The idea is to modify the input \textbf{TM} $M$, so that the modified \textbf{TM} $M_w$ does not have any useless states if $M$ accepts $w$. We can do this by modifying $M$ as follows:
+\begin{enumerate}
+\item Add special new state $q_u$.
+\item Before processing the input, transition through all non-start states except $q_u$.
+\item Simulate $M$ on $w$.
+\item If the simulation shows that $M$ accepts $w$, transition to $q_u$.
+\end{enumerate}
+
+$S =$ \textquotedblleft On input $\langle M, w \rangle$, where $M$ is a \textbf{TM} and $w$ is a string:
+\begin{enumerate}
+\item Transform $M$ to new \textbf{TM} $M_w$ as discussed above.
+\item Run $R$ on $\langle M_w \rangle$.
+\item If $R$ rejects, $M$ accepts $w$, so \textit{accept}. Otherwise, \textit{reject}.\textquotedblright
+\end{enumerate}
+Thus, if \textbf{TM} $R$ exists, we can decide $A_{TM}$, but we know that $A_{TM}$ is undecidable\footnote{Theorem 4.11 $A_{TM}$ is undecidable.}. By virtue of this contradiction, we can conclude that $R$ does not exist. Therefore, $T$ is undecidable.
+\end{proof}
+\end{document}

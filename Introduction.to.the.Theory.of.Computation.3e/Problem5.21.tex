@@ -1,0 +1,57 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 5: Reducibility}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{5.21}
+Let $AMBIG_{CFG} = \{\langle G \rangle \ | \ G \text{ is an ambiguous CFG}\}$. Show that $AMBIG_{CFG}$ is undecidable.
+\end{problem}
+
+\begin{proof}
+To show that $AMBIG_{CFG}$ is undecidable, we give a reduction from $PCP$ to $AMBIG_{CFG}$. Given an instance
+\[
+P=\left\{\left[\frac{t_{1}}{b_{1}}\right] ,\left[\frac{t_{2}}{b_{2}}\right] ,\dotsc ,\left[\frac{t_{k}}{b_{k}}\right]\right\}
+\]
+of the Post Correspondence Problem, construct a CFG $G$ with the rules
+\begin{align*}
+S &\rightarrow T \ | \ B \\
+T &\rightarrow t_1Ta_1 \ | \cdots |  \ t_kTa_k \ | \ t_1a_1 \ | \cdots | \ t_ka_k \\
+B &\rightarrow b_1Ba_1 \ | \cdots |  \ b_kBa_k \ | \ b_1a_1 \ | \cdots | \ b_ka_k,
+\end{align*}
+where $a_1,a_2,\cdots,a_k$ are new terminal symbols\footnote{This is a hint mentioned in the book.}. Next we show that this reduction works. \\
+
+If $P$ is an instance of Post Correspondence Problem, then for every possible arrangement of the dominoes $i_1, i_2,\dots,i_l$, where $t_{i_{1}}t_{i_{2}} \dots t_{i_{l}}$ is the top string and $b_{i_{1}}t_{b_{2}} \dots b_{i_{l}}$ the bottom string, there exists exactly one derivation for the top and bottom strings in $G$. The terminal symbols $a_1,a_2,\cdots,a_k$, make sure that every string generated using the variable $T$ has at most one left-most derivation even if some $t_{i}$ and $t_{j}$ are same. Same argument can be said for the variable $B$. \\
+
+If $P \in PCP$, then there exists a match $i_1, i_2,\dots,i_l$, where $t_{i_{1}}t_{i_{2}} \dots t_{i_{l}} = b_{i_{1}}t_{b_{2}} \dots b_{i_{l}}$. In this case, the CFG $G$ is guaranteed to have following two left-most derivations that produce the same string.
+\begin{align*}
+S &\rightarrow T \\
+&\rightarrow t_{i_{1}}Ta_{i_{1}} \\
+&\rightarrow t_{i_{1}} t_{i_{2}} T a_{i_{2}} a_{i_{1}} \\
+&\rightarrow t_{i_{1}} t_{i_{2}} \dots T \dots a_{i_{2}} a_{i_{1}} \\
+&\rightarrow t_{i_{1}} t_{i_{2}} \dots t_{i_{l}}a_{i_{l}} \dots a_{i_{2}} a_{i_{1}}
+\end{align*}
+\begin{align*}
+S &\rightarrow B \\
+&\rightarrow b_{i_{1}}B a_{i_{1}} \\
+&\rightarrow b_{i_{1}} b_{i_{2}} B a_{i_{2}} a_{i_{1}} \\
+&\rightarrow b_{i_{1}} b_{i_{2}} \dots B \dots a_{i_{2}} a_{i_{1}} \\
+&\rightarrow b_{i_{1}} b_{i_{2}} \dots b_{i_{l}}a_{i_{l}} \dots a_{i_{2}} a_{i_{1}}
+\end{align*}
+\end{proof}
+\end{document}

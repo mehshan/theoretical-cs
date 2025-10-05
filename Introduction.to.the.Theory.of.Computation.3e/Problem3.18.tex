@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+
+\usepackage{csquotes}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 3: The Church-Turing Thesis}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{3.18}
+Show that a language is decidable iff some enumerator enumerates the language in the standard string order.
+\end{problem}
+
+The proof is in two parts.
+
+\begin{problem}[Part]{a}
+If a language is decidable, then some enumerator enumerates the language in
+the standard string order.
+\end{problem}
+
+\begin{proof}
+For any decidable language $L$, let $M$ be the \textbf{TM}s that decides it. We construct an enumerator $E$ that enumerates $L$ in the standard string order: \\
+\\
+$E = $ \textquotedblleft Ignore the input:
+\begin{enumerate}
+\item Repeat the following for $i = 1,2,3, \cdots$
+\item \hspace*{0.5cm} Generate all possible strings $s_1,s_2,s_3,\cdots$ of length $i$, where each $s_k \in \Sigma^{*}$.
+\item \hspace*{0.5cm} Sort the strings in standard string order.
+\item \hspace*{0.5cm} Run $M$ on each $s_k$. If $M$ accepts $s_k$, \textit{print} $s_k$.\textquotedblright
+\end{enumerate}
+
+\end{proof}
+
+\begin{problem}[Part]{b}
+If some enumerator enumerates a language in the standard string order, then the language is decidable.
+\end{problem}
+
+\begin{proof}
+For any Turing-recognizable language $L$, let $E$ be the enumerator that enumerates it in the standard string order. We construct a \textbf{TM} $M$ that decides it:\\
+\\
+\textquotedblleft On input string $w$:
+\begin{enumerate}
+\item Run the enumerator $E$.
+\item Repeat the following for each string $s$ printed by $E$.
+\item \hspace*{0.5cm} If $w = s$, \textit{accept}.
+\item \hspace*{0.5cm} If $w$ precedes $s$ in the standard string order, then continue. Otherwise \textit{reject}.
+\item If $E$ halts, \textit{reject}.\textquotedblright
+\end{enumerate}
+\end{proof}
+
+\end{document}

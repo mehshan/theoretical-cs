@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 6: Advanced Topics in Computability Theory}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{6.6}
+Describe two different Turing machines, M and N, where M outputs $\langle N \rangle$ and N outputs $\langle M \rangle$, when started on any input.
+\end{problem}
+
+\begin{solution} Construct \textbf{TM}s $M$ and $N$, so that $L(M) = \Sigma^{*}$ and $L(N) = \emptyset$. Also, both $M$ and $N$ obtain intersection of their own description and print it. \\
+
+$M =$ \textquotedblleft On any input:
+\begin{enumerate}
+\item Obtain, via the recursion theorem, own description $\langle SELF \rangle$.
+\item Construct a new \textbf{TM} S, such that $L(S) = \overline{\langle SELF \rangle} $.
+\item Print $\langle S \rangle$.
+\item \textit{Accept}.\textquotedblright
+\end{enumerate}
+
+$N =$ \textquotedblleft On any input:
+\begin{enumerate}
+\item Obtain, via the recursion theorem, own description $\langle SELF \rangle$.
+\item Construct a new \textbf{TM} S, such that $L(S) = \overline{\langle SELF \rangle} $.
+\item Print $\langle S \rangle$.
+\item \textit{Reject}.\textquotedblright
+\end{enumerate}
+\end{solution}
+
+\end{document}

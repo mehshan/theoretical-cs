@@ -1,0 +1,43 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 5: Reducibility}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{5.16}
+Let $\Gamma = \{0, 1, \sqcup\}$ be the tape alphabet for all \textbf{TM}s in this problem. Define the busy beaver function $BB: N \longrightarrow N$ as follows. For each value of $k$, consider all $k$-state \textbf{TM}s that halt when started with a blank tape. Let $BB(k)$ be the maximum number of 1s that remain on the tape among all of these machines. Show that $BB$ is not a computable function.
+\end{problem}
+
+\begin{proof}
+The proof is by reduction from $HALT_{TM}$. Assume for the sake of contradiction that $BB$ is computable and let $R$ be the \textbf{TM} that computes it. It follow that $R$ must have a procedure to decide if some 
+\textbf{TM}s halts when started with a blank tape. Let $T$ be a \textbf{TM} that implements such procedure. In other words $L(T) = \{ \langle M \rangle \ | \ M \text{ is a \textbf{TM} that halts when started with a blank tape}\}$. We construct a \textbf{TM} $S$ that uses $T$ to decide $HALT_{TM}$.  \\
+\\
+$S =$ \textquotedblleft On input $\langle M, w \rangle$, where $M$ is a \textbf{TM} and $w$ is a string:
+\begin{enumerate}
+\item Use $M$ and $w$ to construct the following \textbf{TM} $M_w$. \\
+$M_w =$ \textquotedblleft On input $x$:
+\begin{enumerate}[1.]
+\item If $x$ is not empty string, then \textit{reject}.
+\item Run $M$ on $w$. If $M$ halts, then output result is same as $M$.\textquotedblright
+\end{enumerate}
+\item Run $T$ on $\langle M_w \rangle$.
+\item If $T$ accepts, $M$ halts on input $w$, so \textit{accept}. Otherwise, \textit{reject}.\textquotedblright
+\end{enumerate}
+Thus, if \textbf{TM} $R$ exists, then $T$ exists. So we can decide $HALT_{TM}$, but we know that $HALT_{TM}$ is undecidable\footnote{Theorem 5.1 $HALTM_{TM}$ is undecidable.}. By virtue of this contradiction, we can conclude that $R$ does not exist. Therefore, $BB$ is uncomputable.
+\end{proof}
+\end{document}

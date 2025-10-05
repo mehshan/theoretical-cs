@@ -1,0 +1,57 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 5: Reducibility}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{5.31}
+Let
+\[
+f(x) =\begin{cases}
+3x+1 & \text{ for odd } x \\
+x/2 & \text{ for even } x
+\end{cases}
+\]
+for any natural number $x$. If you start with an integer $x$ and iterate $f$, you obtain a sequence, $x, f(x), f(f(x)),\dots$. Stop if you ever hit 1. For example, if $x = 17$, you get the sequence 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1. Extensive computer tests have shown that every starting point between 1 and a large positive integer gives a sequence that ends in 1. But the question of whether all positive starting
+points end up at 1 is unsolved; it is called the $3x + 1$ problem.
+Suppose that $A_{TM}$ were decidable by a \textbf{TM} $H$. Use $H$ to describe a \textbf{TM} that is guaranteed to state the answer to the $3x + 1$ problem.
+\end{problem}
+
+\begin{proof}
+We construct a \textbf{TM} $S$ that is guaranteed to state the answer to the $3x + 1$ problem. $S$ rejects if there exists some $x$ for which the $3x + 1$ problem does not end up at 1. Otherwise, $S$ accepts. \\
+
+$S =$ \textquotedblleft On any input:
+\begin{enumerate}
+\item Construct \textbf{TM} $M$ to solve the $3x + 1$ problem for some $x$. 
+\item $M =$ \textquotedblleft On input $x$, where $x \geq 1$:
+\begin{enumerate}[1.]
+\item Start with $x$ and iterate $f$ to obtain each term of the sequence  $x, f(x), f(f(x)),\dots$ step by step.
+\item If some term ever equals 1, then \textit{accept}.\textquotedblright
+\end{enumerate}
+\item Construct the following \textbf{TM} $F$ that runs the \textbf{TM} $M$ on every positive integer. $M$ enters its accept state only if there exists some $x$ for which the $3x + 1$ problem does not end up at 1.
+\item $F =$ \textquotedblleft On any input:
+\begin{enumerate}[1.]
+\item Repeat for each $i = 1,2,3,\dots$.
+\item \hspace*{0.5cm} Run $H$ on $\langle M, i \rangle$.
+\item \hspace*{0.5cm} If $H$ rejects, $M$ rejects $i$ by looping, so \textit{accept}.\textquotedblright
+\end{enumerate}
+\item Run $H$ on $\langle F, F \rangle$.
+\item If $H$ accepts, then there exists some $x$ for which the $3x + 1$ problem does not end up at 1, so \textit{reject}. Otherwise, \textit{accept}.
+\end{enumerate}
+\end{proof}
+\end{document}

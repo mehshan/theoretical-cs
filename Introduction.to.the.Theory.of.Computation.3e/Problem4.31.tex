@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+
+\usepackage{csquotes}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 4: Decidability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{4.31}
+Say that a variable $A$ in CFG $G$ is usable if it appears in some derivation of some string $w \in L(G)$. Given a CFG $G$ and a variable $A$, consider the problem of testing whether $A$ is usable. Formulate this problem as a language and show that it is decidable.
+\end{problem}
+
+\begin{proof}
+Let $U_{CFG} = \{\langle G, A \rangle \ | \ G \text{ is a CFG and } A \text{ is a usable variable in } G \}$. To show that $U_{CFG}$ is decidable, we present a \textbf{TM} $I$ that decides it.  \\
+\\
+$I =$ \textquotedblleft On input $\langle G, A \rangle$, where $G$ is a CFG and $A$ is a variable symbol:
+\begin{enumerate}
+\item Mark all terminal symbols in $G$.
+\item Repeat until no new variables get marked:
+\item \hspace*{0.5cm} Mark any variable $V$ where $G$ has a rule $V \longrightarrow U_1U_2 \cdots U_k$ \\ \hspace*{0.5cm} and each symbol $U_1, U_2, \cdots, U_k$ has already been marked.
+\item If the start variable or $A$ is not marked, \textit{reject}.
+\item Clear all marked symbols.
+\item Perform \textit{Breadth-First-Search} on start variable, and each time \textit{Breadth-First-Search} procedure visits a variable or terminal symbol, mark it.
+\item If $A$ is not marked, \textit{reject}. Otherwise \textit{accept}.\textquotedblright
+\end{enumerate}
+\end{proof}
+Step 4 checks $L(G) \neq \phi$ and variable $A$ can generate some string of terminals. In step 6 and 7, we check if $A$ occurs in some derivation in $G$.
+\end{document}

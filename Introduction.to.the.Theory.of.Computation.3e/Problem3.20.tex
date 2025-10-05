@@ -1,0 +1,57 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+
+\usepackage{csquotes}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 3: The Church-Turing Thesis}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{3.20}
+Show that single-tape \textbf{TM}s that cannot write on the portion of the tape containing the input string recognize only regular languages.
+\end{problem}
+
+The proof is in two parts. Call such \textbf{TM}s, single read-only input tape \textbf{TM}s, or  SROI-TMs for short. First we show that SROI-TMs cannot recognize context-free and Turing-recognizable languages. Secondly, we show that such \textbf{TM}s can recognize regular languages.
+
+\begin{problem}[Part]{a}
+SROI-TMs cannot recognize context free and Turing-recognizable languages. 
+\end{problem}
+
+\begin{proof}
+Let $C = \{a^nb^n \ | \ n \geq 0 \}$. Clearly, $C$ is a context-free language. We show that no SROI-TM can recognize $C$. To recognize $C$, an SROI-TM would need to match each $a$ with a corresponding $b$. A normal \textbf{TM} can mark matched $a$ and $b$ by writing a different symbol, but an SROI-TM cannot. Also, an SROI-TM cannot copy the input string to another part of the tape where it can write. To copy the input string, an SROI-TM would need to keep track of input symbols that are already copied, but it cannot. Similarly, it follows that no SROI-TM can recognize $\{a^nb^nc^n \ | \ n \geq 0 \}$, which is Turing-recognizable.
+\end{proof}
+
+\begin{problem}[Part]{b}
+SROI-TMs recognize regular languages.
+\end{problem}
+
+\begin{proof}
+The proof is by construction. For any regular language $A$, let $M = (Q, \ \Sigma, \ \delta, \ q_0, \ F)$ be the DFA that recognizes it. Construct an SROI-TM $T = (Q^{'}, \ \Sigma, \ \Gamma, \ \delta^{'}, \ q_0^{'}, \ q_{accept}, \ q_{reject})$ to recognize $A$:
+\begin{enumerate}
+\item $Q^{'} = Q \cup \{q_{accept}, \ q_{reject}\}$
+\item $q_0^{'} = q_0$
+\item $\Gamma = \Sigma \cup \{\sqcup\}$, where $\sqcup$ is the special blank symbol.
+\item The transition function is $\delta^{'} : Q \times \Gamma \longrightarrow Q \times \{L, \ R\}$, so that the SROI-TM never writes any part of the tape, which satisfies the constraint that the SROI-TM cannot write on the portion of the tape containing the input string. Define $\delta^{'}(q, a)$ so that for any $q \, \varepsilon \, Q^{'}$ and any $a \,  \varepsilon \, \Gamma$:
+\end{enumerate}
+\begin{center}
+$\displaystyle \delta '( q,\ a) \ =\begin{cases}
+(\delta(q,a), \ R) & a \in \Sigma \\
+(q_{accept}, \ R) & a = \sqcup \ and \ q \in F \\
+(q_{reject}, \ R) & a = \sqcup \ and \ q \notin F
+\end{cases} \ \ $
+\end{center}
+\end{proof}
+
+\end{document}

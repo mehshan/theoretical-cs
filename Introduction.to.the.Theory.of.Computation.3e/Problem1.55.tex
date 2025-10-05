@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\myname}{Mehshan Mustafa}
+\newcommand{\dated}{\today}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{idea}[2][Proof Idea.]{\textit{#1} #2}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 1: Regular Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{1.55}
+The pumping lemma says that every regular language has a pumping length $p$, such that every string in the language can be pumped if it has length $p$ or more. If $p$ is a pumping length for language $A$, so is any length $p' \geq p$. The minimum pumping length for $A$ is the smallest $p$ that is a pumping length for $A$. For example, if $A = 01^{*}$, the minimum pumping length is 2. The reason is that the string $s = 0$ is in $A$ and has length 1 yet $s$ cannot be pumped; but any string in $A$ of length 2 or more contains a 1 and hence can be pumped by dividing it so that $x = 0$, $y = 1$, and $z$ is the rest. For each of the following languages, give the minimum pumping length and justify your answer.
+\end{problem}
+
+\begin{problem}[Part]{a}
+$0001^{*}$
+\end{problem}
+The minimum pumping length is 4. The strings 0, 00 and 000 cannot be divided and pumped. The string $s=0001$ can be pumped by dividing it so that $x=000$, $y=1$, and $z$ is the rest.
+
+\begin{problem}[Part]{d}
+$0^{*}1^{+}0^{+}1^{*} \cup 10^{*}1$
+\end{problem}
+The minimum pumping length for $0^{*}1^{+}0^{+}1^{*}$ is 2, because all strings in it are at least of length 2, contain at least one 1 and 0, and can be pumped by dividing according to following two cases.
+\begin{enumerate}
+\item If the string $s$ starts with 0, then it can be pumped by dividing it so that $x=\epsilon$, $y=0$, and $z$ is the rest.
+\item If the string $s$ starts with 1, then it can be pumped by dividing it so that $x=\epsilon$, $y=1$, and $z$ is the rest.
+\end{enumerate}
+
+The minimum pumping length for $10^{*}1$ is 3. The strings 1 and 11 can not be pumped. A string of length at least 3 contains at least one 0, so it can be pumped by dividing it so that $x=1$, $y=0$, and $z$ is the rest.
+\\
+\\
+The minimum pumping length for $0^{*}1^{+}0^{+}1^{*} \cup 10^{*}1$ is 3, because 11 cannot be pumped.
+
+\end{document}

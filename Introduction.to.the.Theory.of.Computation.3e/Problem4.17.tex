@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+
+\usepackage{csquotes}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 4: Decidability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{4.17}
+Prove that $EQ_{DFA}$ is decidable by testing the two DFAs on all strings up to a certain size. Calculate a size that works.
+\end{problem}
+
+\begin{proof}
+We present a \textbf{TM} $I$ that decides $EQ_DFA$ by testing the two DFAs on all strings up to a certain size.  \\
+\\
+$I =$ \textquotedblleft On input $\langle A, B \rangle$, where $A$ and $B$ are DFAs:
+\begin{enumerate}
+\item Let $k = max(m, n)$, where $m$ and $n$ are the number of states in DFAs $A$ and $B$ respectively.
+\item Generate list of all possible strings $w_1, w_2, \cdots$, where each $w_i = w_1w_2 \cdots w_n$, and $n \leq k$.
+\item Repeat the following for each string $w_i$:
+\item \hspace*{0.5cm} Run the $A_{DFA}$ decider $M$ from Theorem 4.1 on two inputs $\langle A, w_i \rangle$ and $\langle B, w_i \rangle$ separately.
+\item \hspace*{0.5cm} If $M$ accepts one input and rejects the other, \textit{reject}. 
+\item \textit{Accept}.\textquotedblright
+\end{enumerate}
+\end{proof}
+
+\end{document}

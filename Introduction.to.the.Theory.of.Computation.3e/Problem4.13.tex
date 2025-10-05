@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+
+\usepackage{csquotes}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 4: Decidability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{4.13}
+Let $A = \{\langle R, S \rangle \ | \ R \ and \ S \ are \ regular \ expressions \ and \ L(R) \subseteq L(S)\}$. Show that $A$ is decidable.
+\end{problem}
+
+\begin{proof}
+We present a \textbf{TM} $M$ that decides $A$.  \\
+\\
+$M =$ \textquotedblleft On input $\langle R, S \rangle$, where $R$ and $S$ are regular expressions:
+\begin{enumerate}
+\item Construct a DFAs $B$ and $C$, such that $L(B) = L(R)$, and $L(C) = L(S)$.
+\item Test $L(B) = \phi$ and $L(C) = \phi$ using the $E_{DFA}$ decider $T$ from Theorem 4.4.
+\item If $T$ accepts in both cases, \textit{accept}; if $T$ accepts in one case and rejects in the other, \textit{reject}.
+\item Construct a DFA $D$ such that $L(D) = L(R) \cap \overline{L(S)}.$
+\item Test $L(D) = \phi$ using $T$.
+\item If $T$ accepts, \textit{accept}; if $T$ rejects, \textit{reject}.\textquotedblright
+\end{enumerate}
+\end{proof}
+
+\end{document}

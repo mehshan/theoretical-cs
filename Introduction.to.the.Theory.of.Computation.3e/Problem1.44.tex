@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\myname}{Mehshan Mustafa}
+\newcommand{\dated}{\today}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{idea}[2][Proof Idea.]{\textit{#1} #2}
+
+\begin{document}
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 1: Reqular Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{1.41}
+Let $B$ and $C$ be languages over $\Sigma = \{0, 1\}$. Define
+\[
+B \xleftarrow{1} C = \{ w \in B \ |  \ for \ some \ y \in C, \ strings \ w \ and \ y \ contain \ equal \ numbers \ of \ 1s \}.
+\]
+Show that the class of regular languages is closed under the $\xleftarrow{1}$ operation.
+\end{problem}
+
+\begin{proof}
+To show that the operation $B \xleftarrow{1} C$ is closed under the class of regular languages we use the closure properties of operations intersection, $Zero^{-}$ and $Zero^{+}$, and give a regular expression that uses these operations to describes  operation $B \xleftarrow{1} C$. Let $A$ be any language over $\Sigma = \{0, 1\}$. Define
+\[
+Zero^{-}(A) = \{ w \ | \ w \ is \ constructed \ by \ removing \ all \ 0s \ from \ some \ string \ in \ A \}. 
+\]
+\[
+Zero^{+}(A) = \{ w \ | \ w \ is \ constructed \ by \ inserting \ any \ number \ of \ 0s \ anywhere \ in \ some \ string \ of \ A \}.
+\]
+The closure properties of $Zero^{-}$ and $Zero^{+}$ are proved in Corollaries 1 and 2. Let $B$ and $C$ be any regular languages over $\Sigma = \{0, 1\}$. The regular expression that describes the operation $B \xleftarrow{1} C$ is:
+\[
+B \xleftarrow{1} C = Zero^{+} \Bigl( Zero^{-}(B) \cap Zero^{-}(C) \Bigr) \cap B
+\]
+\end{proof}
+
+\begin{corollary}{1}
+Let $A$ be any language over $\Sigma = \{0, 1\}$. Define
+\[
+Zero^{-}(A) = \{ w \ | \ w \ is \ constructed \ by \ removing \ all \ 0s \ from \ some \ string \ in \ A \}.
+\]
+Show that the class of regular languages is closed under the $Zero^{-}$ operation.
+\end{corollary}
+
+\begin{proof}
+The proof is by construction. Let $M = (Q, \Sigma, \delta, q_{0}, F)$ be the DFA that recognizes $A$. Construct the NFA $M' = (Q', \Sigma, \delta', q_{0}', F')$ to recognize $Zero^{-}(A)$:
+\begin{enumerate}
+\item $Q' = Q$
+\item $q_{0}' = q_{0}$
+\item $\displaystyle F' \ =\begin{cases}
+F & A \cap {0}^{+} = \phi \\
+F \cup \{q_{0}\} & A \cap {0}^{+} \neq \phi \\
+\end{cases} \ \ $
+\item Define $\delta'(q, a)$ so that for any $q \in Q'$ and any $a \in \Sigma$:
+\begin{center}
+$\displaystyle \delta'( q,\ a) \ =\begin{cases}
+\{ \delta( q,\ a) \} & a \neq 0 \\
+\phi & a = 0 \\
+\end{cases} \ \ $
+\end{center}
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}{2}
+Let $A$ be any language over $\Sigma = \{0, 1\}$. Define
+\[
+Zero^{+}(A) = \{ w \ | \ w \ is \ constructed \ by \ inserting \ any \ number \ of \ 0s \ anywhere \ in \ some \ string \ of \ A \}.
+\]
+Show that the class of regular languages is closed under the $Zero^{+}$ operation.
+\end{corollary}
+
+\begin{proof}
+The proof is by construction. Let $M = (Q, \Sigma, \delta, q_{0}, F)$ be the DFA that recognizes $A$. Construct the NFA $M' = (Q', \Sigma, \delta', q_{0}', F')$ to recognize $Zero^{+}(A)$:
+\begin{enumerate}
+\item $Q' = Q$
+\item $q_{0}' = q_{0}$
+\item $F' = F$
+\item Define $\delta'(q, a)$ so that for any $q \in Q'$ and any $a \in \Sigma$:
+\begin{center}
+$\displaystyle \delta'( q,\ a) \ =\begin{cases}
+\{ \delta( q,\ a) \} & a \neq 0 \\
+\{ \delta( q,\ a), \; q \} & a = 0 \\
+\end{cases} \ \ $
+\end{center}
+\end{enumerate}
+\end{proof}
+
+\end{document}

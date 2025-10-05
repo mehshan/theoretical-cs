@@ -1,0 +1,34 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 7: Time Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{7.20}
+We generally believe that $PATH$ is not NP-complete. Explain the reason behind this belief. Show that proving $PATH$ is not NP-complete would prove $P \neq NP$.
+\end{problem}
+
+\begin{proof}
+In solution of Problem 7.18, we showed that
+\[
+P = NP \Rightarrow A \in P, \text{ except } A = \emptyset \text{ and } A = \Sigma^{*} \text{ is NP-complete}.
+\]
+Clearly, $PATH \neq \emptyset$ and $PATH \neq \Sigma^{*}$. Therefore, proving $PATH$ is not NP-complete would prove $P \neq NP$.
+\end{proof}
+
+\end{document}

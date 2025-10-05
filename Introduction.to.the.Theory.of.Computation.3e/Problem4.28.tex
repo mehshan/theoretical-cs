@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+
+\usepackage{csquotes}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 4: Decidability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{4.28}
+Let $C = \{\langle G, x \rangle \ | \ G \text{ is a CFG and } x \text{ is a substring of some } y \in L(G)\}$. Show that $C$ is decidable.
+\end{problem}
+
+\begin{proof}
+We present a \textbf{TM} $I$ that decides $C$.  \\
+\\
+$I =$ \textquotedblleft On input $\langle G, x \rangle$, where $G$ is a CGA and $x$ is a string:
+\begin{enumerate}
+\item Construct PDA $P$, such that $L(P) = L(G) \cap \Sigma^{*}x\Sigma^{*}$.
+\item Convert PDA $P$ to equivalent CFG $G^{'}$.
+\item Test $L(G^{'}) = \phi$ using the $E_{CFG}$ decider $R$ from Theorem 4.8.
+\item If $R$ accepts, \textit{reject}; if $R$ rejects, \textit{accept}.\textquotedblright
+\end{enumerate}
+\end{proof}
+
+
+
+\end{document}

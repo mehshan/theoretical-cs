@@ -1,0 +1,43 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 5: Reducibility}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{5.9}
+Let $T = \{\langle M \rangle \ | \ M \text{ is a \textbf{TM} that accepts } w^R \text{ whenever it accepts } w\}$. Show that $T$ is undecidable.
+\end{problem}
+
+\begin{proof}
+Show that $A_{TM}$ reduces to $T$. Assume for the sake of contradiction that \textbf{TM} $R$ decides $T$. Then construct a \textbf{TM} $S$ that uses $R$ to decide $A_{TM}$.  \\
+\\
+$S =$ \textquotedblleft On input $\langle M, w \rangle$, where $M$ is a \textbf{TM} and $w$ is a string:
+\begin{enumerate}
+\item Use $M$ and $w$ to construct the following TM $M_w$. \\
+$M_w =$ \textquotedblleft On input $x$:
+\begin{enumerate}[1.]
+\item If $x = w^R$, \textit{accept}.
+\item If $x \neq w$, \textit{reject}.
+\item Run $M$ on $x$ and output whatever $M$ outputs.\textquotedblright
+\end{enumerate}
+\item Run $R$ on $\langle M_w \rangle$.
+\item If $R$ accepts, $M$ accepts $w$, so \textit{accept}. Otherwise, \textit{reject}.\textquotedblright
+\end{enumerate}
+Thus, if \textbf{TM} $R$ exists, we can decide $A_{TM}$, but we know that $A_{TM}$ is undecidable\footnote{Theorem 4.11 $A_{TM}$ is undecidable.}. By virtue of this contradiction, we can conclude that $R$ does not exist. Therefore, $T$ is undecidable.
+\end{proof}
+\end{document}

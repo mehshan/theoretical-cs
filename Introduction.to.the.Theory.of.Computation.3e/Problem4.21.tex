@@ -1,0 +1,38 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+
+\usepackage{csquotes}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 4: Decidability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{4.21}
+Let $S = \{\langle M \rangle \ | \ M \ is \ a \ DFA \ that \ accepts \ w^R \ whenever \ it \ accepts \ w \}$. Show that S is decidable.
+\end{problem}
+
+\begin{proof}
+We present a \textbf{TM} $I$ that decides $S$.  \\
+\\
+$I =$ \textquotedblleft On input $\langle M \rangle$, where $M$ is a DFA:
+\begin{enumerate}
+\item Construct an NFA $N$, such that $L(N) = S^{R}$ by following the construction given in solution to Problem 1.31\footnote{Problem 1.31. For any string $w = w_{1} w_{2} \cdots w_{n}$, the reverse of $w$, written $w^{R}$, is the string {w} in reverse order, $w_{n} \cdots w_{1} w_{2}$. For any language $A$, let $A^{R} = \lbrace w^{R} \, | \, w \, \epsilon \, A \rbrace$. Show that if $A$ is regular, so is $A^{R}$.}.
+\item Convert the NFA $N$ to equivalent DFA $D$.
+\item Test $L(M) = L(D)$ using the $EQ_{DFA}$ decider $F$ from Theorem 4.5.
+\item If $F$ accepts, \textit{accept}; if $F$ rejects, \textit{reject}.\textquotedblright
+\end{enumerate}
+\end{proof}
+
+\end{document}

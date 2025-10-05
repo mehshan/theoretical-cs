@@ -1,0 +1,34 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 7: Time Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{7.18}
+Show that if $P = NP$, then every language $A \in P$, except $A = \emptyset$ and $A = \Sigma^{*}$, is NP-complete.
+\end{problem}
+
+\begin{proof}Let $A$ be any language in $P$, except $\emptyset$ and $\Sigma^{*}$. To show that if $P = NP$, then $A$ is NP-complete, we show that $SAT \leq_p A$. Let $S$ be the TM that decides $SAT$ in polynomial time. There exist two strings $w_a$ and $w_b$, such that $w_a \in A$ and $w_b \notin A$. Construct polynomial time reduction $F$ from $SAT$ to $A$ as follows: \\
+
+$F =$ \textquotedblleft On input $\langle \phi \rangle$, where $\phi$ is a Boolean formula:
+\begin{enumerate}
+\item Run $S$ on $\langle \phi \rangle$.
+\item If $S$ accepts, then output $w_a$, otherwise output $w_b$.\textquotedblright
+\end{enumerate}
+\end{proof}
+\end{document}

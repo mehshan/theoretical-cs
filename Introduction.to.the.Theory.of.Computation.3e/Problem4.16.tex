@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+
+\usepackage{csquotes}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 4: Decidability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{4.16}
+Let $A = \{\langle R \rangle \ | \ R \ is \ a \ regular \ expression \ describing \ a \ language \ containing \ at \ least \\ \ one \ string \ w \ that \ has \ 111 \ as \ a \ substring \ (i.e., \ w = x111y \ for \ some \ x \ and \ y)\}$. Show that A is decidable.
+\end{problem}
+
+\begin{proof}
+We present a \textbf{TM} $M$ that decides $A$.  \\
+\\
+$M =$ \textquotedblleft On input $\langle R \rangle$, where $R$ is a regular expression:
+\begin{enumerate}
+\item Construct a DFA $D$, such that $L(D) = L(R) \ \cap \ \Sigma^{*}111\Sigma^{*}$.
+\item Test $L(D) = \phi$ using the $E_{DFA}$ decider $T$ from Theorem 4.4.
+\item If $T$ accepts, \textit{reject}; if $T$ rejects, \textit{accept}.\textquotedblright
+\end{enumerate}
+\end{proof}
+
+\end{document}

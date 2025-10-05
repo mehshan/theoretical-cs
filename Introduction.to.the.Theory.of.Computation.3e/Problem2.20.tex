@@ -1,0 +1,33 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\dated}{\today}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 2: Context-Free Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{2.20}
+Let $A/B = \{w \ | \ wx \in A \ for \ some \ x \in B\}$. Show that if $A$ is context free and $B$ is regular, then $A/B$ is context free.
+\end{problem}
+
+\begin{idea}[Informal description.]
+Use DFA for B to generate its strings, which are pushed to the stack.
+  Once a string is generate...
+    Transition non-deter. to start state of A's PDA
+    Transition as usual through the PDA's states by reading the input
+\end{idea}
+
+\begin{proof}
+Solution Replace this text with the details of your proof or solution.
+\end{proof}
+
+\end{document}

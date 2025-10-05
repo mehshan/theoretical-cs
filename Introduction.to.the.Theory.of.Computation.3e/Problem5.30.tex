@@ -1,0 +1,42 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 5: Reducibility}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{5.30}
+Use Rice’s theorem, which appears in Problem 5.28, to prove the undecidability of each of the following languages.
+\end{problem}
+
+\begin{problem}[Part]{b}
+$\{\langle M \rangle \ | \ M \text{ is a } TM \text{ and } 1011 \in L(M)\}$.
+\end{problem}
+
+\begin{proof}
+Let $P = \{\langle M \rangle \ | \ M \text{ is a } TM \text{ and } 1011 \in L(M)\}$. $P$ is a language of \textbf{\textit{TM}} descriptions. It satisfies the two conditions of Rice’s theorem. First, it is nontrivial because languages some \textbf{\textit{TM}}s contain 1011 and others do not. Second, it depends only on the language. If two \textbf{\textit{TM}}s recognize the same language, either both have descriptions in $P$ or neither do. Consequently, Rice’s theorem implies that $P$ is undecidable.
+\end{proof}
+
+\begin{problem}[Part]{c}
+$ALL_{TM} = \{\langle M \rangle \ | \ M \text{ is a } TM \text{ and } L(M ) = \Sigma^{*}\}$.
+\end{problem}
+
+\begin{proof}
+$ALL_{TM}$ is a language of \textbf{\textit{TM}} descriptions. It satisfies the two conditions of Rice’s theorem. First, it is nontrivial because languages some \textbf{\textit{TM}}s contain all possible strings and others do not. Second, it depends only on the language. If two \textbf{\textit{TM}}s recognize the same language, either both have descriptions in $ALL_{TM}$ or neither do. Consequently, Rice’s theorem implies that $ALL_{TM}$ is undecidable.
+\end{proof}
+
+\end{document}

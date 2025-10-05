@@ -1,0 +1,49 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 2: Context-Free Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{2.30}
+Give unambiguous CFGs for the following languages.
+\end{problem}
+
+\begin{problem}[Part]{a}
+$\{w \ | \ in \ every \ prefix \ of \ w \ the \ number \ of \ a’s \ is \ at \ least \ the \ number \ of \ b’s \}$
+\end{problem}
+
+\begin{problem}[Part]{b}
+$\{w \ | \ the \ number \ of \ a’s \ and \ the \ number \ of \ b’s \ in \ w \ are \ equal\}$
+\end{problem}
+
+\begin{idea}[Solution Idea.]
+Let's analyze the structure of strings in the given language. All the strings of the language adhere to one of the following four patterns. Also, the same four patterns repeat recursively between two terminals.
+\[ a \cdots b \]
+\[ a \cdots b \cdots b \cdots a \]
+\[ b \cdots a \]
+\[ b \cdots a \cdots a \cdots b \]
+\end{idea}
+
+\begin{solution}
+\[
+S \rightarrow aSb \mid bSa \mid aSbSbSa \mid bSaSaSb \mid \varepsilon
+\]
+\end{solution}
+
+\begin{problem}[Part]{c}
+$\{w \ | \ the \ number \ of \ a’s \ is \ at \ least \ the \ number \ of \ b’s in \ w\}$
+\end{problem}
+
+\end{document}

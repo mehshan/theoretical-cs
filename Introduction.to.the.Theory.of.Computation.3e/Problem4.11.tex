@@ -1,0 +1,39 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+
+\usepackage{csquotes}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 4: Decidability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{4.11}
+Let $INFINITE_{PDA} = \{\langle M \rangle \ | \ M \ is \ a \ PDA \ and \  L(M)\  is \ an \ infinite \ language\}$. Show that $INFINITE_{PDA}$ is decidable.
+\end{problem}
+
+\begin{proof}
+We present a \textbf{TM} $T$ that decides $INFINITE_{PDA}$ using the result of the Problem 2.35\footnote{Let $G$ be a CFG in Chomsky normal form that contains $b$ variables. If $G$ generates some string with a derivation having at least $2^b$ steps, then $L(G)$ is infinite.}.  \\
+\\
+$T =$ \textquotedblleft On input $\langle M \rangle$, where $M$ is a PDA:
+\begin{enumerate}
+\item Convert $M$ to an equivalent CFG $G$ using the construction given in Lemma 2.27.
+\item Convert $G$ to an equivalent grammar $G_c$ in Chomsky normal form.
+\item Let $b$ be the number of variables in $G_c$. Generate all strings $s_1, s_2, \cdots$, where each $s_i$ has a derivation of $2^b$ steps in $G_c$.
+\item Run the decider $S$ for $A_{CFG}$ given in Theorem 4.7 on each $s_i$.
+\item If $S$ accepts some $s_i$, then \textit{accept}, otherwise \textit{reject}.\textquotedblright
+\end{enumerate}
+\end{proof}
+
+\end{document}

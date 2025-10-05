@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\myname}{Mehshan Mustafa}
+\newcommand{\dated}{\today}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{idea}[2][Proof Idea.]{\textit{#1} #2}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 1: Reqular Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{1.72}
+Let $M_{1}$ and $M_{2}$ be DFAs that have $k_{1}$ and $k_{2}$ states, respectively, and then let $U = L(M_{1}) \cup L(M_{2})$.
+\end{problem}
+
+\begin{problem}[Part]{a}
+Show that if $U \neq \phi$, then $U$ contains some string $s$, where $|s| < max(k_{1}, \; k_{2})$.
+\end{problem}
+
+\begin{proof}
+The proof is by contradiction. Assume $U \neq \phi$ and $U$ does not contain some string $s$, where $|s| < max(k_{1}, \; k_{2})$. Without the loss of generality also assume that $k_{1} > k_{2}$. As $U$ is not empty, therefore all strings in $U$ are of length at least $k_{1}$. Let $w$ be some string in $U$ of minimum length, say $n$:
+\[ w = w_{1}w_{2}w_{3} \cdots w_{n}, \; 0 < k_{2} < k_{1} \leq n\]
+Then, according to the definitions given in Problem 1.52 (Myhill–Nerode theorem), $X$ is pairwise distinguishable by $U$, and $X \subseteq I$, where $I$ is some index of U:
+\[ X = \{ \epsilon, \; w_{1}, \; w_{1}w_{2}, \; w_{1}w_{2}w_{3}, \; w_{1}w_{2}w_{3}\cdots w_{n - 1}, \;  w_{1}w_{2}w_{3}\cdots w_{n} \} \]
+As $U = L(M_{1}) \cup L(M_{2})$, so either $w \in L(M_{1})$ or $w \in L(M_{2})$. This means that $X$ must also be the subset of some index of either $L(M_{1})$ or $L(M_{2})$. $|X| = n + 1$, therefore any DFA that recognizes a language containing $w$ cannot have fewer than $n + 1$ states. Hence, either $k_{1} \geq n + 1$ or $k_{2} \geq n + 1$, which is a contradiction.
+\end{proof}
+
+\begin{problem}[Part]{b}
+Show that if $U \neq \Sigma^*$, then $U$ excludes some string $s$, where $|s| < k_{1}k_{2}$.
+\end{problem}
+
+\begin{proof}
+To show that, if $U \neq \Sigma^*$, then $U$ excludes some string $s$, where $|s| < k_{1}k_{2}$, we show that the complement of $U$ contains some string $s$, where $|s| < k_{1}k_{2}$. As $U \neq \Sigma^*$, so $\overline{U} \neq \phi$. Also, $\overline{U} = \overline{L(M_{1})} \cup \overline{L(M_{2})}$. If the DFAs $M_{1}$ and $M_{2}$ have $k_{1}$ and $k_{2}$ states, then the DFAs $\overline{M_{1}}$ and $\overline{M_{2}}$ that recognize $\overline{L(M_{1})}$ and $\overline{L(M_{2})}$ respectively, can be constructed with the same $k_{1}$ and $k_{2}$ states by swapping the accept and non-accept states. Therefore, according to the proof given in Part a, $\overline{U}$ contains some string $s$, where $|s| < max(k_{1}, \; k_{2})$. Both $k_{1}$ and $k_{2}$ are positive integers, so $|s| < k_{1}k_{2}$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,50 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 7: Time Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{7.22}
+Let $DOUBLE\text{-}SAT = \{\langle \phi \rangle \ | \ \phi \text{ has at least two satisfying assignments}\}$. \\ Show that $DOUBLE\text{-}SAT$ is NP-complete.
+\end{problem}
+
+\begin{proof}
+The proof is in two parts. First, we show that $DOUBLE\text{-}SAT \in NP$. Second, we show that every $A \in P$ is polynomial time reducable to $DOUBLE\text{-}SAT$.
+
+\begin{problem}[Part]{a}
+Show that $DOUBLE\text{-}SAT \in NP$.
+\end{problem}
+
+A certificate is simply two satisfying assignments.
+
+\begin{problem}[Part]{b}
+Show that every $A \in NP$ is polynomial time reducable to $DOUBLE\text{-}SAT$.
+\end{problem}
+
+To show that every $A \in NP$ is polynomial time reducable to $DOUBLE\text{-}SAT$, we give a polynomial time reduction $F$ from $SAT$ to $DOUBLE\text{-}SAT$. \\
+
+$F =$ \textquotedblleft On input $\langle \phi \rangle$, where $\phi$ is a satisfiable Boolean formula:
+\begin{enumerate}
+\item Let $\alpha$ be a new Boolean variable, which is not in $\phi$.
+\item Let $\phi_2 = \phi \wedge (\alpha \vee \overline{\alpha})$.
+\item Output $\langle \phi_2 \rangle$.\textquotedblright
+\end{enumerate}
+If $\phi$ is satisfiable, then $\phi_2$ has at least two satisfiable assignments. First, where $\alpha = T$, and the second where $\alpha = F$. If $\phi_2 = \phi \wedge (\alpha \vee \overline{\alpha})$ has at least two satisfiable assignments, then $\phi$ is satisfiable.
+\end{proof}
+
+\end{document}

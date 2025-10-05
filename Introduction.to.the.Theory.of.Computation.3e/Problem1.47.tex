@@ -1,0 +1,65 @@
+\documentclass[11pt]{article}
+
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\myname}{Mehshan Mustafa}
+\newcommand{\dated}{\today}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{idea}[2][Proof Idea.]{\textit{#1} #2}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 1: Reqular Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{1.47}
+Let $\Sigma = \{1, \#\}$ and let
+\[
+Y = \{w \ | \ w = x_{1}\#x_{2}\# \cdots \#x_{k} \ for \ k \geq 0, \ each \ x_{i} \in 1^{*}, and \ x_{i} \neq x_{j} \ for \ i \neq j\}.
+\]
+Prove that $Y$ is not regular.
+\end{problem}
+
+\begin{idea} For $k=1$ and $k=2$, some of the members of $Y$ are:
+\[
+Y = \{\epsilon, \ 1, \ 11, \ 111, \ \cdots\, \ 1\#, \ \#1, \ 11\#, \ \#11, \ 1\#11, \ 11\#1 \ \cdots\}.
+\]
+The idea is to choose a string $s$, for which $k=2$, and show that $x_{1}$ and $x_{2}$ can be equal.
+\end{idea}
+
+\begin{proof}
+The proof is by contradiction. Assume $Y$ is a ragular language. Let $p$ be the pumping lenght given by the pumping lemma. Choose $s$ to be the string:
+\[ s = 1^{p}\#1^{p+p!} \]
+The string $s$ is a member of $Y$, and $|s| \geq p$. Therefore, the pumping lemma guarantees that the string $s$ can be split into three parts, $s = xyz$, and for $i \geq 0$, $xy^{i}z \in Y$. According to the condition 3 $(|xy| \leq p)$ of the pumping lemma, $y$ can only be 1s.
+\\
+\\
+Let $m+n=p$, $x=1^{m}$ and $y=1^{n}$. Then
+\[ 1^{m}\Bigl[1^{n}\Bigr]^{i}\#1^{p+p!} \in Y. \]
+But for $i=1+\frac{p!}{n}$, the number of 1s on both sides of the \# are the same, which is a contradiction.
+\end{proof}
+
+\end{document}

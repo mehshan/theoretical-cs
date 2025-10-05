@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 2: Context-Free Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{2.47}
+Let $\Sigma = \{0,1\}$ and let $B$ be the collection of strings that contain at least one 1 in their second half. In other words, $B = \{uv \ | \ u \in \Sigma^{*}, \ v \in \Sigma^{*}1\Sigma^{*} \ and \ |u| \geq |v|\}$.
+\end{problem}
+
+\begin{problem}[Part]{a}
+Give a PDA that recognizes $B$.
+\end{problem}
+
+\begin{center}
+\includegraphics[scale=1.4]{Figures/Problem2.47.pdf} \\
+A PDA that recognizes $B$.
+\end{center}
+
+\begin{problem}[Part]{b}
+Give a CFG that generates $B$.
+\end{problem}
+\begin{align*}
+S &\rightarrow 0S0 \ | \ 1S0 \ | \ 0T1 \ | \ 1T1 \\
+T &\rightarrow 0T0 \ | \ 0T1 \ | \ 1T0 \ | \ 1T1 \ | \ 0 \ | \ 1 \ | \ \varepsilon \\
+\end{align*}
+
+\end{document}

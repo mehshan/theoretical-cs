@@ -1,0 +1,30 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 3: The Church-Turing Thesis}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{3.13}
+A \textbf{Turing machine with stay put instead of left} is similar to an ordinary Turing machine, but the transition function has the form
+\[
+\delta : Q \times \Gamma \longrightarrow Q \times \Gamma \times \{R, S\}.
+\]
+At each point, the machine can move its head right or let it stay in the same position. Show that this Turing machine variant is not equivalent to the usual version. What class of languages do these machines recognize?
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+\end{document}

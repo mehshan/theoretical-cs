@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+
+\usepackage{csquotes}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 4: Decidability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{4.24}
+A \textbf{\textit{useless state}} in a pushdown automaton is never entered on any input string. Consider the problem of determining whether a pushdown automaton has any useless states. Formulate this problem as a language and show that it is decidable.
+\end{problem}
+
+\begin{proof}
+Let $U_{PDA} = \{\langle M \rangle \ | \ M \ is \ a \ PDA \ and \  M \ contains \ a \ useless \ state\}$. To show that $U_{PDA}$ is decidable, we present a \textbf{TM} $I$ that decides it.  \\
+\\
+$I =$ \textquotedblleft On input $\langle M \rangle$, where $M$ is a PDA:
+\begin{enumerate}
+\item Check all states that are reachable in $M$ by performing \textit{Depth-First-Search} on $M's$ start state.
+\item Each time a state is visited by \textit{Depth-First-Search} procedure, mark it.
+\item If some state is unmarked after \textit{Depth-First-Search} finishes, \textit{accept}. Otherwise \textit{reject}.\textquotedblright
+\end{enumerate}
+\end{proof}
+
+\end{document}

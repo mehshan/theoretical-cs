@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 5: Reducibility}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{5.35}
+Say that a variable $A$ in CFG $G$ is necessary if it appears in every derivation of some string $w \in G$. Let $NECESSARY_{CFG} = \{\langle G, A \rangle \ | \ A \text{ is a necessary variable in } G\}$.
+\end{problem}
+
+\begin{problem}[Part]{a}
+Show that $NECESSARY_{CFG}$ is Turing-recognizable.
+\end{problem}
+
+\begin{proof}
+We construct a \textbf{\textit{TM}} $N$ which recognizes $NECESSARY_{CFG}$. \\
+\\
+$N =$ \textquotedblleft On input $\langle G, A \rangle$, where $G$ is a CFG and $A$ is a symbol:
+\begin{enumerate}
+\item If $A$ is not a variable in $G$, then \textit{reject}.
+\item Repeat for each $i = 0, 1, 2, \cdots$.
+\item \hspace*{0.5cm} Generate all strings $s_1, s_2, s_3, \cdots$ of length $i$, such that each $s_i \in L(G)$.
+\item \hspace*{0.5cm} If for some $s_i$ and $s_j$, where $s_i = s_j$ and $i \neq j$ and $A$ is included in the \\
+\hspace*{0.5cm} derivation of both $s_i$ and $s_j$, then \textit{accept}.\textquotedblright
+\end{enumerate}
+\end{proof}
+
+\begin{problem}[Part]{b}
+Show that $NECESSARY_{CFG}$ is undecidable.
+\end{problem}
+
+\begin{proof}
+This proof is similar to the proof of Problem 5.21, except one minor change. The rules of the CFG $G$ are modified to use new variables $A_1 \dots A_k$, where each rule $A_i$ has the form $A_i \rightarrow a_i$. \\
+
+To show that $NECESSARY_{CFG}$ is undecidable, we give a reduction from $PCP$ to $NECESSARY_{CFG}$. Given an instance
+\[
+P=\left\{\left[\frac{t_{1}}{b_{1}}\right] ,\left[\frac{t_{2}}{b_{2}}\right] ,\dotsc ,\left[\frac{t_{k}}{b_{k}}\right]\right\}
+\]
+of the Post Correspondence Problem, construct a CFG $G$ with the rules
+\begin{align*}
+S &\rightarrow T \ | \ B \\
+T &\rightarrow t_1TA_1 \ | \cdots |  \ t_kTA_k \ | \ t_1A_1 \ | \cdots | \ t_kA_k \\
+B &\rightarrow b_1BA_1 \ | \cdots |  \ b_kBA_k \ | \ b_1A_1 \ | \cdots | \ b_kA_k \\
+A_1 &\rightarrow a_1 \\
+\vdots & \\
+A_k &\rightarrow a_k,
+\end{align*}
+where $a_1,a_2,\cdots,a_k$ are new terminal symbols. \\
+
+If $P$ is an instance of Post Correspondence Problem, then for every possible arrangement of the dominoes $i_1, i_2,\dots,i_l$, where $t_{i_{1}}t_{i_{2}} \dots t_{i_{l}}$ is the top string and $b_{i_{1}}t_{b_{2}} \dots b_{i_{l}}$ the bottom string, there exists exactly one derivation for the top and bottom strings in $G$. The terminal symbols $a_1,a_2,\cdots,a_k$, make sure that every string generated using the variable $T$ has at most one left-most derivation even if some $t_{i}$ and $t_{j}$ are same. Same argument can be said for the variable $B$. \\
+
+If $P \in PCP$, then there exists a match $i_1, i_2,\dots,i_l$, where $t_{i_{1}}t_{i_{2}} \dots t_{i_{l}} = b_{i_{1}}t_{b_{2}} \dots b_{i_{l}}$. In this case, the CFG $G$ is guaranteed to have following two left-most derivations that produce the same string and some variable $A_i$ appears in both of these derivations.
+\begin{align*}
+S &\rightarrow T \\
+&\rightarrow t_{i_{1}}TA_{i_{1}} \\
+&\rightarrow t_{i_{1}} t_{i_{2}} T A_{i_{2}} A_{i_{1}} \\
+&\rightarrow t_{i_{1}} t_{i_{2}} \dots T \dots A_{i_{2}} A_{i_{1}} \\
+&\rightarrow t_{i_{1}} t_{i_{2}} \dots t_{i_{l}}A_{i_{l}} \dots A_{i_{2}} A_{i_{1}} \\
+&\rightarrow t_{i_{1}} t_{i_{2}} \dots t_{i_{l}}a_{i_{l}} \dots A_{i_{2}} A_{i_{1}} \\
+&\rightarrow t_{i_{1}} t_{i_{2}} \dots t_{i_{l}}a_{i_{l}} \dots a_{i_{2}} A_{i_{1}} \\
+&\rightarrow t_{i_{1}} t_{i_{2}} \dots t_{i_{l}}a_{i_{l}} \dots a_{i_{2}} a_{i_{1}}
+\end{align*}
+\begin{align*}
+S &\rightarrow B \\
+&\rightarrow b_{i_{1}}B A_{i_{1}} \\
+&\rightarrow b_{i_{1}} b_{i_{2}} B A_{i_{2}} A_{i_{1}} \\
+&\rightarrow b_{i_{1}} b_{i_{2}} \dots B \dots A_{i_{2}} A_{i_{1}} \\
+&\rightarrow b_{i_{1}} b_{i_{2}} \dots b_{i_{l}}A_{i_{l}} \dots A_{i_{2}} A_{i_{1}} \\
+&\rightarrow t_{i_{1}} t_{i_{2}} \dots t_{i_{l}}a_{i_{l}} \dots A_{i_{2}} A_{i_{1}} \\
+&\rightarrow t_{i_{1}} t_{i_{2}} \dots t_{i_{l}}a_{i_{l}} \dots a_{i_{2}} A_{i_{1}} \\
+&\rightarrow t_{i_{1}} t_{i_{2}} \dots t_{i_{l}}a_{i_{l}} \dots a_{i_{2}} a_{i_{1}}
+\end{align*}
+\end{proof}
+
+\end{document}

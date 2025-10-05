@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\myname}{Mehshan Mustafa}
+\newcommand{\dated}{\today}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{idea}[2][Proof Idea.]{\textit{#1} #2}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 1: Reqular Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{1.51}
+Let $x$ and $y$ be strings and let $L$ be any language. We say that $x$ and $y$ are \textbf{distinguishable by $L$} if some string $z$ exists whereby exactly one of the strings $xz$ and $yz$ is a member of $L$; otherwise, for every string $z$, we have $xz \in L$ whenever $yz \in L$ and we say that $x$ and $y$ are \textbf{indistinguishable by $L$}. If $x$ and $y$ are indistinguishable by $L$, we write $x \equiv_{L} y$. Show that $\equiv_{L}$ is an equivalence relation.
+\end{problem}
+
+\begin{proof}
+To show that $\equiv_{L}$ is an equivalence relation, first give formal definition of $\equiv_{L}$\footnote{The formal method used in this proof is presented in the book \textbf{A Logical Approach
+to Discrete Math} by David Gries and Fred B. Schneider. To learn more about this method, checkout \textbf{Math 220: Formal Methods, Pepperdine University}. Course link is https://cslab.pepperdine.edu/warford/math220/.}, and then show that $\equiv_{L}$ is:
+\begin{enumerate}
+\item Reflexive
+\item Symmetric
+\item Tranisitive
+\end{enumerate}
+\begin{theorem}[Definition]{$\equiv_{L}$} 
+Let $x$ and $y$ be strings and let $L$ be any language. Then $x \equiv_{L} y$ is defined as
+\[
+(x \equiv_{L} y) \equiv (\forall z \ |: xz \in L \equiv yz \in L).
+\]
+\end{theorem}
+
+\begin{problem}[Part]{1}
+Reflexivity: $x \equiv_{L} x$
+\end{problem}
+\begin{align*}
+&\quad x \equiv_{L} x \\
+= &\quad \langle Definition \ of \ \equiv_{L} \rangle \\
+&\quad (\forall z \ |: xz \in L \equiv xz \in L) \\
+= &\quad \langle Reflexivity \ of \equiv (3.5) \rangle \\
+&\quad (\forall z \ |: true) \\
+= &\quad \langle (9.8) \rangle \\
+&\quad true
+\end{align*}
+
+\newpage
+
+\begin{problem}[Part]{2}
+Symmetry: $x \equiv_{L} y \Rightarrow y \equiv_{L} x$
+\end{problem}
+Proof by assuming conjuncts of the antecedent.
+\begin{align*}
+&\quad y \equiv_{L} x \\
+= &\quad \langle Definition \ of \ \equiv_{L} \rangle \\
+&\quad (\forall z \ |: yz \in L \equiv xz \in L) \\
+= &\quad \langle Symmetry \ of \equiv (3.2) \rangle \\
+&\quad (\forall z \ |: xz \in L \equiv yz \in L) \\
+= &\quad \langle Definition \ of \ \equiv_{L} \rangle \\
+&\quad x \equiv_{L} y \\
+= &\quad \langle Assumption \ x \equiv_{L} y \rangle \\
+&\quad true
+\end{align*}
+
+\begin{problem}[Part]{3}
+Transitivity: $x \equiv_{L} y \wedge y \equiv_{L} w \Rightarrow x \equiv_{L} w$
+\end{problem}
+\begin{align*}
+L \cdot H  \cdot S: &\quad x \equiv_{L} y \wedge y \equiv_{L} w \\
+= &\quad \langle Definition \ of \ \equiv_{L} \rangle \\
+&\quad (\forall z \ |: xz \in L \equiv yz \in L) \wedge (\forall z \ |: yz \in L \equiv wz \in L) \\
+= &\quad \langle Distributivity \ (8.15) \rangle \\
+&\quad (\forall z \ |: xz \in L \equiv yz \in L \wedge yz \in L \equiv wz \in L) \\
+= &\quad \langle Leibniz \ (3.84 a) \rangle \\
+&\quad (\forall z \ |: xz \in L \equiv wz \in L \wedge yz \in L \equiv wz \in L) \\
+\Rightarrow &\quad \langle Body \ weakening/strengthening \ (9.11) \rangle \\
+&\quad (\forall z \ |: xz \in L \equiv wz \in L) \\
+= &\quad \langle Definition \ of \ \equiv_{L} \rangle \\
+&\quad x \equiv_{L} w
+\end{align*}
+\end{proof}
+\end{document}

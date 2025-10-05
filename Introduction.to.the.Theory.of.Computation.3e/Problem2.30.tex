@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 2: Context-Free Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{2.30}
+Use the pumping lemma to show that the following languages are not context free.
+\end{problem}
+
+\begin{problem}[Part]{a}
+$\{0^{n}1^{n}0^{n}1^{n} \ | \ n \geq 0\}$
+\end{problem}
+
+\begin{proof}
+The proof is by contradiction. Assume the language $A = \{0^{n}1^{n}0^{n}1^{n} \ | \ n \geq 0\}$ is context free. Let $p$ be the pumping length given by the pumping lemma. Choose the string $s = 0^{p}1^{p}0^{p}1^{p}$. Clearly $s$ is a member of $A$ and of length at least $p$. The pumping lemma states that $s$ can be pumped, but we show that it cannot be pumped.
+
+\begin{enumerate}
+\item Either $v$ or $y$ is non-empty. Without loss of generality, we only discuss the case when $v$ is non-empty. If $v$ is non-empty, then it may contain only one type of alphabet or both 0's and 1's. In former case, the string $uv^{2}xy^{2}z \notin A$, because it cannot contain equal number of 0's or 1's in each segment. In latter case, the string $uv^{2}xy^{2}z \notin A$ as it cannot contain exactly two segments of 0's and 1's.
+\item Both $v$ and $y$ are non-empty. There are three possibilities. First, both $v$ and $y$ contain the same alphabet from the same segment of 0's or 1's. Second, $v$ contains only one type of symbol from a segment and $y$ only contains the other type of symbol from a neighboring segments. Third, $v$ or $y$ contain both 0's and 1's from two neighboring segments. In the first and second cases, the string $uv^{2}xy^{2}z \notin A$, because it cannot contain equal number of 0's and 1's in each segment. In the third case, the string $uv^{2}xy^{2}z \notin A$ as it cannot contain exactly two segments of 0's and 1's.
+\end{enumerate}
+One of these cases must occur, and both cases result in a contradiction.
+\end{proof}
+
+\begin{problem}[Part]{d}
+$\{ t_{1} \# t_{2} \# \cdots \# t_{k} \ | \ k \geq 2, \ each \ t_{i} \in \{a, b\}^{*}, \ and \ t_{i} = t_{j} \ for \ some \ i \neq  j \}$
+\end{problem}
+
+\begin{proof}
+The proof is by contradiction. Assume the language $B = \{ t_{1} \# t_{2} \# \cdots \# t_{k} \ | \ k \geq 2, \ each \ t_{i} \in \{a, b\}^{*}, \ and \ t_{i} = t_{j} \ for \ some \ i \neq  j \}$ is context free. Let $p$ be the pumping length given by the pumping lemma. Choose the string $s = a^pb^p\#a^pb^p$. Clearly $s$ is a member of $B$ and of length at least $p$. The pumping lemma states that $s$ can be pumped, but we show that it cannot be pumped.
+
+\begin{enumerate}
+\item Either $v$ or $y$ contains the $\#$. The string $uv^0xy^0z \notin B$, because it does not contain any $\#'s$.
+\item Neither $v$ nor $y$ contains the $\#$. There are two cases. First, both $v$ and $y$ are on the same side of the $\#$. Second, $v$ contains any number of b's on the left of $\#$, while $y$ contains any number of a's on the right. In both cases, the string $uv^2xy^2z \notin B$ as $t_1 \neq t_2$. 
+\end{enumerate}
+One of these cases must occur, and both cases result in a contradiction.
+\end{proof}
+
+\end{document}

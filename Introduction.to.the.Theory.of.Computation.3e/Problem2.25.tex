@@ -1,0 +1,33 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 2: Context-Free Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{2.25}
+For any language $A$, let $SUFFIX(A) = \{v \ | \ uv \in A \ for \ some \ string \ u\}$. Show that the class of context-free languages is closed under the $SUFFIX$ operation.
+\end{problem}
+
+Characteristics of PDA that accepts Suffix(A):
+1. start state is also an accept state
+2. direct (e,e->$)transition to every other state
+3. stack operations are in play
+
+Solve it by manipulating grammer of a... subsequently remove symbols
+from left in each role... avoid mixups
+
+Apply above strategy on some simple example grammers a^nb^n
+
+\end{document}

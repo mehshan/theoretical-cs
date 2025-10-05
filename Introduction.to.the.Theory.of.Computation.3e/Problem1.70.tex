@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\myname}{Mehshan Mustafa}
+\newcommand{\dated}{\today}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{idea}[2][Proof Idea.]{\textit{#1} #2}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 1: Reqular Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{1.70}
+We define the \textbf{avoids} operation for languages $A$ and $B$ to be
+\[
+A \; avoids \; B = \{w \; | \; w \in A \; and \; w \; doesn’t \; contain \; any \; string \; in \; B \; as \; a \; substring\}.
+\]
+Prove that the class of regular languages is closed under the \textit{avoids} operation.
+\end{problem}
+
+\begin{idea}
+If both $A$ and $B$ are regular languages, then we can build a regular expression that describes $A \ avoids \ B$ as follows:
+\begin{enumerate}
+\item Construct a language $C$ that consists of all strings that contain strings of $B$ as substring.
+\item Take complement of $C$ to construct a new language $\overline{C}$ that consists of all strings that contains all strings that do not contain strings of $B$ as substring.
+\item Take intersection of $A$ and $\overline{C}$ to construct $A \ avoids \ B$.
+\end{enumerate}
+\end{idea}
+
+\begin{proof}
+To prove that the class of regular languages is closed under the \textit{avoids} operation we use the closure of the class of regular languages under intersection and complement. The regular expression $A \cap \overline{(\Sigma^* \cdot B \cdot \Sigma^*)}$ describes the language $A \ avoids \ B$.
+\end{proof}
+
+\end{document}

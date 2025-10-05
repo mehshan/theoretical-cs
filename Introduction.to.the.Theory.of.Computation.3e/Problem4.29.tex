@@ -1,0 +1,44 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+
+\usepackage{csquotes}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 4: Decidability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{4.29}
+Let $C_{CFG} = \{\langle G, k \rangle \ | \ G \text{ is a } CFG \text{ and } L(G) \text{ contains exactly } k \text{ strings where } k \geq 0 \text{ or } k = \infty\}$. Show that $C_{CFG}$ is decidable.
+\end{problem}
+
+\begin{proof}
+We present a \textbf{TM} $I$ that decides $C_{CFG}$.  \\
+\\
+$I =$ \textquotedblleft On input $\langle M \rangle$, where $M$ is a PDA:
+\begin{enumerate}
+
+\item If $k = 0$:
+\item \hspace*{0.5cm} Test $L(G) = \phi$ using the $E_{CFG}$ decider $R$ from Theorem 4.8. 
+\item \hspace*{0.5cm} If $R$ accepts, \textit{accept}; otherwise,  \textit{reject}.
+\item If $k = \infty$:
+\item \hspace*{0.5cm} Convert $G$ to equivalent PDA $P$.
+\item \hspace*{0.5cm} Test $L(P)$ is infinite using the $INFINITE_{PDA}$ decider $T$ from solution to Problem 4.11. 
+\item \hspace*{0.5cm} If $T$ accepts, \textit{accept}; otherwise,  \textit{reject}.
+\item Generate all possible strings $s_1, s_2, \cdots, s_n$ in $G$.
+\item If $n = k$, \textit{accept}; otherwise, \textit{reject}.\textquotedblright
+\end{enumerate}
+\end{proof}
+
+\end{document}

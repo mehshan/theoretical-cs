@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 5: Reducibility}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{5.17}
+Show that the Post Correspondence Problem (PCP) is decidable over the unary alphabet $\Sigma = \{1\}$.
+\end{problem}
+
+\begin{proof}
+Let $P_1 = \{\langle P \rangle \ | \ P \text{ is an instance of PCP over the unary alphabet } \{1\} \text{, and } P \text{ has a match}$. We construct a \textbf{TM} $S$ that decides $P_1$ as follows. \\
+
+$S =$ \textquotedblleft On input $\langle P \rangle$, where $P$ is an instance of PCP over the unary alphabet $\{1\}$:
+\begin{enumerate}
+\item Let $n$ be the number of dominoes in $P$.
+\item If $|t_i| > |b_i|$ for all $1 \leq i \leq n$, then \textit{reject}.
+\item If $|t_i| < |b_i|$ for all $1 \leq i \leq n$, then \textit{reject}.
+\item \textit{Accept}.\textquotedblright
+\end{enumerate}
+\end{proof}
+\end{document}

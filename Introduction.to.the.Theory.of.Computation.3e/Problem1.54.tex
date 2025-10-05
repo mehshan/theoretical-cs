@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\myname}{Mehshan Mustafa}
+\newcommand{\dated}{\today}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{idea}[2][Proof Idea.]{\textit{#1} #2}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 1: Reqular Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{1.54}
+Consider the language $F = \{a^{i}b^{j}c^{k} \ | \ i, \ j, \ k \geq 0 \ and \ if \ i = 1 \ then \ j = k\}$.
+\end{problem}
+
+\begin{problem}[Part]{a}
+Show that $F$ is not regular.
+\end{problem}
+\begin{proof}
+To show that $F$ is not regular, we use \textbf{Myhill–Nerode theorem}, and show that the \textbf{index of \textit{L}}\footnote{Problem 1.52 \textbf{Myhill–Nerode theorem}.} is infinite. Define
+\[ X = \{w \ | \ w = ab^{i}, \ where \ i \geq 0 \}. \]
+The set $X$ is infinite, and no two strings in $X$ have the same number of b's. Take any two strings $w_{a}, w_{b} \in X$, let $k$ be the number of b's in $w_{a}$, and let $z = c^{k}$, then $w_{a}z \in F$ and $w_{b}z \notin F$. Thus $X$ is pairwise distinguishable by $F$, and $X$ is the index of $L$. As $X$ is infinite, therefore $F$ is not a regular language.
+\end{proof}
+
+\begin{problem}[Part]{b}
+Show that $F$ acts like a regular language in the pumping lemma. In other
+words, give a pumping length $p$ and demonstrate that $F$ satisfies the three conditions of the pumping lemma for this value of $p$.
+\end{problem}
+Let the pumping length $p=2$. For any string $s \in F$ with a length of at least $2$, there can be four cases regarding the number of a's.
+\begin{enumerate}
+\item No a's. \\
+Split $s = xyz$, where $x = \epsilon$, $y$ is the first symbol and $z$ is the rest.
+\item Exactly one a, and an equal number of b's and c's. \\
+Split $s = xyz$, where $x = \epsilon$, $y = a$ and $z$ is the rest.
+\item Exactly two a's. \\
+Split $s = xyz$, where $x = \epsilon$, $y=aa$ and $z$ is the rest.
+\item More than two a's. \\
+Split $s = xyz$, where $x = \epsilon$, $y=a$ and $z$ is the rest.
+\end{enumerate}
+In each case, the string $s$ can be split into three pieces, $s = xyz$, satisfying the three conditions of the pumping lemma.
+
+\begin{problem}[Part]{c}
+Explain why parts (a) and (b) do not contradict the pumping lemma.
+\end{problem}
+The pumping lemma is an implication, where the antecedent is that a given language is regular, and the consequent is that all large enough strings in the given language can be split and pumped. In case of $F$, the antecedent is false, so the consequent may or may not be true.
+
+\end{document}

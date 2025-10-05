@@ -1,0 +1,36 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 3: The Church-Turing Thesis}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{3.11}
+A \textbf{Turing machine with doubly infinite tape} is similar to an ordinary Turing ma-chine, but its tape is infinite to the left as well as to the right. The tape is initially filled with blanks except for the portion that contains the input. Computation is defined as usual except that the head never encounters an end to the tape as it moves leftward. Show that this type of Turing machine recognizes the class of Turing-recognizable languages.
+\end{problem}
+
+\begin{proof}
+We show how to convert a doubly infinite tape TM $M$ to an equivalent ordinary TM S. The TM $S$ simulates $M$ by shifting cells one position to the right whenever its head is at the left-most position and move to left is needed.
+\\
+\\
+S = "On input $w$":
+\begin{enumerate}
+\item $S$ operates as usual when moving right.
+\item Before moving to the left, $S$ first checks the position of the head.
+\item If the head is at left-most position when moving left, then $S$ first shits tape contents one position to the right, writes blank at the left-most cell and the new symbol on the second cell, and moves the head to the first cell.
+\item Otherwise, $S$ moves to the left as usual.
+\end{enumerate}
+\end{proof}
+
+\end{document}

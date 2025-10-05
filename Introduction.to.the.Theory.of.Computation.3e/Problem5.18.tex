@@ -1,0 +1,29 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 5: Reducibility}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{5.18}
+Show that the Post Correspondence Problem is undecidable over the binary alphabet $\Sigma = {0,1}$.
+\end{problem}
+
+\begin{proof}
+Let $PCP_b = \{\langle P \rangle \ | \ P \text{ is an instance of } PCP \text{ over binary alphabet } \Sigma = \{0, 1\}\}$. To show that $PCP_b$ is undecidable, we give a reduction from $PCP$ to $PCP_b$. Let $\Sigma_{PCP}$ be a finite set of symbols $a_1, a_2, \dots, a_n$, where $n \geq 1$. Let $g$ be a function that maps each symbol $a_i$ to the binary representation of its index $i$ using $\lfloor log_{2}n \rfloor + 1$ characters. A reduction $f$ from $PCP$ to $PCP_b$ can be constructed using $g$ that converts an instance of $PCP$ to $PCP_b$. As $PCP$ is undecidable and $PCP \leq_{m} PCP_b$, so according to the Corollary 5.23, $PCP_b$ is also undecidable.
+\end{proof}
+\end{document}

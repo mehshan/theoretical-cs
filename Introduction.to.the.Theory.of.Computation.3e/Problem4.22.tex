@@ -1,0 +1,39 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+
+\usepackage{csquotes}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 4: Decidability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{4.22}
+Let $PREFIX-FREE_{REX} = \{\langle R \rangle \ | \ R \text{ is a regular expression and } L(R) \text{ is prefix-free}\}$. Show that $PREFIX-FREE{REX}$ is decidable. Why does a similar approach fail to show that $PREFIX-FREE_{ CFG}$ is decidable?
+\end{problem}
+
+\begin{proof}
+We present a \textbf{TM} $I$ that decides $PREFIX-FREE_{REX}$.  \\
+\\
+$I =$ \textquotedblleft On input $\langle R \rangle$, where $R$ is a regular expression:
+\begin{enumerate}
+\item Convert $R$ to equivalent NFA $N$.
+\item Construct an NFA $M$, such that $L(M) = NOPREFIX(N)$ by following the construction given in solution to Problem 1.40 a.
+\item Convert $M$ to equivalent DFA $D$.
+\item Test $L(D) = \phi$ using the $E_{DFA}$ decider $T$ from Theorem 4.4.
+\item If $T$ accepts, \textit{accept}; if $F$ rejects, \textit{reject}.\textquotedblright
+\end{enumerate}
+\end{proof}
+The class of context-free languages is not closed under $NOPREFIX$\footnote{Refer to the proof given in solution to Problem 2.41 a.}. Therefore, the approach used to construct a decider for $PREFIX-FREE_{REX}$ cannot be used to show that $PREFIX-FREE_{ CFG}$ is decidable.
+\end{document}

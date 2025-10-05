@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 5: Reducibility}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{5.23}
+Show that $A$ is decidable iff $A \leq_m 0^{*}1^{*}$ 
+\end{problem}
+
+The proof is in two parts.
+
+\begin{problem}[Part]{a}
+If $A$ is decidable, then $A \leq_m 0^{*}1^{*}$ 
+\end{problem}
+
+\begin{proof}
+Let $A$ be any decidable language and let $R$ be a decider for $A$. To show $A \leq_m 0^{*}1^{*}$, we give a reduction $f$ from $A$ to $0^{*}1^{*}$. \\
+
+The following machine $F$ computes reduction $f$. \\
+
+$F =$ \textquotedblleft On input $w$:
+\begin{enumerate}
+\item Run $R$ on $w$.
+\item If $R$ accepts, output $01$. Otherwise, output $10$.\textquotedblright
+\end{enumerate}
+\end{proof}
+
+\begin{problem}[Part]{a}
+If $A \leq_m 0^{*}1^{*}$, then $A$ is decidable. 
+\end{problem}
+
+\begin{proof}
+If $A \leq_m 0^{*}1^{*}$, then there exists a computable function $f$ from $A$ to $0^{*}1^{*}$. Let $F$ be the \textbf{TM} that computes $f$. We can construct the decider $S$ for $A$ as follows. \\
+
+$S =$ \textquotedblleft On input $w$:
+\begin{enumerate}
+\item Run $F$ on $w$ to compute $f(w)$.
+\item Construct a DFA $D$, such that $L(D) = 0^{*}1^{*}$.
+\item Run the decider $M$ for $A_{DFA}$ from Theorem 4.1 on input $\langle D, f(w) \rangle$
+\item If $M$ accepts, \textit{accept}. Otherwise, \textit{reject}.\textquotedblright
+\end{enumerate}
+\end{proof}
+
+\end{document}
