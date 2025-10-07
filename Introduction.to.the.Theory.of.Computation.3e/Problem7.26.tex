@@ -1,0 +1,50 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 7: Time Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{7.26}
+Let $\phi$ be a 3cnf-formula. An \textbf{$\neq$\textit{-assignment}} to the variables of $\phi$ is one where each clause contains two literals with unequal truth values. In other words, an $\neq$\textit{-assignment} satisfies $\phi$ without assigning three true literals in any clause.
+\end{problem} 
+
+\begin{problem}[Part]{a}
+Show that the negation of any $\neq$\textit{-assignment} to $\phi$ is also an $\neq$\textit{-assignment}.
+\end{problem}
+
+\begin{proof}
+Let $\phi$ be a 3cnf-formula with $n$ variables. Let $A = (v_1, v_2, \cdots, v_n)$ be an $\neq$\textit{-assignment} to the variables $x_1, x_2, \cdots, x_n$ of $\phi$. The negation of $A$ is $A' = (\overline{v_1}, \overline{v_2}, \cdots, \overline{v_n})$. Every clause in $\phi$ contains at least one literal that is assigned $false$ value by $A$, and at least one literal that is assigned $true$. Therefore, $A'$ also assigns at lease one literal $false$ and at least one literal $true$ in each clause. Thus, $A'$ is also an $\neq$\textit{-assignment}.
+\end{proof}
+
+\begin{problem}[Part]{b}
+Let $\neq$\textit{SAT} be the collection of 3cnf-formulas that have an $\neq$\textit{-assignment}. Show that we obtain a polynomial time reduction from $3SAT$ to $\neq$\textit{SAT} by replacing each clause $c_i$
+\[
+(y_1 \vee y_2 \vee y_3)
+\]
+with the two clauses
+\[
+(y_1 \vee y_2 \vee z_i) \textbf{ and } (\overline{z_i} \vee y_3 \vee b),
+\]
+where $z_i$ is a new variable for each clause $c_i$, and $b$ is a single additional new variable.
+\end{problem}
+
+\begin{problem}[Part]{c}
+Conclude that $\neq$\textit{SAT} is NP-complete.
+\end{problem}
+
+\end{document}
