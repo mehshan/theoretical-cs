@@ -24,6 +24,18 @@ Let $CNF_H = \{\langle \phi \rangle \ | \ \phi \text{ is a satisfiable cnf-formu
 \end{problem}
 
 \begin{proof}
+Consider a cnf-formula $\phi$ where each clause contains any number of literals, but at most one negated literal. $\phi$ can only contains follow four types of clauses.
+\[
+\phi = (\overline{a_1}) \ \wedge \ ({a_2}) \ \wedge \ (\overline{a_3} \ \vee b_3 \ \vee \cdots) \ \wedge \ (a_4 \ \vee b_4 \ \vee \cdots) \ \wedge \ \cdots
+\]
+
+If $\phi$ is satisfiable, then at least one literal in every clause must be true. We can test satisfiability of $\phi$ as follows:
+\begin{enumerate}
+\item Assign \textit{false} value to any variable that appears negated in a single variable clause.
+\item Assign \textit{true} value to all other variables.
+\item Test assignment for satisfiability.
+\end{enumerate}
+Stages 1 to 3 are easily implemented in polynomial time on any reasonable deterministic model.
 \end{proof}
 
 \end{document}
