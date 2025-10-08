@@ -43,8 +43,29 @@ with the two clauses
 where $z_i$ is a new variable for each clause $c_i$, and $b$ is a single additional new variable.
 \end{problem}
 
+\begin{proof}
+We show that $\phi \in 3SAT$, iff $\phi_{\neq} \in \ \neq$\textit{SAT}. \\
+
+Suppose that $\phi$ has a satisfying assignment. In that satisfying assignment, at least one literal is true in every clause. Let $c_i$ be any clause $(y_1 \vee y_2 \vee y_3)$ in $\phi$. The corresponding two clauses in $\phi_{\neq}$ are
+\[
+(y_1 \vee y_2 \vee z_i) \textbf{ and } (\overline{z_i} \vee y_3 \vee b).
+\]
+An $\neq$\textit{-assignment} satisfying $\phi_{\neq}$ can be constructed as follows:
+\begin{enumerate}
+\item Assign false to $b$.
+\item If $y_3$ is false, then assign false to $z_i$.
+\item If $y_3$ is true, then assign true to $z_i$.
+\end{enumerate}
+
+The other direction is trivially true, since $\phi_{\neq}$ is a satisfiable 3cnf-formula. The reduction from $3SAT$ to $\neq$\textit{SAT} consists of only one stage that executes $m$ times, where $m$ is the number of clauses in $\phi$. Furthermore, this stage can be easily implemented in polynomial time on any reasonable deterministic model.
+\end{proof}
+
 \begin{problem}[Part]{c}
 Conclude that $\neq$\textit{SAT} is NP-complete.
 \end{problem}
+
+\begin{proof}
+$\neq$\textit{SAT} $\in$ NP as the assignment is the short certificate. Therefore, $\neq$\textit{SAT} is NP-complete.
+\end{proof}
 
 \end{document}
