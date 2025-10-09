@@ -1,0 +1,36 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 7: Time Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{7.27}
+A cut in an undirected graph is a separation of the vertices $V$ into two disjoint
+subsets $S$ and $T$. The size of a cut is the number of edges that have one endpoint
+in $S$ and the other in $T$. Let
+\[
+MAX-CUT = \{\langle G, k \rangle \ | \ G \text{ has a cut of size } k \text{ or more}\}.
+\]
+Show that $MAX-CUT$ is NP-complete. You may assume the result of Problem 7.26. (Hint: Show that $\neq$\textit{SAT} $\leq_P MAX-CUT$. The variable gadget for
+variable $x$ is a collection of $3c$ nodes labeled with $x$ and another $3c$ node labeled with $x$, where $c$ is the number of clauses. All nodes labeled $x$ are connected with all nodes labeled $x$. The clause gadget is a triangle of three edges connecting three nodes labeled with the literals appearing in the clause. Do not use the same node in more than one clause gadget. Prove that this reduction works.)
+\end{problem} 
+
+\begin{proof}
+\end{proof}
+
+\end{document}
