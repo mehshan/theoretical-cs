@@ -26,11 +26,24 @@ in $S$ and the other in $T$. Let
 \[
 MAX-CUT = \{\langle G, k \rangle \ | \ G \text{ has a cut of size } k \text{ or more}\}.
 \]
-Show that $MAX-CUT$ is NP-complete. You may assume the result of Problem 7.26. (Hint: Show that $\neq$\textit{SAT} $\leq_P MAX-CUT$. The variable gadget for
-variable $x$ is a collection of $3c$ nodes labeled with $x$ and another $3c$ node labeled with $x$, where $c$ is the number of clauses. All nodes labeled $x$ are connected with all nodes labeled $x$. The clause gadget is a triangle of three edges connecting three nodes labeled with the literals appearing in the clause. Do not use the same node in more than one clause gadget. Prove that this reduction works.)
-\end{problem} 
+Show that $MAX-CUT$ is NP-complete. You may assume the result of Problem 7.26.
+\end{problem}
 
 \begin{proof}
+To show that $MAX-CUT$ is NP-complete, we must show that it is in NP and that all NP-problems are polynomial time reducible to it. The first part is easy; a certificate is simply two disjoint subsets of $V$ having cut size of $k$ or more. To prove the second part, we show that $\neq$\textit{SAT} is polynomial time reducible to $MAX-CUT$. \\
+
+The reduction converts a 3cnf-formula $\phi$ into an undirected graph $G$ and
+a number $k$, so that $\phi$ has a satisfying $\neq$\textit{-assignment}, iff G has a cut of size $k$. The graph contains gadgets that mimic the variables and clauses of the formula. \\
+
+The variable gadget for variable $x$ is a collection of $3c$ nodes labeled with $x$ and another $3c$ node labeled with $x$, where $c$ is the number of clauses. All nodes labeled $x$ are connected with all nodes labeled $x$. The clause gadget is a triangle of three edges connecting three nodes labeled with the literals appearing in the clause. Do not use the same node in more than one clause gadget. Finally, we chose k to be the maximum possible cut size of $l \times (3c)^2 + 2c$ in $G$, where $l$ is the number of variables in $\phi$.
+
+Phi cannot have a cluase with 3 same literals.
+
 \end{proof}
+
+\begin{center}
+\includegraphics[scale=1.0]{Figures/Problem7.27a.pdf} \\
+Graph $G$ for $\phi = (x_1 \vee x_1 \vee x_2) \wedge (\overline{x_1} \vee \overline{x_2} \vee \overline{x_2})$.
+\end{center}
 
 \end{document}
