@@ -31,27 +31,22 @@ by at least one card that has no hole there). Let $PUZZLE = \{\langle c_1, \cdot
 \begin{proof}
 To show that $PUZZLE$ is NP-complete, we must show that it is in NP and that all NP-problems are polynomial time reducible to it. The first part is easy; a certificate is simply the placement of cards. To prove the second part, we show that $\neq$\textit{SAT} is polynomial time reducible to $PUZZLE$. The reduction converts a 3cnf-formula $\phi$ into a collection of $k$ cards, so that $\phi$ has a satisfying $\neq$\textit{-assignment}, iff collection of cards $c_1,\cdots, c_k$ has a solution. \\
 
----
+Let $\phi$ be any 3cnf-formula containing $m$ clauses:
+\[
+\phi = (a_1 \vee b_1 \vee c_1) \ \wedge (a_2 \vee b_2 \vee c_2) \ \wedge \cdots \wedge (a_m \vee b_m \vee c_m).
+\]
+where each $a$, $b$ and $c$ is a literal $x_i$ or $\overline{x_i}$, and $x_1, x_2 \cdots x_n$ are the $n$ variables of $\phi$. Now we show how to convert $\phi$ to collection of cards. The collection contains cards for variables, and each card has a row $R_j$ of holes for every clause $C_j$. The top row $R_1$ is for the first clause $C_1$, and the bottom row $R_m$ is for the last clause $C_m$.
 
-The variable gadget for variable $x$ is a collection of $3c$ nodes labeled with $x$ and another $3c$ node labeled with $\overline{x}$, where $c$ is the number of clauses. All nodes labeled $x$ are connected with all nodes labeled $\overline{x}$. The clause gadget is a triangle of three edges connecting three nodes labeled with the literals appearing in the clause. Do not use the same node in more than one clause gadget. Finally, we choose $k$ to be the maximum possible cut size of $l \times (3c)^2 + 2c$ in $G$, where $l$ is the number of variables in $\phi$. \\
-
-Suppose that $\phi$ has satisfying $\neq$\textit{-assignment}. Such an assignment to the variables of $\phi$ is one where each clause contains two literals with unequal truth values. In graph $G$, the vertices $V$ can be paritioned into two disjoint subsets $S$ and $T$ as follows:
 \begin{enumerate}
-\item If some variable $x$ is assigned true value, then put $x$ nodes in $S$ and $\overline{x}$ nodes in $T$.
-\item If some variable $x$ is assigned false value, then put $x$ nodes in $T$ and $\overline{x}$ nodes in $S$.
+\item Repeat for each variable $x_i = x_1, \ x_2, \cdots \ x_n$ in $\phi$.
+\item \hspace*{0.5cm} Add a card $c_i$.
+\item \hspace*{0.5cm} Repeat for each clause $C_j = C_1, C_2, \cdots, C_m$:
+\item \hspace*{1.2cm} Add row $R_j$ of holes in card $c_i$.
+\item \hspace*{1.2cm} If both literals $x_i$ and $\overline{x_i}$ do not appear in $C_j$, then punch out both holes in $R_j$.
+\item \hspace*{1.2cm} If only literal $x_i$ appears in $C_j$, then punch out right hole in $R_j$.
+\item \hspace*{1.2cm} If only literal $\overline{x_i}$ appears in $C_j$, then punch out left hole in $R_j$.
+\item \hspace*{1.2cm} If both literals $x_i$ and $\overline{x_i}$ appear in $C_j$, then leave both holes unpunched.
 \end{enumerate}
-
-Clearly, in this parition all the $l \times (3c)^2$ edges in variable gadgets have one endpoint in $S$ and other in $T$. Next, we show that the clause gadgets have $2c$ edges that have one endpoint in $S$ and other in $T$. Let $c_i$ be any clause $(y_1 \vee y_2 \vee y_3)$ in $\phi$. Every clause $c_i$ contains two literals with unequal truth values. These two literals can be:
-\begin{enumerate}
-\item Same variable $x$ and $\overline{x}$.
-\item Different variables, where both literals are non-negated $x$ and $y$.
-\item Different variables, where one literal is negated $\overline{x}$ and $y$.
-\item Different variables, where both literals are negated $\overline{x}$ and $\overline{y}$.
-\end{enumerate}
-
-In each case, a clause gadget has two edges that have one endpoint in $S$ and other in $T$. Therefore, the graph $G$ has a cut size of $l \times (3c)^2 + 2c$ or more. \\
-
-Suppose the graph $G$ has a cut size of $l \times (3c)^2 + 2c$ or more. Then, the separation of the vertices $V$ into two disjoint subsets $S$ and $T$ gives the $\neq$\textit{-assignment} for $\phi$. If a node $x_i$ is in $S$, then the variable $x_i$ is assigned true, otherwise false.
 
 \end{proof}
 
