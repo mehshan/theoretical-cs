@@ -45,11 +45,22 @@ where each $a$, $b$ and $c$ is a literal $x_i$ or $\overline{x_i}$, and $x_1, x_
 \item \hspace*{1.2cm} If both literals $x_i$ and $\overline{x_i}$ do not appear in $C_j$, then punch out both holes in $R_j$.
 \item \hspace*{1.2cm} If only literal $x_i$ appears in $C_j$, then punch out right hole in $R_j$.
 \item \hspace*{1.2cm} If only literal $\overline{x_i}$ appears in $C_j$, then punch out left hole in $R_j$.
-\item \hspace*{1.2cm} If both literals $x_i$ and $\overline{x_i}$ appear in $C_j$, then leave both holes unpunched.
+\item \hspace*{1.2cm} If both literals $x_i$ and $\overline{x_i}$ appear in $C_j$, then leave both holes unpunched\footnote{A clause $C_j$ that contains only one variable $x_i$, such as $(x_i,x_i,\overline{x_i})$ or $(x_i,\overline{x_i},\overline{x_i})$, has only one card without any punched out holes in row $R_j$, and all the other cards have holes punched out in row $R_j$.}.
 \end{enumerate}
 
-\end{proof}
+Suppose $\phi$ has a satisfying $\neq$\textit{-assignment}. Such an assignment to the variables of $\phi$ is one where each clause contains two literals with unequal truth values. The collection of cards contains a card for every variable in $\phi$. A solution can be constructed by flipping the cards for variables that are assigned false value. Let $C_j$ be any clause $(a_j \vee b_j \vee c_j)$ in $\phi$. Every clause $C_j$ contains two literals with unequal truth values. These two literals can be:
+\begin{enumerate}
+\item Same variable $x$ and $\overline{x}$.
+\item Different variables, where both literals are non-negated $x$ and $y$.
+\item Different variables, where one literal is negated $\overline{x}$ and y.
+\item Different variables, where both literals are negated $\overline{x}$ and $\overline{y}$.
+\end{enumerate}
 
+In every case, a row of holes for a clause has two opposite holes that are not punched out across all cards. \\
+
+Suppose the collection of cards $c_1,\cdots, c_k$ has a solution. Then, the way each card is placed in the box gives the $\neq$\textit{-assignment} for $\phi$. If a card $c_i$ is flipped before it is placed in the box, then the variable $x_i$ is assigned false, otherwise true.
+
+\end{proof}
 \begin{center}
 \includegraphics[scale=1.0]{Figures/Problem7.28.pdf} \\
 Collection of cards for $\phi = (x_1 \vee x_1 \vee x_2) \wedge (\overline{x_1} \vee \overline{x_2} \vee \overline{x_2})$.
