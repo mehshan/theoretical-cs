@@ -48,6 +48,39 @@ Show that $CNF_3$ is NP-complete.
 \end{problem}
 
 \begin{proof}
+To show that $CNF_3$ is NP-complete, we must show that it is in NP and that all NP-problems are polynomial time reducible to it. The first part is easy; a certificate is simply a satisfying assignment. To prove the second part, we show that $3SAT$ is polynomial time reducible to $CNF_3$. The reduction converts a 3cnf-formula $\phi$ into a cnf-formula $\phi'$, where each variable appears in at most 3 places, so that $\phi$ is satisfiable, iff $\phi'$ is satisfiable. \\
+
+We show that an equivalent cnf-formula $\phi'$ can be constructed for every 3cnf-formula $\phi$ in polynomial time. Such a $\phi'$ contains additional variables and clauses, so that no variable is used more than 3 times. The following methods can be used to reduce the number of times a variable is used, while retaining satisfiability.
+\begin{enumerate}
+\item Use identity of $\vee$\footnote{$p \vee p \equiv p$} to rewrite $(a \vee a \vee \cdots)$ as $(a \vee \cdots)$.
+\item Use law of excluded middle\footnote{$p \vee \overline{p} \equiv true$} to rewrite $(a \vee \overline{a} \vee \cdots)$ as $(b \vee \overline{b} \vee \cdots)$, where $b$ is a single additional variable.
+\item If a literal appears in more than one clause
+\[
+(a \vee \cdots) \wedge (a \vee \cdots) \wedge \cdots \wedge (a \vee \cdots),
+\]
+then rewrite the clauses as
+\[
+(a \vee \overline{z}) \wedge (z \vee \cdots) \wedge (z \vee \cdots) \wedge \cdots \wedge (z \vee \cdots),
+\]
+where $z$ is a new variable for each application of this method.
+\end{enumerate}
+
+Similarly, an equivalent 3cnf-formula $\phi$ can be construct for every cnf-formula $\phi'$.
+
+\begin{enumerate}
+\item In $\phi'$, replace any clause $c_i$ that contains more than 3 literals
+\[
+(a_i \vee b_i \vee c_i \vee d_i \vee \cdots),
+\]
+with the two clauses
+\[
+(a_i \vee b_i \vee \overline{z_i}) \wedge (z_i \vee c_i \vee d_i \vee \cdots),
+\]
+where $z_i$ is a new variable for each clause $c_i$. Repeatedly apply this method until all clauses contain at most 3 literals.
+\item Rewrite $(a_i)$ as $(a_i \vee a_i \vee a_i)$.
+\item Rewrite $(a_i \vee b_i)$ as $(a_i \vee a_i \vee b_i)$.
+\end{enumerate}
+
 \end{proof}
 
 \end{document}
