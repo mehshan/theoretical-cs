@@ -48,7 +48,19 @@ The clause gadget for clause $C_i$ consists of two OR-gadgets. Nodes $H$, $L_1$ 
 \includegraphics[scale=0.8]{Figures/Problem7.29b.pdf}
 \end{center}
 
-Suppose that $\phi$ has satisfying $\neq$\textit{-assignment}. Such an assignment to the variables of $\phi$ is one where each clause contains two literals with unequal truth values. \\
+Suppose that $\phi$ has satisfying $\neq$\textit{-assignment}. Such an assignment to the variables of $\phi$ is one where each clause contains two literals with unequal truth values. Color the graph $G$ for $\phi$ as follows:
+\begin{enumerate}
+\item Assign color 1 to $T$, 2 to $F$ and 3 to unlabeled node.
+\item If variable $x$ is true, then assign color 1 to node $x$ and color 2 to node $\overline{x}$. Otherwise, assign color 1 to $\overline{x}$ color 2 to node $x$.
+\item Nodes $L_1$, $L_2$, $R_1$ and $R_2$ are easily colorable in 3 colors in each OR-gadget.
+\item If both $L$ and $R$ nodes in an OR-gadget are connected to nodes of same color $k$, then the $H$ node also gets the color $k$.
+\item Two colors are available for the two $H$ nodes in every clause gadget because the 3 pairs of $L$ and $R$ nodes in a clause gadget are not connected to literal nodes with same coloring.
+\end{enumerate}
+
+\begin{center}
+\includegraphics[scale=0.8]{Figures/Problem7.29c.pdf} \\
+Graph $G$ for $\phi = (x_1 \vee x_1 \vee x_2) \wedge (\overline{x_1} \vee \overline{x_2} \vee \overline{x_2})$.
+\end{center}
 
 Suppose the graph $G$ is colorable with 3 colors. Then, the assignment of colors to nodes $x_i$ and $\overline{x_i}$ gives the $\neq$\textit{-assignment} to the variables of $\phi$. If node $x_i$ has same color as node $T$, then the variable $x_i$ is assigned true value, other false.
  
