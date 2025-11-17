@@ -28,26 +28,30 @@ Show that $3COLOR$ is NP-complete.
 \end{problem}
 
 \begin{proof}
-To show that $3COLOR$ is NP-complete, we must show that it is in NP and that all NP-problems are polynomial time reducible to it. The first part is easy; a certificate is simply the coloring of nodes. To prove the second part, we show that $\neq$\textit{SAT} is polynomial time reducible to $3COLOR$. The reduction converts a 3cnf-formula $\phi$ into a graph $G$, so that $\phi$ has a satisfying $\neq$\textit{-assignment}, iff $G$ is colorable with 3 colors. The graph contains gadgets that mimic the variables and clauses of the formula. \\
+To show that $3COLOR$ is NP-complete, we must show that it is in NP and that all NP-problems are polynomial time reducible to it. The first part is easy; a certificate is simply the coloring of nodes. To prove the second part, we show that $\neq$\textit{SAT} is polynomial time reducible to $3COLOR$. The reduction converts a 3cnf-formula $\phi$ into a graph $G$, so that $\phi$ has a satisfying $\neq$\textit{-assignment}, iff $G$ is colorable with 3 colors. \\
 
-The graph contains a palette gadget consisting of 3 mutually connected nodes. The two palette nodes are labeled $T$ and $F$, and the third one is not labeled. The variable gadget for variable $x$ is two adjacent nodes labeled $x$ and $\overline{x}$. Both variable nodes are connected to the unlabeled palette node. The OR-gadget consists of 5 nodes labeled $L_1$, $L_2$, $R_1$, $R_2$ and $H$. Nodes $L_1$, $R_1$ and $H$ are mutually connected to each other. Additionally, node $L_1$ is connected to $L_2$, and $R_1$ is connected to $R_2$.
+Let $\phi$ be any 3cnf-formula containing $m$ clauses $C_1, C_2, \cdots C_m$:
+\[
+\phi = (a_1 \vee b_1 \vee c_1) \ \wedge (a_2 \vee b_2 \vee c_2) \ \wedge \cdots \wedge (a_m \vee b_m \vee c_m).
+\]
+where each $a$, $b$ and $c$ is a literal $x_i$ or $\overline{x_i}$, and $x_1, x_2 \cdots x_n$ are the $n$ variables of $\phi$. Now we show how to convert $\phi$ to graph $G$. \\
+
+The graph contains gadgets that mimic the variables and clauses of the formula. The graph contains a palette gadget consisting of 3 mutually connected nodes. The two palette nodes are labeled $T$ and $F$, and the third one is not labeled. The variable gadget for variable $x$ is two adjacent nodes labeled $x$ and $\overline{x}$. Both variable nodes are connected to the unlabeled palette node. The OR-gadget consists of 5 nodes labeled $L_1$, $L_2$, $R_1$, $R_2$ and $H$. Nodes $L_1$, $R_1$ and $H$ are mutually connected to each other. Additionally, node $L_1$ is connected to $L_2$, and $R_1$ is connected to $R_2$.
 
 \begin{center}
 \includegraphics[scale=0.8]{Figures/Problem7.29a.pdf}
 \end{center}
 
+The clause gadget for clause $C_i$ consists of two OR-gadgets. Nodes $H$, $L_1$ and $L_2$ of the second OR-gadget are connected to node $H$ of the first OR-gadget. Nodes $L_1$ and $L_2$ of the first OR-gadget are connected to the node for literal $a_i$. Nodes $R_1$ and $R_2$ of the first OR-gadget are connected to the node for literal $b_i$. Nodes $R_1$ and $R_2$ of the second OR-gadget are connected to the node for literal $c_i$.
+
 \begin{center}
 \includegraphics[scale=0.8]{Figures/Problem7.29b.pdf}
 \end{center}
+
+Suppose that $\phi$ has satisfying $\neq$\textit{-assignment}. Such an assignment to the variables of $\phi$ is one where each clause contains two literals with unequal truth values. \\
+
+Suppose the graph $G$ is colorable with 3 colors. Then, the assignment of colors to nodes $x_i$ and $\overline{x_i}$ gives the $\neq$\textit{-assignment} to the variables of $\phi$. If node $x_i$ has same color as node $T$, then the variable $x_i$ is assigned true value, other false.
  
-Let $\phi$ be any 3cnf-formula containing $m$ clauses:
-\[
-\phi = (a_1 \vee b_1 \vee c_1) \ \wedge (a_2 \vee b_2 \vee c_2) \ \wedge \cdots \wedge (a_m \vee b_m \vee c_m).
-\]
-where each $a$, $b$ and $c$ is a literal $x_i$ or $\overline{x_i}$, and $x_1, x_2 \cdots x_n$ are the $n$ variables of $\phi$. Now we show how to convert $\phi$ to graph $G$.
-
-In a satisfying $\neq$\textit{-assignment}, the two disjunctions in every clause have different truth values. \\
-
 \end{proof}
 
 \end{document}
