@@ -9,7 +9,7 @@
 - [ ] 1.43 - proof by construction
 - [ ] 1.45 - revise and typeset (A/B)
 - [ ] 1.49 - part (a) requires more work and typeset
-- [ ] 1.51 - part (3) same dummy variable (z) is used twice in application of the definition, better use different variables and then show that dummy renaming is possible..?
+- [ ] 1.51 - part (3) same dummy variable (z) is used twice in application of the definition, better use different variables and then show that dummy renaming is possible?
 - [ ] 1.56
 - [ ] 1.59
 - [ ] 1.60 - typeset
