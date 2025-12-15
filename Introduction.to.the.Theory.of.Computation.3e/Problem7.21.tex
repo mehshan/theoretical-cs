@@ -35,7 +35,7 @@ Show that $SPATH \in P$.
 \end{problem}
 
 \begin{proof}
-We show that $SPATH \in P$ by presenting a polynomial time algorithm that decides $SPATH$. A polynomial time algorithm $M$ for $SPATH$ operates as follows. \\
+We show that $SPATH \in NP$ by presenting a polynomial time algorithm that decides $SPATH$. A polynomial time algorithm $M$ for $SPATH$ operates as follows. \\
 
 $M =$ \textquotedblleft On input $\langle G, a, b, k \rangle$:
 \begin{enumerate}
@@ -63,7 +63,7 @@ Show that $LPATH$ is NP-complete.
 \end{problem}
 
 \begin{proof}
-First, we need to show that $LPATH \in P$, which is easy as certificate is the path. Next, to show that all problems in $NP$ are polynomial time reducible to $LPATH$, we show $3SAT \leq_p LPATH$. We show how to construct an integer $k$ and an undirected graph $G$ with two nodes, $s$ and $t$, where a simple path of length at least $k$ exists between $s$ and $t$ , iff $\phi$ is satisfiable.
+First, we need to show that $LPATH \in NP$, which is easy as certificate is the path. Next, to show that all problems in $NP$ are polynomial time reducible to $LPATH$, we show $3SAT \leq_p LPATH$. We show how to construct an integer $k$ and an undirected graph $G$ with two nodes, $s$ and $t$, where a simple path of length at least $k$ exists between $s$ and $t$, iff $\phi$ is satisfiable.
 
 Let $\phi$ be any Boolean formula in 3CNF containing $m$ clauses:
 \[
