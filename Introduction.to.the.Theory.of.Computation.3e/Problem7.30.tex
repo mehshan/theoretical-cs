@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 7: Time Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{7.30}
+Let $SET-SPLITTING = \{\langle S, C \rangle \ | \ S \text{ is a finite set and } C = \{C_1, \ldots , C_k\} \\ \text{is a collection of subsets of } S, \text{ for some } k > 0, \text{ such that elements of } S \text{ can be colored red or blue} \\ \text{so that no } C_i \text{ has all its elements colored with the same color}\}$. Show that $SET-SPLITTING$ is NP-complete.
+\end{problem}
+
+\begin{proof}
+To show that $SET-SPLITTING$ is NP-complete, we must show that it is in NP and that all NP-problems are polynomial time reducible to it. The first part is easy; a certificate is simply the assignment of red or blue colors to elements of set $S$. To prove the second part, we show that $\neq$\textit{SAT} is polynomial time reducible to $SET-SPLITTING$. The reduction converts a 3cnf-formula $\phi$ into a finite set $S$ and a collection $C = \{C_1, \ldots , C_k\}$ of subsets of S, for some $k > 0$, so that $\phi$ has a satisfying $\neq$\textit{-assignment}, iff elements of set $S$ can be colored red or blue so that no $C_i$ has all its elements colored with the same color. \\
+
+Let $\phi$ be any 3cnf-formula containing $m$ clauses $C_1, C_2, \cdots C_m$:
+\[
+\phi = (a_1 \vee b_1 \vee c_1) \ \wedge (a_2 \vee b_2 \vee c_2) \ \wedge \cdots \wedge (a_m \vee b_m \vee c_m).
+\]
+where each $a$, $b$ and $c$ is a literal $x_i$ or $\overline{x_i}$, and $x_1, x_2 \cdots x_n$ are the $n$ variables of $\phi$. Now we show how to convert $\phi$ to set $S$ and collection $C$. The set $S$ contains two literals $x_i$ and $\overline{x_i}$ for each variable $x_i$ in $\phi$.
+\[
+S = \bigcup_{1 \leq i \leq n} \{x_i, \ \overline{x_i}\}
+\]
+The collection $C$ contains a set $\{x_i, \overline{x_i}\}$ for each variable. Moreover, for each clause $(a_i \vee b_i \vee c_i)$ in $\phi$, $C$ contains a set $\{a_i, b_i, c_i\}$.
+
+\[
+C = \Big( \bigcup_{1 \leq i \leq n} \Big\{ \{x_i, \ \overline{x_i}\} \Big\} \Big) \  \bigcup \ \Big( \bigcup_{1 \leq i \leq m} \Big\{ \{a_i, b_i, c_i\} \Big\} \Big)
+\]
+
+Suppose that $\phi$ has satisfying $\neq$\textit{-assignment}. Such an assignment to the variables of $\phi$ is one where each clause contains two literals with unequal truth values. Assign color to elements of $S$ for as follows:
+\begin{enumerate}
+\item If variable $x_i$ is true, then element $x_i$ gets red and $\overline{x_i}$ blue. 
+\item If variable $x_i$ is false, then element $x_i$ gets blue and $\overline{x_i}$ red. 
+\end{enumerate}
+
+The colors correspond to truth values, red for true and blue for false. An $\neq$\textit{-assignment} to the variables of $\phi$ is one where each clause contains two literals with unequal truth values. Therefore, no $C_i$ contains elements of the same color. \\
+
+Suppose that elements of the set $S$ can be colored red or blue so that no $C_i$ has all its elements colored with the same color. Then, the assignment of red or blue color to the elements of the set $S$ gives an $\neq$\textit{-assignment} to the variables of $\phi$.
+\end{proof}
+
+\end{document}
