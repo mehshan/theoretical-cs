@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 7: Time Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{7.31}
+Consider the following scheduling problem. You are given a list of final exams $F_1,\ldots,F_k$ to be scheduled, and a list of students $S_1,\ldots,S_l$. Each student is taking some specified subset of these exams. You must schedule these exams into slots so that no student is required to take two exams in the same slot. The problem is to determine if such a schedule exists that uses only $h$ slots. Formulate this problem as a language and show that this language is NP-complete.
+\end{problem}
+
+\begin{proof}
+Let $SCHEDULE = \{\langle F, S, T, h \rangle \ | \ F = \{F_1,\ldots,F_k\} \text{ is a set of final exams}, S = \{S_1,\ldots,S_l\} \\ \text{is a set of students, } T \subseteq S \times F \text{ is set of ordered pairs } (S_i, F_j), \text{ where student } S_i \text{ takes exam } F_j, \\ \text{and a schedule of } h \text{ slots exists so that no student is required to take two exams in the same slot}\}$. \\
+
+To show that $SCHEDULE$ is NP-complete, we must show that it is in NP and that all NP-problems are polynomial time reducible to it. The first part is easy; a certificate is simply the schedule. To prove the second part, we show that $3COLOR$ is polynomial time reducible to $SCHEDULE$. The reduction converts an undirected graph $G$ into a set of final exams  $F$, a set of students $S$, a set of ordered pairs $(S_i, F_j)$, where student $S_i$ takes exam $F_j$, and an integer $h$, so that $G$ is colorable with 3 colors, iff a schedule of $h$ slots exists so that no student is required to take two exams in the same slot. \\
+
+Let $G$ be any undirected graph with $s$ nodes. Now we show how to convert $G$ to sets $F$, $S$, $T$ and integer $h$. We choose $h$ to be $2$, and construct sets $F$, $S$ and $T$ by partitioning the nodes of $G$ into exam or student nodes as follows:
+
+\begin{enumerate}
+\item Repeat for each node $n_i = n_1, n_2, \ldots, n_s$.
+\item \hspace*{0.5cm} If $n_i \notin S$ and $n_i \notin F$, then
+\item \hspace*{1.0cm} If all adjacent nodes $m_1, m_2, \ldots m_r$ of node $n_i$ are mutually connected, then
+\item \hspace*{1.5cm} Add $n_i$ in $S$.
+\item \hspace*{1.5cm} Repeat for each node $m_j = m_1, m_2, \ldots m_r$.
+\item \hspace*{2.0cm} Add node $m_j$ in $F$.
+\item \hspace*{2.0cm} Add ordered pair $(n_i, m_j)$ in $T$.
+\item \hspace*{1.0cm} Otherwise, add $n_i$ in $F$.
+\end{enumerate}
+
+Suppose that graph $G$ is colorable with 3 colors. Then, there are three cases:
+\begin{enumerate}
+\item All nodes are student nodes.
+\item All nodes are exam nodes.
+\item There is a mix of students and exam nodes.
+\end{enumerate}
+
+In cases 1 and 2, the required 2 slot schedule can be constructed trivially by placing all exams in one of the slots. In the third case, if all the nodes in the set of students $S$ are assigned the same color, then the nodes in the set of exams $F$ can only be assigned two different colors. Such a coloring gives the schedule with 2 slots so that no student is required to take two exams in the same slot. Next, we show how to reassign colors so that all student nodes have the same color.
+
+\begin{enumerate}
+\item Let $c_1$ be the first color.
+\item Repeat for each student node $n_i \in S$.
+\item \hspace*{0.5cm} Let $c_2$ be the color of $n_i$.
+\item \hspace*{0.5cm} If $c_1 \neq c_2$, then
+\item \hspace*{0.5cm} Scan all the exam nodes connected with the student node $n_i$. If an exam node has color \\
+\hspace*{0.5cm} $c_1$, then assign it $c_2$. There can be only one such exam node.
+\item \hspace*{0.5cm} Assign color $c_1$ to student node $n_i$.
+\end{enumerate}
+
+Suppose a 2 slot schedule exists for a set of students $S$ and exams $F$. Then, the nodes of the graph $G$ can be colored with 3 colors as follows:
+\begin{enumerate}
+\item Assign first color to all the student nodes.
+\item Assign second color to all the exam nodes that are assigned first slot.
+\item Assign third color to all the exam nodes that are assigned second slot.
+\end{enumerate}
+\end{proof}
+
+\end{document}
