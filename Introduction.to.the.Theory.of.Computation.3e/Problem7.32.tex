@@ -26,7 +26,14 @@ In the \textit{mine consistency problem}, you are given a graph $G$ along with n
 \end{problem}
 
 \begin{proof}
-Let $MINE-CONSISTENCY = \{\langle G \rangle \ | \ G \text{ is an undirected graph along with numbers} \\ \text{labeling some of } G\text{'s nodes, and a placement of mines on the remaining nodes is possible, so that} \\ \text{any node } v \text{ that is labeled } m \text{ has exactly } m \text{ neighboring nodes containing mines.}\}$. \\
+Let $MINE-CONSISTENCY = \{\langle G \rangle \ | \ G \text{ is an undirected graph along with numbers} \\ \text{labeling some of } G\text{'s nodes, and a placement of mines on the remaining nodes is possible, so that} \\ \text{any node } v \text{ that is labeled } m \text{ has exactly } m \text{ neighboring nodes containing mines.}\}$.
+
+May be do this....
+Map 3SAT <G> to MINE-CONSISTENCY <G'>
+ - Nodes in G are mapped to nodes in G' + additional unlabeled nodes
+ - Nodes in G are assigned three different labels m1, m2, m3
+ - Labels in G' gives the color of G
+
 \end{proof}
 
 \end{document}
