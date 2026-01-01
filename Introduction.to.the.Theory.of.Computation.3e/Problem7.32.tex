@@ -26,16 +26,24 @@ In the \textit{mine consistency problem}, you are given a graph $G$ along with n
 \end{problem}
 
 \begin{proof}
-Let $MINE-CONSISTENCY = \{\langle G \rangle \ | \ G \text{ is an undirected graph along with numbers} \\ \text{labeling some of } G\text{'s nodes, and a placement of mines on the remaining nodes is possible, so that} \\ \text{any node } v \text{ that is labeled } m \text{ has exactly } m \text{ neighboring nodes containing mines.}\}$.
+Let $MINE-CONSISTENCY = \{\langle G \rangle \ | \ G \text{ is an undirected graph along with numbers} \\ \text{labeling some of } G\text{'s nodes, and a placement of mines on the remaining nodes is possible, so that} \\ \text{any node } v \text{ that is labeled } m \text{ has exactly } m \text{ neighboring nodes containing mines.}\}$. \\
 
-A node with label m, may be connected to more than m nodes,
-so some neighboring nodes can be empty.
+To show that $MINE-CONSISTENCY$ is NP-complete, we must show that it is in NP and that all NP-problems are polynomial time reducible to it. The first part is easy; a certificate is simply the placement of mines. To prove the second part, we show that $3COLOR$ is polynomial time reducible to $MINE-CONSISTENCY$. The reduction converts an undirected graph $G_1$ into undirected graph $G_2$ along with numbers labeling some of $G_2$'s nodes, so that $G_1$ is colorable with 3 colors, iff a placement of mines on the remaining nodes of $G_2$ is possible, so that any node $v$ that is labeled $m$ has exactly $m$ neighboring nodes containing mines. \\
 
-May be do this....
-Map 3SAT <G> to MINE-CONSISTENCY <G'>
- - Nodes in G are mapped to nodes in G' + additional unlabeled nodes
- - Nodes in G are assigned three different labels m1, m2, m3
- - Labels in G' gives the color of G
+Let $G_1$ be any undirected graph. Now we show how to convert $G_1$ to $G_2$ along with numbers labeling some of $G_2$'s nodes. The graph $G_2$ contains gadgets for the nodes and edges in the graph $G_1$. The node gadget contains four nodes, where one of the four nodes has label 1 and it is connected to the other three nodes with an edge. The three unlabeled nodes represents the three colors of the palette.
+\begin{center}
+\includegraphics[scale=1.0]{Figures/Problem7.32a.pdf} \\
+Node gadget
+\end{center}
+
+The edge gadget consists of a structure that connects the unlabeled nodes in two node gadgets, so that it is not possible to place mines in both of the two corresponding unlabeled nodes. 
+
+\begin{center}
+\includegraphics[scale=1.0]{Figures/Problem7.32b.pdf} \\
+Edge gadget
+\end{center}
+
+Suppose that graph $G$ is colorable with 3 colors. Then,
 
 \end{proof}
 
