@@ -9474,9 +9474,6 @@
             <mxPoint x="114.14213562373095" y="354.14213562373095" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="NsHJeMJsYhThgOnUQkNj-11" value="Node gadget" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="120" y="460" width="120" height="20" as="geometry" />
-        </mxCell>
         <mxCell id="RUstlpJxcCA3zerHxFEv-17" value="$$$$" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="100" y="320" width="40" height="40" as="geometry" />
         </mxCell>
