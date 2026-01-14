@@ -24,13 +24,43 @@ In the following solitaire game, you are given an $m \times m$ board. On each of
 \end{problem}
 
 \begin{proof}
-Try this... Reduce 3COLOR SOLITAIRE
- - Number of nodes v in graph G maps to m
- - v x v gives a grid which resembles an adjacency matrix of G
- - Color of stones in a columns gives the color of nodes of G
- - blue stone = color 1
- - red stone = color 2
- - empty column = color 3
+To show that $SOLITAIRE$ is NP-complete, we must show that it is in NP and that all NP-problems are polynomial time reducible to it. The first part is easy; a certificate is simply the set of positions that needs to be cleared. To prove the second part, we show that $3SAT$ is polynomial time reducible to $SOLITAIRE$. The reduction converts a Boolean formula $\phi$ in 3CNF into an $m \times m$ board $G$ having either a blue stone, a red stone, or nothing at all placed on each of its $m^2$ positions, so that $G$ is a winnable game configuration, iff $\phi$ is satisfiable. \\
+
+Let $\phi$ be any Boolean formula in 3CNF containing $p$ clauses:
+\[
+\phi = (a_1 \vee b_1 \vee c_1) \ \wedge (a_2 \vee b_2 \vee c_2) \ \wedge \cdots \wedge (a_p \vee b_p \vee c_p).
+\]
+where each $a$, $b$ and $c$ is a literal $x_i$ or $\overline{x_i}$, and $x_1, x_2 \cdots x_n$ are the $n$ variables of $\phi$. Now we show how to convert $\phi$ to $G$. \\
+
+The board $G$ contains a row for each clause in $\phi$ and 3 consecutive columns $3i - 2$, $3i - 1$ and $3i$ for each variable $x_i$ in $\phi$. For each clause $C_i$ in $\phi$, place stones in $G$ for each of the three literals in $C_i$ as follows: 
+
+\begin{enumerate}
+\item If $a_i$ is literal $x_j$, then place a red stone at row $i$ and column $3j - 2$. Otherwise, place a blue stone.
+\item If $b_i$ is literal $x_j$, then place a red stone at row $i$ and column $3j - 1$. Otherwise, place a blue stone.
+\item If $c_i$ is literal $x_j$, then place a red stone at row $i$ and column $3j$. Otherwise, place a blue stone.
+\end{enumerate}
+
+Next, we make sure that all three columns of a variable can only contain stones of a single color. This constraint is imposed by using the following configuration.
+
+\begin{center}
+\vspace{\baselineskip}
+\includegraphics[scale=0.6]{Figures/Problem7.33a.pdf} \\
+\vspace{\baselineskip}
+\parbox{10cm}{The placement of stones in the bottom four rows ensure that all three columns can only contain stones of a single color.}
+\vspace{\baselineskip}
+\end{center}
+
+The above configuration is repeatedly used in columns of every variable as shown in the following figure.
+
+\begin{center}
+\vspace{\baselineskip}
+\includegraphics[scale=0.6]{Figures/Problem7.33b.pdf} \\
+\vspace{\baselineskip}
+Cells in the shaded area of the board are empty.
+\vspace{\baselineskip}
+\end{center}
+
+
 \end{proof}
 
 \end{document}
