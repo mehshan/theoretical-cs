@@ -60,7 +60,8 @@ Cells in the shaded area of the board are empty.
 \vspace{\baselineskip}
 \end{center}
 
+Suppose $\phi$ has a satisfiable assignment. Then, at least one literal in every clause must be true. If variable $x_i$ is assigned true (false) value, then remove the blue (red) stones from the corresponding columns. So stones corresponding to true literals remain. Because every clause has a true literal, every row has a stone. \\
 
+Suppose $G$ has a winnable game configuration. Take a game solution. If the red (blue) stones were removed from columns, set the corresponding variable false (true). Every row has a stone remaining, so every clause has a true literal. Therefore, $\phi$ is satisfied.
 \end{proof}
-
 \end{document}
