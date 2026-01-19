@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 7: Time Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{7.35}
+A subset of the nodes of a graph $G$ is a \textbf{\textit{dominating}} set if every other node of $G$ is adjacent to some node in the subset. Let
+\[
+DOMINATING-SET = \{\langle G, k \rangle \ | \ G \text{ has a dominating set with } k \text{ nodes}\}.
+\]
+Show that it is NP-complete by giving a reduction from $VERTEX-COVER$.
+\end{problem}
+
+\begin{proof}
+To show that $DOMINATING-SET$ is NP-complete, we must show that it is in NP and that all NP-problems are polynomial time reducible to it. The first part is easy; a certificate is simply the subset of nodes. To prove the second part, we show that $VERTEX-COVER$ is polynomial time reducible to $DOMINATING-SET$. The reduction converts an undirected graph $G$ and integer $k$ into an undirected graph $G'$ and integer $k'$, so that $G$ has a $k$-node vertex cover, iff $G'$ has a $k'$-node dominating set. \\
+
+The graph $G'$ contains a node for every node and edge in $G$. The nodes in $G'$ that correspond to nodes in $G$ are all connected to each other. Every node in $G'$ that corresponds to an edge $u$ in $G$ is connected to two nodes $x$ and $y$ in $G'$, where $u$ connects the corresponding nodes of $x$ and $y$ in $G$. The integer $k'$ equals $k$.
+
+\begin{center}
+\vspace{\baselineskip}
+\includegraphics[scale=0.8]{Figures/Problem7.35.pdf} \\
+\vspace{\baselineskip}
+Graph $G$ has a 2-node vertex cover, and $G'$ has 2-node dominating set.
+\vspace{\baselineskip}
+\end{center}
+
+Suppose $G$ has a $k$-node vertex cover. We show that the subset $D$ of $k$-nodes in $G'$ that correspond to the $k$-node vertex cover forms a $k$-node dominating set. First, all nodes in $G'$ that corresponds to nodes in $G$ are adjacent to every node in $D$. Second, all nodes in $G'$ that correspond to edges in $G$ are also adjacent to one of the nodes in $D$. \\
+
+Suppose $G'$ has a $k'$-node dominating set. Then, the dominating set gives a $k'$-node vertex cover in $G$.
+\end{proof}
+\end{document}
