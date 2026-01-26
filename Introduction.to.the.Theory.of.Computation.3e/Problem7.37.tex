@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 7: Time Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{7.37}
+Let $U = \{\langle M, x, \#^t \rangle \ | \ \text{NTM } M \text{ accepts } x \text{ within } t \text{ steps on at least one branch}\}$.
+Note that $M$ isn't required to halt on all branches. Show that $U$ is NP-complete.
+\end{problem}
+
+\begin{proof}
+To show that $U$ is NP-complete, we must show that it is in NP and that all NP-problems are polynomial time reducible to it. The first part is easy; a certificate is simply the accepting computation history for $M$ on $x$. To prove the second part, we show that $3SAT$ is polynomial time reducible to $U$.  The reduction converts a Boolean formula $\phi$ in 3CNF into an NTM $M$, a string $x$ and an integer $t$, so that $\phi$ is satisfiable, iff $M$ accepts $x$ within $t$ steps on at least one branch. \\
+
+Let $\phi$ be any Boolean formula in 3CNF containing $m$ clauses:
+\[
+\phi = (a_1 \vee b_1 \vee c_1) \ \wedge (a_2 \vee b_2 \vee c_2) \ \wedge \cdots \wedge (a_m \vee b_m \vee c_m).
+\]
+where each $a$, $b$ and $c$ is a literal $x_i$ or $\overline{x_i}$, and $x_1, x_2, \ldots , x_n$ are the $n$ variables of $\phi$. Now we show how to convert $\phi$ to $M$, $x$ and $t$. Let $x$ to be the string $\#_1 \#_2 \cdots \#_n$, where each $\#$ symbol represents a variable in $\phi$. Construct $M$ as follows: \\
+
+$M =$ \textquotedblleft On input $\langle x \rangle$, where $x$ is a string of the form $\#_1 \#_2 \cdots \#_n$:
+\begin{enumerate}
+\item Assign all possible combination of truth values to the $n$ variables by nondeterministically replacing each $\#$ symbol with $T \ (true)$ and $F \ (false)$.
+\item Repeat for each clause $C_i$.
+\item \hspace*{0.5cm} Evaluate the clause $(a_i \vee b_i \vee c_i)$ according to the assigned truth values.
+\item \hspace*{0.5cm} \textit{Reject}, if the clause evaluates to $false$.
+\item \textit{Accept}.\textquotedblright
+\end{enumerate}
+
+The value of $t$ should be set to the maximum number of steps required to evaluate all $m$ clauses in a formal definition of NTM $M$. \\
+
+Suppose $\phi$ has a satisfiable assignment. Then, $M$ must have that assignment on one of its branches of computation. Therefore, $M$ must accept $x$ within $t$ steps on at least one branch. \\
+
+Suppose $M$ accepts $x$ within $t$ steps on at least one branch. Then, the symbols $T \ (true)$ and $F \ (false)$ written on tape on an accepting branch give a satisfiable assignment to the variables of $\phi$.
+\end{proof}
+\end{document}
