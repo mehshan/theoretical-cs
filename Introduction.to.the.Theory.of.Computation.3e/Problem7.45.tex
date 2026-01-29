@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 7: Time Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{7.45}
+Modify the algorithm for context-free language recognition in the proof of Theorem
+7.16 to give a polynomial time algorithm that produces a parse tree for a
+string, given the string and a CFG, if that grammar generates the string.
+\end{problem}
+
+\begin{solution}
+Let $G$ be a CFG in Chomsky normal form generating the CFL $L$. Assume that $S$ is the start variable. The following algorithm $D'$ produces a parse tree for a
+string in polynomial time, given the string and a CFG. \\
+
+$D' =$ \textquotedblleft On input $w = w_1 \cdots w_n$:
+\begin{enumerate}
+\item For $w = \varepsilon$, if $S \rightarrow \varepsilon$ is a rule, \textit{accept}; else, \textit{reject}. \hfill [[$w = \varepsilon$ case]]
+\item For $i = 1$ to $n$: \hfill [[ examine each substring of length 1 ]]
+\item \hspace*{0.5cm} For each variable $A$:
+\item \hspace*{1.0cm} Test whether $A \rightarrow b$ is a rule, where $b = w_i$.
+\item \hspace*{1.0cm} If so, place $A$ in $table(i, i)$.
+\item For $l = 2$ to $n$: \hfill [[ l is the length of the substring ]]
+\item \hspace*{0.5cm} For $i = 1$ to $n - l + 1$: \hfill [[ i is the start position of the substring ]]
+\item \hspace*{1.0cm} Let $j = i + l - 1$. \hfill [[ j is the end position of the substring ]]
+\item \hspace*{1.0cm} For $k = i$ to $j - 1$: \hfill [[ $k$ is the split position ]]
+\item \hspace*{1.5cm} For each rule $A \rightarrow BC$:
+\item \hspace*{2.0cm} If $table(i, k)$ contains $B$ and $table(k + 1, j)$ contains $C$, \\ \hspace*{2.0cm} put $A$ in $table(i, j)$.
+\item If $S$ is in $table(1, n),$ then:
+\item 
+\item Otherwise, output $\varepsilon$.\textquotedblright
+\end{enumerate}
+\end{solution}
+
+\end{document}
