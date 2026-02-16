@@ -1,0 +1,42 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 7: Time Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{7.47}
+The difference hierarchy DP is defined recursively as
+
+\begin{enumerate}[label=\alph*.]
+\item $\text{D}_{1}\text{P} = \text{NP}$ and
+\item $\text{D}_{i}\text{P} = \{A \ | \ A = B \setminus C \text{ for } B \text{ in NP and } C \text{ in } \text{D}_{i-1}\text{P}\}$. \\ (Here $B \setminus C = B \cap \overline{C}.$)
+\end{enumerate}
+
+For example, a language in $\text{D}_{2}\text{P}$ is the difference of two NP languages. Sometimes $\text{D}_{2}\text{P}$ is called DP (and may be written $\text{D}^\text{P}$). Let
+
+\[
+Z = \{\langle G_1, k_1, G_2, k_2 \rangle \ | \ G_1 \text{ has a } k_{1}\text{-clique and } G_2 \text{ doesn't have a } k_{2} \text{-clique}\}.
+\]
+
+Show that $Z$ is complete for DP. In other words, show that $Z$ is in DP and every language in DP is polynomial time reducible to $Z$.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+\end{document}
