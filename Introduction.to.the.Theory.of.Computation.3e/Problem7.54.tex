@@ -24,6 +24,17 @@ In a directed graph, the \textbf{\textit{indegree}} of a node is the number of i
 \end{problem}
 
 \begin{proof}
+Let
+\begin{align*}
+    U = \{\langle G, C \rangle \ | \ &G \text{ is an undirected graph, } C \text{ is a designated subset of } G \text{'s nodes,} \\
+    & \text{and it is possible to convert $G$ to a directed graph by assigning directions} \\
+    & \text{to each of its edges so that every node in $C$ has indegree 0 or outdegree 0,} \\
+    & \text{and every other node in $G$ has indegree at least 1}\}.
+\end{align*}
+
+
+To show that $U$ is NP-complete, we must show that it is in NP and that all NP-problems are polynomial time reducible to it. The first part is easy; a certificate is simply the directed graph. To prove the second part, we show that $SAT$ is polynomial time reducible to $U$. The reduction converts a Boolean formula $\phi$ into an undirected graph $G$ and a designated subset $C$ of $G$'s nodes, so that $\phi$ is satisfiable, iff it is possible to convert $G$ to a directed graph by assigning directions to each of its edges so that every node in $C$ has indegree 0 or outdegree 0, and every other node in $G$ has indegree at least 1. \\
+
 \end{proof}
 
 \end{document}
