@@ -26,17 +26,19 @@ The difference hierarchy DP is defined recursively as
 \item $\text{D}_{1}\text{P} = \text{NP}$ and
 \item $\text{D}_{i}\text{P} = \{A \ | \ A = B \setminus C \text{ for } B \text{ in NP and } C \text{ in } \text{D}_{i-1}\text{P}\}$. \\ (Here $B \setminus C = B \cap \overline{C}.$)
 \end{enumerate}
-
-For example, a language in $\text{D}_{2}\text{P}$ is the difference of two NP languages. Sometimes $\text{D}_{2}\text{P}$ is called DP (and may be written $\text{D}^\text{P}$). Let
-
+For example, a language in $\text{D}_{2}\text{P}$ is the difference of two NP languages. Sometimes $\
+text{D}_{2}\text{P}$ is called DP (and may be written $\text{D}^\text{P}$). Let
 \[
 Z = \{\langle G_1, k_1, G_2, k_2 \rangle \ | \ G_1 \text{ has a } k_{1}\text{-clique and } G_2 \text{ doesn't have a } k_{2} \text{-clique}\}.
 \]
-
 Show that $Z$ is complete for DP. In other words, show that $Z$ is in DP and every language in DP is polynomial time reducible to $Z$.
 \end{problem}
 
 \begin{proof}
+$CLIQUE$ is in NP-complete. So clearly, $Z$ is in DP. To show that every language in DP is polynomial time reducible to $Z$, we construct a polynomial time reduction for each language A in DP to $Z$. If $A$ is in DP, then it must be the difference of two NP languages, say $B$ and $C$.
+\begin{enumerate}
+\item 
+\end{enumerate}
 \end{proof}
 
 \end{document}
