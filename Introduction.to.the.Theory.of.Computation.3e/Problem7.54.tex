@@ -46,9 +46,9 @@ The graph $G$ for unsatisfiable $\phi = (x_1 \vee x_1 \vee x_1) \ \wedge (x_2 \v
 $C = \{x_1, \overline{x_1}, x_2, \overline{x_2}\}$.
 \end{center}
 
-Suppose $\phi$ has a satisfiable assignment. \\
+Suppose $\phi$ has a satisfiable assignment. If variable $x_i$ is assigned true, then direct all edges of node $x_i$ outwards and all edges of $\overline{x_1}$ inwards. If variable $x_i$ is assigned false, then direct all edges of node $x_i$ inwards and all edges of $\overline{x_1}$ outwards. In other words, if variable $x_i$ is true, then indegree of node $x_i$ is 0 and outdegree of node $\overline{x_1}$ is 0, otherwise outdegree of node $x_i$ is 0 and indegree of node $\overline{x_1}$ is 0. Every clause $Q_i$ in $\phi$ must have at least one true literal. Therefore, each node $Q_i$ in $G$ must have an incoming edge. \\
 
-Suppose it is possible to convert $G$ to a directed graph by assigning directions to each of its edges so that every node in $C$ has indegree 0 or outdegree 0, and every other node in $G$ has indegree at least 1. Then, the indegrees and outdegrees of nodes in $C$ give satisfying assignment to the variables of $\phi$. If indegree of a node $x_i$ is 0, then the variable $x$ is assigned true, otherwise false. 
+Suppose it is possible to convert $G$ to a directed graph by assigning directions to each of its edges so that every node in $C$ has indegree 0 or outdegree 0, and every other node in $G$ has indegree at least 1. Then, the indegrees and outdegrees of nodes in $C$ give satisfying assignment to the variables of $\phi$. If indegree of a node $x_i$ is 0, then the variable $x$ is assigned true, otherwise false (outdegree 0). 
 
 \end{proof}
 
