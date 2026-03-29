@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 7: Time Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{7.38}
+Show that if P = NP, a polynomial time algorithm exists that produces a satisfying assignment when given a satisfiable Boolean formula. (Note: The algorithm you are asked to provide computes a function; but NP contains languages, not functions. The P = NP assumption implies that $SAT$ is in P, so testing satisfiability is solvable in polynomial time. But the assumption doesn't say how this test is done, and the test may not reveal satisfying assignments. You must show that you can find
+them anyway. Hint: Use the satisfiability tester repeatedly to find the assignment bit-by-bit.)
+\end{problem}
+
+\begin{proof}
+A polynomial time algorithm $S$ that produces a satisfying assignment when given a satisfiable Boolean formula operates as follows. \\
+
+$S =$ \textquotedblleft On input $\langle \phi \rangle$, where $\phi$ is a satisfiable Boolean formula:
+\begin{enumerate}
+\item Let $A = \emptyset$.
+\item Let $\phi' = \phi$.
+\item Repeat for each variable $x_i$ in $\phi'$:
+\item \hspace*{0.5cm} Construct a new Boolean formula $\phi_t$ by replacing all occurrences of $x_i$ in $\phi'$ with $true$.
+\item \hspace*{0.5cm} Construct a new Boolean formula $\phi_f$ by replacing all occurrences of $x_i$ in $\phi'$ with $false$.
+\item \hspace*{0.5cm} Run satisfiability tester on $\langle \phi_t \rangle$.
+\item \hspace*{0.5cm} If satisfiability tester accepts then:
+\item \hspace*{1.0cm} $\phi' = \phi_t$.
+\item \hspace*{1.0cm} $A = A \cup \{(x_i, true)\}$.
+\item \hspace*{0.5cm} Otherwise:
+\item \hspace*{1.0cm} $\phi' = \phi_f$.
+\item \hspace*{1.0cm} $A = A \cup \{(x_i, false)\}$.
+\item Output $\langle A \rangle$.\textquotedblright
+\end{enumerate}
+\end{proof}
+\end{document}
