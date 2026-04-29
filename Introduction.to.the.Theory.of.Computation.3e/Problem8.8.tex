@@ -24,6 +24,16 @@ Let $EQ_{\text{REX}} = \{\langle R, S \rangle \ | \ R \text{ and } S \text{ are 
 \end{problem}
 
 \begin{proof}
+To show that $EQ_{\text{REX}} \in $ PSPACE, we give a polynomial time algorithm $M$ that decides $EQ_{\text{REX}}$. \\
+
+$M =$ \textquotedblleft On input $\langle R, S \rangle$, where $R$ and $S$ are regular expressions:
+\begin{enumerate}
+\item Convert regular expressions $R$ and $S$ to equivalent NFAs $N_R$ and $N_S$ by using the procedure for this conversion given in Theorem 1.54.
+\item Convert NFAs $N_R$ and $N_S$ to equivalent $DFAs$ $D_R$ and $D_S$ by using the procedure for this conversion given in Theorem 1.39.
+\item Run TM $F$ from Theorem 4.5 on input $\langle D_R, D_S \rangle$.
+\item If $F$ accepts, \textit{accept}. If $F$ rejects, \textit{reject}.\textquotedblright
+\end{enumerate}
+
 \end{proof}
 
 \end{document}
