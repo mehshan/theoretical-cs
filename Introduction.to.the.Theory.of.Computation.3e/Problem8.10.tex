@@ -28,6 +28,29 @@ By a $position$ we mean a board with markers placed on it, such as may occur in 
 \end{problem}
 
 \begin{proof}
+To show that $GM \in $ PSPACE, we give a polynomial space algorithm $M$ that decides $GM$. \\
+
+$M =$ \textquotedblleft On input $\langle B \rangle$, where $B$ is a position in generalized go-moku:
+\begin{enumerate}
+\item If $n < 5$, then \textit{reject}.
+\item If player ``O'' has won, then \textit{reject}.  If player ``X'' has won, then \textit{accept}.
+\item If player ``X'' moves next, then:
+\item \hspace*{0.5cm} Repeat for each $i = 1 \text{ to } n$.
+\item \hspace*{1.0cm} Repeat for each $j = 1 \text{ to } n$.
+\item \hspace*{1.5cm} If no marker is placed on location $(i, \ j)$, then:
+\item \hspace*{2.0cm} Place marker X on $(i, j)$, and mark player ``O'' moves next.
+\item \hspace*{2.0cm} Recursively call $M$ on $\langle B \rangle$.
+\item \hspace*{2.0cm} If $M$ accepts, then \textit{accept}. Otherwise, remove marker X from location $(i, j)$.
+\item \hspace*{0.5cm} \textit{Reject}.
+\item If player ``O'' moves next, then:
+\item \hspace*{0.5cm} Repeat for each $i = 1 \text{ to } n$.
+\item \hspace*{1.0cm} Repeat for each $j = 1 \text{ to } n$.
+\item \hspace*{1.5cm} If no marker is placed on location $(i, \ j)$, then:
+\item \hspace*{2.0cm} Place marker O on $(i, j)$, and mark player ``X'' moves next.
+\item \hspace*{2.0cm} Recursively call $M$ on $\langle B \rangle$.
+\item \hspace*{2.0cm} If $M$ rejects, then \textit{reject}. Otherwise, remove marker X from location $(i, j)$.
+\item \hspace*{0.5cm} \textit{Accept}.\textquotedblright
+\end{enumerate}
 \end{proof}
 
 \end{document}
