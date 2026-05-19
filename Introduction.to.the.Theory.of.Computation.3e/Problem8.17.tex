@@ -24,10 +24,12 @@ Let $A$ be the language of properly nested parentheses. For example, $(())$ and 
 \end{problem}
 
 \begin{proof}
-To show that $A \in$ L, we give a log space algorithm $M$ that decides $A$.
+To show that $A \in$ L, we give a log space algorithm $M$ that decides $A$. \\
+
+$M =$ \textquotedblleft On input $\langle w \rangle$, where $w$ is a string:
 \begin{enumerate}
 \item Let $c$ be a binary integer initialized with 0.
-\item Repeat for each input symbol $b$ from left to right.
+\item Repeat for each symbol $b$ = $w_1, w_2, \ldots,w_n$.
 \item \hspace*{0.5cm} If $b$ is (, then increment $c$ by 1.
 \item \hspace*{0.5cm} If $b$ is ) and $c > 0$, then increment $c$ by 1.
 \item \hspace*{0.5cm} If $b$ is ) and $c = 0$, then $reject$.
