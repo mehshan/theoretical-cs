@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 8: Space Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{8.17}
+Read the definition of $MIN\text{-}FORMULA$ in Problem 7.46.
+\end{problem}
+
+\begin{problem}[Part]{a}
+Show that $MIN\text{-}FORMULA \in$ PSPACE.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+\begin{problem}[Part]{b}
+Explain why this argument fails to show that $MIN\text{-}FORMULA \in$ coNP: \\
+If $\phi \notin MIN\text{-}FORMULA$, then $\phi$ has a smaller equivalent formula. An NTM can verify that $\phi \in \overline{MIN\text{-}FORMULA}$ by guessing that formula.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+\end{document}
