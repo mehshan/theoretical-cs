@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 8: Space Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{8.18}
+Let $B$ be the language of properly nested parentheses and brackets. For example, ([()()]()[]) is in $B$ but ([)] is not. Show that $B$ is in L.
+\end{problem}
+
+\begin{proof}
+To show that $B$ is in L, we give a log space algorithm $M$ that decides $B$. \\
+
+$M =$ \textquotedblleft On input $\langle w \rangle$, where $w$ is a string:
+\begin{enumerate}
+\item Let $p$ and $b$ be binary integers.
+\item Starting at start of the tape, scan for the first unmarked symbol $w_i$ in $w = w_1 w_2 \ldots w_n$. If no unmarked symbol is found, then \textit{accept}.
+\item If $w_i$ is ) or ], then \textit{reject}.
+\item Let $p = 0$ and $b = 0$.
+\item Repeat for each unmarked symbol $w_j$ = $w_{i+1}w_{i+2} \ldots w_n$:
+\item \hspace*{0.5cm} If $w_j$ is (, then increment $p$ by 1.
+\item \hspace*{0.5cm} If $w_j$ is [, then increment $b$ by 1.
+\item \hspace*{0.5cm} If $w_j$ is ), then:
+\item \hspace*{1.0cm} If $w_i$ is ( and $p$ = 0, then:
+\item \hspace*{1.5cm} If $b = 0$, then mark both $w_i$ and $w_j$, and go to step 2. Otherwise, \textit{reject}.
+\item \hspace*{1.0cm} If $p > 0$, then decrement $p$ by 1. Otherwise, \textit{reject}.
+\item \hspace*{0.5cm} If $w_j$ is ], then:
+\item \hspace*{1.0cm} If $w_i$ is [ and $b = 0$, then:
+\item \hspace*{1.5cm} If $p = 0$, then mark both $w_i$ and $w_j$, and go to step 2. Otherwise, \textit{reject}.
+\item \hspace*{1.0cm} If $b > 0$, then decrement $b$ by 1. Otherwise, \textit{reject}.
+\item \textit{Reject}.\textquotedblright
+\end{enumerate}
+In steps 2 to 4, the algorithm repeatedly picks an unmatched opening parentheses or bracket. Then, in steps 5 to 17, it tries to find the matching closing parentheses or bracket. If a match is found, then the algorithm starts all over again. The algorithm accepts if all opening parentheses and brackets are successfully matched with their corresponding closing parentheses or bracket.
+\end{proof}
+
+\end{document}
