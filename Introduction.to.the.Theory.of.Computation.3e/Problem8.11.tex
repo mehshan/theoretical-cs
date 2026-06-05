@@ -1,0 +1,30 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 8: Space Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{8.17}
+Show that if every NP-hard language is also PSPACE-hard, then PSPACE = NP.
+\end{problem}
+
+\begin{proof}
+Assume that every NP-hard language is also PSPACE-hard. This implies that $SAT$ is also PSPACE-hard. In other words, every language in PSPACE is polynomial time reducible to $SAT$. Then, every language $A$ in PSPACE can be decided in non-deterministic polynomial time by first converting an instance of $A$ to an instance of $SAT$, which can be decided in non-deterministic polynomial time. Therefore, PSPACE = NP.
+\end{proof}
+
+\end{document}
