@@ -28,6 +28,9 @@ Show that a graph is bipartite if and only if it doesn't contain a cycle that ha
 \end{problem}
 
 \begin{proof}
+For the forward direction, let $G$ be a bipartite graph and show that $G$ doesn't contain a cycle that has an odd number of nodes. The proof is by contradiction. Assume that $G$ contains a a cycle $n_1, n_2, \ldots , n_{k-1}, n_k$ that has an odd number of nodes. Then, it must be the case that nodes $n_1$ and $n_{k-1}$ are assigned to different sets because every two consecutive nodes in the sequence $n_1, n_2, \ldots , n_{k-1}, n_k$ are adjacent to each other. But this implies that node $n_k$ cannot be assigned to either first or second set as it is adjacent to both nodes $n_1$ and $n_{k-1}$, which is a contradiction. \\
+
+To prove the other direction of the theorem,
 \end{proof}
 
 \begin{problem}[Part]{b}
