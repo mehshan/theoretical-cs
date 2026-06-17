@@ -24,13 +24,16 @@ An undirected graph is \textbf{\textit{bipartite}} if its nodes may be divided i
 \end{problem}
 
 \begin{problem}[Part]{a}
-Show that a graph is bipartite if and only if it doesn't contain a cycle that has an odd number of nodes.
+Show that an undirected graph is bipartite if and only if it doesn't contain a cycle that has an odd number of nodes.
 \end{problem}
 
 \begin{proof}
 For the forward direction, let $G$ be a bipartite graph and show that $G$ doesn't contain a cycle that has an odd number of nodes. The proof is by contradiction. Assume that $G$ contains a a cycle $n_1, n_2, \ldots , n_{k-1}, n_k$ that has an odd number of nodes. Then, it must be the case that nodes $n_1$ and $n_{k-1}$ are assigned to different sets because every two consecutive nodes in the sequence $n_1, n_2, \ldots , n_{k-1}, n_k$ are adjacent to each other. But this implies that node $n_k$ cannot be assigned to either first or second set as it is adjacent to both nodes $n_1$ and $n_{k-1}$, which is a contradiction. \\
 
-To prove the other direction of the theorem,
+To prove the other direction of the theorem, let $G$ be an undirected graph that doesn't contain a cycle that has an odd number of nodes and show that $G$ is bipartite. The proof is by contradiction. Assume that $G$ is not bipartite. Then, there must exist three nodes $u$, $v$ and $w$, such that nodes $u$ and $v$ must be belong to different sets and node $w$ is adjacent to both $u$ and $v$. This implies that, a path  from $u$ to $v$ exists that contains an even number of nodes, and path from $u$ to $w$ is a cycle that has an odd number of nodes, which is a contradiction.
+\begin{center}
+\includegraphics[scale=1.0]{Figures/Problem8.25.pdf}
+\end{center}
 \end{proof}
 
 \begin{problem}[Part]{b}
