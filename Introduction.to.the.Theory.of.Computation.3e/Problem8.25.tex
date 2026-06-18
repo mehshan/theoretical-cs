@@ -36,11 +36,29 @@ To prove the other direction of the theorem, let $G$ be an undirected graph that
 \end{center}
 \end{proof}
 
+\newpage
+
 \begin{problem}[Part]{b}
 Show that $BIPARTITE \in $ NL.
 \end{problem}
 
 \begin{proof}
+To show $BIPARTITE \in$ NL, we give a nondeterministic log space algorithm $M$ that decides $\overline{BIPARTITE}$. If $\overline{BIPARTITE} \in$ NL, then according Theorem 8.27 $BIPARTITE \in$ NL. \\
+
+$M =$ \textquotedblleft On input $\langle G \rangle$, where $G$ is an undirected graph:
+\begin{enumerate}
+\item Let $u$, $v$ $w$, $c$ and $m$ be binary integers stored on work tape.
+\item Assign number of nodes in $G$ to $m$.
+\item Non-deterministically assign position of each node in $G$ to $u$.
+\item If degree of $u$ is 0, then \textit{reject}.
+\item Let $v = u$, and $c = 0$.
+\item Non-deterministically guess each adjacent node of $v$ and store its position in $w$.
+\item Let $c = c + 1$.
+\item If $w = u$ and $c$ is even, then \textit{reject}.
+\item If $w = u$ and $c$ is odd, then \textit{accept}.
+\item If $c = m$, then \textit{reject}.
+\item Let $v = w$, and goto step 6.\textquotedblright
+\end{enumerate}
 \end{proof}
 
 \end{document}
