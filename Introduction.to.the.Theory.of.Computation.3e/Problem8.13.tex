@@ -26,14 +26,16 @@ Define $A_{\text{LBA}} = \{\langle M,w \rangle \ | \ M \text{ is an LBA that acc
 \begin{proof}
 To show that $A_{\text{LBA}}$ is PSPACE-complete, we must show that it is in PSPACE and that all PSPACE problems are polynomial time reducible to it. The algorithm given in Theorem 5 decides $A_{\text{LBA}}$\footnote{An LBA operates in exactly $n$ space. This solution applies to both DLBA and NLBA due to Savitch's Theorem.}. This algorithm runs in polynomial space and so $A_{\text{LBA}} \in$ PSPACE. To prove that $A_{\text{LBA}}$ is PSPACE-hard, we give a polynomial time reduction from $GG$ to $A_{\text{LBA}}$. This reduction converts a generalized geography graph $G$ to an LBA $L$ and a string $w$ so that Player I has a winning strategy for the game played on $G$, iff $L$ accepts $w$. 
 
+% Part (b) Notes:
+% Show GG is polynomial time reducible to $A_{\text{LBA}}$.
+% Rewrite PSPACE decider for GG to use a stack.
+% The mapping $f$ takes a directed graph and outputs an LBA, graph and enough blank space for stack.
+% Size of stack is same as number of nodes in graph.
 
-
-Part (b) Notes:
-
-Show GG is polynomial time reducible to $A_{\text{LBA}}$.
-Rewrite PSPACE decider for GG to use a stack.
-The mapping $f$ takes a directed graph and outputs an LBA, graph and enough blank space for stack.
-Size of stack is same as number of nodes in graph.
+% Part B
+% Rewrite PSPACE decider for GG to use a stack.
+% The mapping $f$ takes a directed graph and outputs an LBA, graph and enough blank space for stack.
+% Size of stack is same as number of nodes in graph.
 
 \end{proof}
 
