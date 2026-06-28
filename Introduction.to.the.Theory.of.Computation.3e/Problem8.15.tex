@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 8: Space Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{8.15}
+Consider the following two-person version of the language PUZZLE that was described in Problem 7.28. Each player starts with an ordered stack of puzzle cards. The players take turns placing the cards in order in the box and may choose which side faces up. Player I wins if all hole positions are blocked in the final stack, and Player II wins if some hole position remains unblocked. Show that the problem of determining which player has a winning strategy for a given starting configuration of the cards is PSPACE-complete.
+\end{problem}
+
+\begin{proof}
+Let $2\text{-}PUZZLE = \{\langle C_1, C_2, S, p \rangle \ | \ C_1, \ C_2 \text{ and } S \text{ are ordered stacks of cards,} \\ \text{representing current configuration of the cards of Player 1, Player 2 and stack, such that Player 1} \\ \text{has a winning strategy if player } p \text{ takes the first turn}\}$. To show that $2\text{-}PUZZLE$ is PSPACE-complete, we must show that it is in PSPACE and that all PSPACE problems are polynomial time reducible to it. To prove $2\text{-}PUZZLE \in$ PSPACE, we give a polynomial space algorithm $M$. \\
+
+$M =$ \textquotedblleft On input $\langle C_1, C_2, S, p \rangle$, where $C_1$, $C_2$ and $S$ are ordered stacks of cards, and $p$ is an integer 1 or 2:
+\begin{enumerate}
+\item If both $C_1$ and $C_2$ are empty, then:
+\item \hspace*{0.5cm} If all hole positions are blocked in stack $S$, then \textit{accept}. Otherwise, \textit{reject}.
+\item If $p$ = 1, then:
+\item \hspace*{0.5cm} If stack $C_1$ is not empty, then:
+\item \hspace*{1.0cm} Remove top most card $c$ from $C_1$, and construct stack $S'$ by copying $S$.
+\item \hspace*{1.0cm} Place $c$ on top of $S$ and flipped version of $c$ on top of $S'$.
+\item \hspace*{1.0cm} Recursively call $M$ on $\langle C_1, C_2, S, 2 \rangle$ and $\langle C_1, C_2, S', 2 \rangle$.
+\item \hspace*{1.0cm} If one of the calls accept, \textit{accept}. Otherwise, \textit{reject}.
+\item \hspace*{0.5cm} Otherwise, recursively call $M$ on $\langle C_1, C_2, S, 2 \rangle$, and operate as $M$ afterwards.
+\item If $p$ = 2, then:
+\item \hspace*{0.5cm} If stack $C_2$ is not empty, then:
+\item \hspace*{1.0cm} Remove top most card $c$ from $C_2$, and construct stack $S'$ by copying $S$.
+\item \hspace*{1.0cm} Place $c$ on top of $S$ and flipped version of $c$ on top of $S'$.
+\item \hspace*{1.0cm} Recursively call $M$ on $\langle C_1, C_2, S, 1 \rangle$ and $\langle C_1, C_2, S', 1 \rangle$.
+\item \hspace*{1.0cm} If both of the calls accept, \textit{accept}. Otherwise, \textit{reject}.
+\item \hspace*{0.5cm} Otherwise, recursively call $M$ on $\langle C_1, C_2, S, 1 \rangle$, and operate as $M$ afterwards.\textquotedblright
+\end{enumerate}
+
+\end{proof}
+
+\end{document}
