@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 8: Space Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{8.16}
+The game of \textbf{\textit{Nim}} is played with a collection of piles of sticks. In one move, a player may remove any nonzero number of sticks from a single pile. The players alternately take turns making moves. The player who removes the very last stick loses. Say that we have a game position in Nim with k piles containing $s_1, \ldots ,sk$ sticks. Call the position balanced if each column of bits contains an even number of 1s when each of the numbers si is written in binary, and the binary numbers are written as rows of a matrix aligned at the low order bits. Prove the following two facts.
+\end{problem}
+
+\begin{problem}[Part]{a}
+Starting in an unbalanced position, a single move exists that changes the position into a balanced one.
+\end{problem}
+
+\begin{proof}
+% Find the left most column k with odd number of 1s
+% At least one si will have a 1 in column k
+% Go from column k to column 1 in si and change 1 to 0 or 0 to 1 to get balance position.
+% Subtract the new number produced in previous step from original si.
+% The result is the number of sticks that can be removed from pile si to get balance position.
+\end{proof}
+
+\begin{problem}[Part]{b}
+Starting in a balanced position, every single move changes the position into an unbalanced one.
+\end{problem}
+
+\begin{proof}
+% Starting in a balanced position, and removing some non-zero number of sticks from a pile changes the number of sticks in the pile. This new number has a different combitionation of 1s and 0s.
+% So some column will loose even number of 1s.
+\end{proof}
+
+\begin{problem}[Part]{c}
+Let $NIM = \{\langle s_1, \ldots , s_k \rangle \ | \ \text{each } s_i \text{ is a binary number and Player I has a winning
+strategy} \\ \text{in the Nim game starting at this position}\}$. Use the preceding facts about balanced positions to show that $NIM \in$ L.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+\end{document}
