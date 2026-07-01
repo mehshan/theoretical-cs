@@ -46,6 +46,14 @@ $M =$ \textquotedblleft On input $\langle C_1, C_2, S, p \rangle$, where $C_1$, 
 \item \hspace*{0.5cm} Otherwise, recursively call $M$ on $\langle C_1, C_2, S, 1 \rangle$, and operate as $M$ afterwards.\textquotedblright
 \end{enumerate}
 
+% 2-PUZZLE is PSPACE-hard
+% Reduce TQBF in CNF to 2-PUZZLE (ref. P 8.12)
+% One card for each variable in TQBF
+% Card construction same as in reduction for P 7.28
+% Card for there-exist bound variable is assigned to Player 1
+% Card for for-all bound variable is assinged to Player 2
+% Assign a dummy card (all slots/rows punched) to player whose turn is skipped due to repeated there-exists or for-all.
+
 \end{proof}
 
 \end{document}
