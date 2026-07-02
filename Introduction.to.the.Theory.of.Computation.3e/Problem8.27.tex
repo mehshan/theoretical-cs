@@ -1,0 +1,43 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 8: Space Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{8.27}
+Recall that a directed graph is strongly connected if every two nodes are connected by a directed path in each direction. Let
+\[
+STRONGLY\text{-}CONNECTED = \{\langle G \rangle \ | \ G \text{ is a strongly connected graph}\}.
+\]
+Show that $STRONGLY\text{-}CONNECTED$ is NL-complete.
+\end{problem}
+
+\begin{proof}
+To show that $STRONGLY\text{-}CONNECTED$ is NL-complete, we must show that it is in NL and that all NL problems are log space reducible to it.
+
+% Part 1
+% Show that co-STROnGLY-CONNECTED is NL
+% Non-deterministically select two nodes
+% Call NTM for coPATH on the two nodes
+% If NTP accepts, then accept
+
+To prove that $STRONGLY\text{-}CONNECTED$ is NL-hard, we give a log space reduction from $PATH$ to $STRONGLY\text{-}CONNECTED$. This reduction converts a directed graph $G$ and two nodes $s$ and $t$ to a directed graph $G'$ so that $G$ has directed path from $s$ to $t$, iff $G'$ is strongly connected.
+
+\end{proof}
+
+\end{document}
