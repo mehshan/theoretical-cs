@@ -37,8 +37,19 @@ $S =$ \textquotedblleft On input $\langle G \rangle$, where $G$ is a directed gr
 \item \hspace*{0.5cm} \textit{Accept}, if $M$ accepts. \textit{Reject}, if $M$ rejects.\textquotedblright
 \end{enumerate}
 
-To prove that $STRONGLY\text{-}CONNECTED$ is NL-hard, we give a log space reduction from $PATH$ to $STRONGLY\text{-}CONNECTED$. This reduction converts a directed graph $G$ and two nodes $s$ and $t$ to a directed graph $G'$ so that $G$ has directed path from $s$ to $t$, iff $G'$ is strongly connected.
+To prove that $STRONGLY\text{-}CONNECTED$ is NL-hard, we give a log space reduction from $PATH$ to $STRONGLY\text{-}CONNECTED$. This reduction converts a directed graph $G$ and two nodes $s$ and $t$ to a directed graph $G'$ so that $G$ has directed path from $s$ to $t$, iff $G'$ is strongly connected. Next, we show how to construct the graph $G'$. The graph $G'$ is same as the graph $G$, but includes following additional edges, which we name connectivity edges:
+\begin{enumerate}
+\item An edge to $s$ from every node in $G$ except $t$.
+\item An edge from $t$ to every node in $G$ except $s$.
+\end{enumerate}
 
+Suppose graph $G$ contains a path from node $s$ to $t$. Then, $G'$ is strongly connected, because a path from any two distinct nodes $u$ and $v$ in $G'$ can be constructed as follows:
+\begin{enumerate}
+\item Start at node $u$, and go to $s$.
+\item Follow the path from $s$ to $t$.
+\item Go to node $v$.
+\end{enumerate}
+
+Suppose $G'$ is strongly connected. Then, there are two distinct nodes $s$ and $t$ in $G'$, such that there is an edge to $s$ from every other node in $G'$ except $t$, and there is an edge from $t$ to every other node in $G'$ except $s$. $G'$ also contains a path from node $s$ to $t$, and removing connectivity edges from $G'$ to construct $G$ does not remove this path from $s$ to $t$ in $G$. A log space transducer can easily implement construction of $G'$ from $G$, $s$ and $t$. Hence, $STRONGLY\text{-}CONNECTED$ is NL-hard.
 \end{proof}
-
 \end{document}
