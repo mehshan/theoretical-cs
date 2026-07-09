@@ -28,13 +28,14 @@ Show that $STRONGLY\text{-}CONNECTED$ is NL-complete.
 \end{problem}
 
 \begin{proof}
-To show that $STRONGLY\text{-}CONNECTED$ is NL-complete, we must show that it is in NL and that all NL problems are log space reducible to it.
+To show that $STRONGLY\text{-}CONNECTED$ is NL-complete, we must show that it is in NL and that all NL problems are log space reducible to it. To show $STRONGLY\text{-}CONNECTED \in$ NL, we give an algorithm $S$ that decides $\overline{STRONGLY\text{-}CONNECTED}$ in non-deterministic log space. \\
 
-% Part 1
-% Show that co-STROnGLY-CONNECTED is NL
-% Non-deterministically select two nodes
-% Call NTM for coPATH on the two nodes
-% If NTP accepts, then accept
+$S =$ \textquotedblleft On input $\langle G \rangle$, where $G$ is a directed graph:
+\begin{enumerate}
+\item Non-deterministically select every distinct pair of nodes $s$ and $t$ in $G$:
+\item \hspace*{0.5cm} Run the algorithm $M$ for $\overline{PATH}$ given in Theorem 8.27 on $\langle G, s, t \rangle$.
+\item \hspace*{0.5cm} \textit{Accept}, if $M$ accepts. \textit{Reject}, if $M$ rejects.\textquotedblright
+\end{enumerate}
 
 To prove that $STRONGLY\text{-}CONNECTED$ is NL-hard, we give a log space reduction from $PATH$ to $STRONGLY\text{-}CONNECTED$. This reduction converts a directed graph $G$ and two nodes $s$ and $t$ to a directed graph $G'$ so that $G$ has directed path from $s$ to $t$, iff $G'$ is strongly connected.
 
