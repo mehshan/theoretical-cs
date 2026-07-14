@@ -32,16 +32,18 @@ $M =$ \textquotedblleft On input $\langle C_1, C_2, S, p \rangle$, where $C_1$, 
 \item \hspace*{0.5cm} If all hole positions are blocked in stack $S$, then \textit{accept}. Otherwise, \textit{reject}.
 \item If $p$ = 1, then:
 \item \hspace*{0.5cm} If stack $C_1$ is not empty, then:
-\item \hspace*{1.0cm} Remove top most card $c$ from $C_1$, and construct stack $S'$ by copying $S$.
-\item \hspace*{1.0cm} Place $c$ on top of $S$ and flipped version of $c$ on top of $S'$.
-\item \hspace*{1.0cm} Recursively call $M$ on $\langle C_1, C_2, S, 2 \rangle$ and $\langle C_1, C_2, S', 2 \rangle$.
+\item \hspace*{1.0cm} Remove top most card $c$ from $C_1$.
+\item \hspace*{1.0cm} Place $c$ on top of $S$ and recursively call $M$ on $\langle C_1, C_2, S, 2 \rangle$.
+\item \hspace*{1.0cm} Remove $c$ from top of $S$.
+\item \hspace*{1.0cm} Flip $c$, place it on top of $S$ and recursively call $M$ on $\langle C_1, C_2, S, 2 \rangle$.
 \item \hspace*{1.0cm} If one of the calls accept, \textit{accept}. Otherwise, \textit{reject}.
 \item \hspace*{0.5cm} Otherwise, recursively call $M$ on $\langle C_1, C_2, S, 2 \rangle$, and operate as $M$ afterwards.
 \item If $p$ = 2, then:
 \item \hspace*{0.5cm} If stack $C_2$ is not empty, then:
-\item \hspace*{1.0cm} Remove top most card $c$ from $C_2$, and construct stack $S'$ by copying $S$.
-\item \hspace*{1.0cm} Place $c$ on top of $S$ and flipped version of $c$ on top of $S'$.
-\item \hspace*{1.0cm} Recursively call $M$ on $\langle C_1, C_2, S, 1 \rangle$ and $\langle C_1, C_2, S', 1 \rangle$.
+\item \hspace*{1.0cm} Remove top most card $c$ from $C_2$.
+\item \hspace*{1.0cm} Place $c$ on top of $S$ and recursively call $M$ on $\langle C_1, C_2, S, 2 \rangle$.
+\item \hspace*{1.0cm} Remove $c$ from top of $S$.
+\item \hspace*{1.0cm} Flip $c$, place it on top of $S$ and recursively call $M$ on $\langle C_1, C_2, S, 2 \rangle$.
 \item \hspace*{1.0cm} If both of the calls accept, \textit{accept}. Otherwise, \textit{reject}.
 \item \hspace*{0.5cm} Otherwise, recursively call $M$ on $\langle C_1, C_2, S, 1 \rangle$, and operate as $M$ afterwards.\textquotedblright
 \end{enumerate}
