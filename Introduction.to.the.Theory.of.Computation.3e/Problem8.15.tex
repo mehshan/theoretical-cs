@@ -51,15 +51,14 @@ $M =$ \textquotedblleft On input $\langle C_1, C_2, S, p \rangle$, where $C_1$, 
 \end{enumerate}
 
 To prove that $2\text{-}PUZZLE$ is PSPACE-hard, we give a polynomial space reduction from the special case of $TQBF$ presented in Problem 8.12 to $2\text{-}PUZZLE$\footnote{TQBF restricted to formulas where the part following the quantifiers is in conjunctive normal form is still PSPACE-complete.}. This reduction converts a fully quantified Boolean formula $\phi$ to ordered stacks of cards $C_1$, $C_2$ and $S$, and an integer $p$, such that $\phi$ is true, iff Player 1 has a winning strategy if player $p$ takes the first turn and $C_1$, $C_2$ and $S$ represent the current configuration of the cards of Player 1, Player 2 and stack. Next, we show how to construct $C_1$, $C_2$, $S$ and $p$.
-
-% 2-PUZZLE is PSPACE-hard
-% Reduce TQBF in CNF to 2-PUZZLE (ref. P 8.12)
-% One card for each variable in TQBF
-% Card construction same as in reduction for P 7.28
-% Card for there-exist bound variable is assigned to Player 1
-% Card for for-all bound variable is assinged to Player 2
-% Assign a dummy card (all slots/rows punched) to player whose turn is skipped due to repeated there-exists or for-all.
-
+\begin{enumerate}
+\item Let $p = 1$.
+\item Let $C_1$, $C_2$, and $S$ be empty stacks.
+\item Construct a card for each variable in $\phi$ according to the construction given in the solution for Problem 7.28.
+\item Card for there-exist bound variable is placed in $C_1$.
+\item Card for for-all bound variable is placed in $C_2$.
+\item Assign a dummy card with all slots punched to player whose turn is skipped due to repeated there-exist or for-all.
+\end{enumerate}
 \end{proof}
 
 \end{document}
