@@ -50,6 +50,8 @@ $M =$ \textquotedblleft On input $\langle C_1, C_2, S, p \rangle$, where $C_1$, 
 \item \hspace*{0.5cm} Otherwise, recursively call $M$ on $\langle C_1, C_2, S, 1 \rangle$, and operate as $M$ afterwards.\textquotedblright
 \end{enumerate}
 
+To prove that $2\text{-}PUZZLE$ is PSPACE-hard, we give a polynomial space reduction from the special case of $TQBF$ presented in Problem 8.12 to $2\text{-}PUZZLE$\footnote{TQBF restricted to formulas where the part following the quantifiers is in conjunctive normal form is still PSPACE-complete.}. This reduction converts a fully quantified Boolean formula $\phi$ to ordered stacks of cards $C_1$, $C_2$ and $S$, and an integer $p$, such that $\phi$ is true, iff Player 1 has a winning strategy if player $p$ takes the first turn and $C_1$, $C_2$ and $S$ represent the current configuration of the cards of Player 1, Player 2 and stack. Next, we show how to construct $C_1$, $C_2$, $S$ and $p$.
+
 % 2-PUZZLE is PSPACE-hard
 % Reduce TQBF in CNF to 2-PUZZLE (ref. P 8.12)
 % One card for each variable in TQBF
