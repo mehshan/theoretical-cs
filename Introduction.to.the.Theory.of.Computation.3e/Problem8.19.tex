@@ -20,7 +20,7 @@ Computation}\hfill\textbf{\myname}\\[0.01in]
 \smallskip\hrule\bigskip
 
 \begin{problem}{8.16}
-The game of \textbf{\textit{Nim}} is played with a collection of piles of sticks. In one move, a player may remove any nonzero number of sticks from a single pile. The players alternately take turns making moves. The player who removes the very last stick loses. Say that we have a game position in Nim with k piles containing $s_1, \ldots ,sk$ sticks. Call the position balanced if each column of bits contains an even number of 1s when each of the numbers si is written in binary, and the binary numbers are written as rows of a matrix aligned at the low order bits. Prove the following two facts.
+The game of \textbf{\textit{Nim}} is played with a collection of piles of sticks. In one move, a player may remove any nonzero number of sticks from a single pile. The players alternately take turns making moves. The player who removes the very last stick loses. Say that we have a game position in Nim with $k$ piles containing $s_1, \ldots ,s_k$ sticks. Call the position \textbf{\textit{balanced}} if each column of bits contains an even number of 1s when each of the numbers $s_i$ is written in binary, and the binary numbers are written as rows of a matrix aligned at the low order bits. Prove the following two facts.
 \end{problem}
 
 \begin{problem}[Part]{a}
@@ -28,11 +28,12 @@ Starting in an unbalanced position, a single move exists that changes the positi
 \end{problem}
 
 \begin{proof}
-% Find the left most column k with odd number of 1s
-% At least one si will have a 1 in column k
-% Go from column k to column 1 in si and change 1 to 0 or 0 to 1 to get balance position.
-% Subtract the new number produced in previous step from original si.
-% The result is the number of sticks that can be removed from pile si to get balance position.
+Starting in an unbalanced position, we give steps to find a single move that changes the position into a balanced one.
+\begin{enumerate}
+\item Find the left most column $k$ with odd number of 1s. In an unbalanced position at least one $s_i$ will have a 1 in column $k$. Pick one such $s_i$.
+\item Go from column $k$ to column 1 in selected $s_i$ and change 1 to 0 or 0 to 1 to get a balance position.
+\item Subtract the new number produced in previous step from original $s_i$. The result is the number of sticks that can be removed from pile $s_i$ to get a balance position.
+\end{enumerate}
 \end{proof}
 
 \begin{problem}[Part]{b}
@@ -40,8 +41,7 @@ Starting in a balanced position, every single move changes the position into an 
 \end{problem}
 
 \begin{proof}
-% Starting in a balanced position, and removing some non-zero number of sticks from a pile changes the number of sticks in the pile. This new number has a different combitionation of 1s and 0s.
-% So some column will loose even number of 1s.
+Starting in a balanced position, and removing some non-zero number of sticks from a pile changes the number of sticks in the pile. This new number has a different combination of 1s and 0s. So some column will loose even number of 1s.
 \end{proof}
 
 \begin{problem}[Part]{c}
