@@ -69,6 +69,7 @@
 - [ ] 7.51*
 - [ ] 7.52*
 - [ ] 7.53*
+- [ ] 8.15 - explain why the reduction works, suppose phi is true... suppose Player 1 has winning strategy...
 
 ### In Progress
 
