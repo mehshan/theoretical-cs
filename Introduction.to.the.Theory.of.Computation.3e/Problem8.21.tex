@@ -28,6 +28,16 @@ Let $A_2 = \{\langle x, y \rangle \ | \ R^+(x) = y\}$. Show $A_2 \in$ L.
 \end{problem}
 
 \begin{proof}
+% Use 3 pointers and a carry bit
+% Pointer P1 points at the most significant bit of x
+% Pointer P2 points at the least significant bit of x
+% Pointer P3 points at the least significant bit of y
+% Let n = |x|
+% Let c be the carry bit
+% Iterate for n - 1 steps:
+%	Add P1 + P2 + c, compare result with P3 and update c
+%	Increment P1 and P3
+%	Decrement P2
 \end{proof}
 
 \begin{problem}[Part]{b}
