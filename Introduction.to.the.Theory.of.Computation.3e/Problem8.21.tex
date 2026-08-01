@@ -38,7 +38,28 @@ Let $A_2 = \{\langle x, y \rangle \ | \ R^+(x) = y\}$. Show $A_2 \in$ L.
 %	Add P1 + P2 + c, compare result with P3 and update c
 %	Increment P1 and P3
 %	Decrement P2
+To show that $A_2 \in$ L, we give a log space algorithm $M$ that decides $A_2$. \\
+
+$M =$ \textquotedblleft On input $\langle x, y \rangle$, where $x$ and $y$ are positive binary integers without leading 0s:
+\begin{enumerate}
+\item Let $i$, $j$, $n_x$, $n_y$ be binary integers, and $s$ and $c$ be binary digits on work tape.
+\item Let $n_x$ = $|x|$, and $n_y$ = $|y|$.
+\item Let $i$ = 1, $j$ = $n_x$, and $c$ = 0.
+\item Repeat for $n_x - 1$ steps:
+\item \hspace*{0.5cm} If $y$ does not have $i^{th}$ digit, then \textit{reject}.
+\item \hspace*{0.5cm} Let $s$ be the sum of $i^{th}$ and $j^{th}$ binary digits of $x$ and $c$. If the addition produces a carry, \\
+\hspace*{0.5cm} then $c = 1$. Otherwise, $c = 0$.
+\item \hspace*{0.5cm} If $s$ and $i^{th}$ digit of $y$ are different, then \textit{reject}.
+\item \hspace*{0.5cm} Increment $i$ by 1, and decrement $j$ by 1.
+\item If $c = 1$, then:
+\item \hspace*{0.5cm} If $y$ does not have $i^{th}$ digit, then \textit{reject}.
+\item \hspace*{0.5cm} If $c$ and $i^{th}$ digit of $y$ are different, then \textit{reject}.
+\item If $y$ has $(i+1)^{th}$ digit, then \textit{reject}.
+\item \textit{Accept}.\textquotedblright
+\end{enumerate}
 \end{proof}
+
+\newpage
 
 \begin{problem}[Part]{b}
 Let $A_3 = \{\langle x, y \rangle \ | \ R^+(R^+(x)) = y\}$. Show $A_3 \in$ L.
