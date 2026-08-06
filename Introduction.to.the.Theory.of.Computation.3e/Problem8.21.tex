@@ -66,6 +66,16 @@ Let $A_3 = \{\langle x, y \rangle \ | \ R^+(R^+(x)) = y\}$. Show $A_3 \in$ L.
 \end{problem}
 
 \begin{proof}
+A log space algorithm that decides $A_3$ can be devised like follows:
+\begin{enumerate}
+\item Compute first and last binary digits of $R^+(x)$ using the algorithm presented in Part a.
+\item Add the binary digits and keep track of any carry for later use.
+\item Compare the least significant digit of the sum with the least significant digit of $y$. \textit{Reject}, if they are different.
+\item Next, iteratively compute the second and second last digits, third and third last digits and so forth.
+\item Take sum of the two digits computed in each step and any carry from previous step, and compare the least significant digit of the sum  with the corresponding digit in $y$. \textit{Reject}, if the digits differ.
+\item Finally, perform checks related to final carry and extra digits in $y$.
+\end{enumerate}
+ 
 \end{proof}
 
 \end{document}
