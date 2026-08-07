@@ -19,7 +19,7 @@ Computation}\hfill\textbf{\myname}\\[0.01in]
 \textbf{Chapter 8: Space Complexity}\hfill\textbf{\dated}\\
 \smallskip\hrule\bigskip
 
-\begin{problem}{8.21}
+\begin{problem}{8.22}
 \end{problem}
 
 \begin{problem}[Part]{a}
@@ -27,6 +27,26 @@ Let $ADD = \{\langle x, y, z \rangle \ | \ x, y, z > 0 \text{ are binary integer
 \end{problem}
 
 \begin{proof}
+To show that $ADD \in$ L, we give a log space algorithm $M$ that decides $ADD$. \\
+
+$M =$ \textquotedblleft On input $\langle x, y, z \rangle$, where $x$, $y$ and $z$ are binary integers greater than 0:
+\begin{enumerate}
+\item Let $i$, $n_x$, $n_y$, $n_z$ and $m$ be binary integers, and $s$ and $c$ be binary digits on work tape.
+\item Let $n_x$ = $|x|$, $n_y$ = $|y|$, $n_z = |z|$, and $m$ be maximum of $n_x$ and $n_y$.
+\item Let $i = 1$, and $c$ = 0.
+\item Repeat for $m$ steps:
+\item \hspace*{0.5cm} If $z$ does not have $i^{th}$ digit, then \textit{reject}.
+\item \hspace*{0.5cm} Let $s$ be the sum of $c$ and $i^{th}$ binary digits of $x$ and $y$. If either $x$ or $y$ does not have $i^{th}$ \\ \hspace*{0.5cm} binary digit, then assume the digit to be 0. 
+\item \hspace*{0.5cm} If the addition produces a carry, then $c = 1$. Otherwise, $c = 0$.
+\item \hspace*{0.5cm} If $s$ and $i^{th}$ digit of $z$ are different, then \textit{reject}.
+\item \hspace*{0.5cm} Increment $i$ by 1.
+\item If $c = 1$, then:
+\item \hspace*{0.5cm} If $z$ does not have $i^{th}$ digit, then \textit{reject}.
+\item \hspace*{0.5cm} If $c$ and $i^{th}$ digit of $z$ are different, then \textit{reject}.
+\item \hspace*{0.5cm} If $z$ has $(i+1)^{th}$ digit, then \textit{reject}.
+\item Otherwise, if $z$ has $i^{th}$ digit, then \textit{reject}. 
+\item \textit{Accept}.\textquotedblright
+\end{enumerate}
 \end{proof}
 
 \begin{problem}[Part]{b}
