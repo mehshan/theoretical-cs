@@ -35,7 +35,7 @@ $M =$ \textquotedblleft On input $\langle x, y, z \rangle$, where $x$, $y$ and $
 \item Let $n_x$ = $|x|$, $n_y$ = $|y|$, $n_z = |z|$, and $m$ be maximum of $n_x$ and $n_y$.
 \item Let $i = 1$, and $c$ = 0.
 \item Repeat for $m$ steps:
-\item \hspace*{0.5cm} If $z$ does not have $i^{th}$ digit, then \textit{reject}.
+\item \hspace*{0.5cm} If $z$ does not have $i^{th}$ digit $(i > n_z)$, then \textit{reject}.
 \item \hspace*{0.5cm} Let $s$ be the sum of $c$ and $i^{th}$ binary digits of $x$ and $y$. If either $x$ or $y$ does not have $i^{th}$ \\ \hspace*{0.5cm} binary digit, then assume the digit to be 0. 
 \item \hspace*{0.5cm} If the addition produces a carry, then $c = 1$. Otherwise, $c = 0$.
 \item \hspace*{0.5cm} If $s$ and $i^{th}$ digit of $z$ are different, then \textit{reject}.
