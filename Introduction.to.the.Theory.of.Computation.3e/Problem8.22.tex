@@ -31,20 +31,18 @@ To show that $ADD \in$ L, we give a log space algorithm $M$ that decides $ADD$. 
 
 $M =$ \textquotedblleft On input $\langle x, y, z \rangle$, where $x$, $y$ and $z$ are binary integers greater than 0:
 \begin{enumerate}
-\item Let $i$, $n_x$, $n_y$, $n_z$ and $m$ be binary integers, and $s$ and $c$ be binary digits on work tape.
-\item Let $n_x$ = $|x|$, $n_y$ = $|y|$, $n_z = |z|$, and $m$ be maximum of $n_x$ and $n_y$.
-\item Let $i = 1$, and $c$ = 0.
-\item Repeat for $m$ steps:
+\item Let $i$, $n_z$ and $m$ be binary integers on work tape where $n_z = |z|$ and $m$ is maximum of $|x|$ and $|y|$.
+\item Let $s$ and $c$ be binary digits on work tape where $s, c = 0$.
+\item Repeat for each $i = 1, \ldots, m$:
 \item \hspace*{0.5cm} If $z$ does not have $i^{th}$ digit $(i > n_z)$, then \textit{reject}.
-\item \hspace*{0.5cm} Let $s$ be the sum of $c$ and $i^{th}$ binary digits of $x$ and $y$. If either $x$ or $y$ does not have $i^{th}$ \\ \hspace*{0.5cm} binary digit, then assume the digit to be 0. 
+\item \hspace*{0.5cm} Let $s$ be the sum of $c$ and $i^{th}$ binary digits of $x$ and $y$. If either $x$ or $y$ does not have $i^{th}$ \\ \hspace*{0.5cm} binary digit, then the digit is 0. 
 \item \hspace*{0.5cm} If the addition produces a carry, then $c = 1$. Otherwise, $c = 0$.
 \item \hspace*{0.5cm} If $s$ and $i^{th}$ digit of $z$ are different, then \textit{reject}.
-\item \hspace*{0.5cm} Increment $i$ by 1.
 \item If $c = 1$, then:
-\item \hspace*{0.5cm} If $z$ does not have $i^{th}$ digit, then \textit{reject}.
-\item \hspace*{0.5cm} If $c$ and $i^{th}$ digit of $z$ are different, then \textit{reject}.
-\item \hspace*{0.5cm} If $z$ has $(i+1)^{th}$ digit, then \textit{reject}.
-\item Otherwise, if $z$ has $i^{th}$ digit, then \textit{reject}. 
+\item \hspace*{0.5cm} If $z$ does not contain $(m+1)^{th}$ digit, then \textit{reject}.
+\item \hspace*{0.5cm} If $c$ and $(m+1)^{th}$ digit of $z$ are different, then \textit{reject}.
+\item \hspace*{0.5cm} If $z$ has $(i+2)^{th}$ digit, then \textit{reject}.
+\item Otherwise, if $z$ has $(m+1)^{th}$ digit, then \textit{reject}. 
 \item \textit{Accept}.\textquotedblright
 \end{enumerate}
 \end{proof}
@@ -59,46 +57,25 @@ representation of the sum is assumed not to have leading zeros. A palindrome is 
 \begin{proof} 
 To show that $PAL\text{-}ADD \in$ L, we give a log space algorithm $M$ that decides $PAL\text{-}ADD$. Let
 \[
-CARRY = \{\langle x, y \rangle \ | \ x, y > 0 \text{ are binary integers whose sum produces a carry}\}.
-\]
-and
-\[
 BIT = \{\langle x, y, i \rangle \ | \ x, y, i > 0 \text{ are binary integers, and } i^{th} \text{ digit of } x + y \text{ is } 1\}.
 \]
-The algorithm $M$ uses log space algorithms $C$ and $B$ that decide $CARRY$ and $BIT$ respectively. \\
+The algorithm $M$ uses log space algorithms $B$ that decide $BIT$. \\
 
 $M =$ \textquotedblleft On input $\langle x, y \rangle$, where $x$ and $y$ are binary integers greater than 0:
 \begin{enumerate}
 \item Let $i$, $j$ and $m$ be binary integers on work tape.
 \item Let $m$ be the maximum of $|x|$ and $|y|$.
-\item Run $C$ on input $\langle x, y \rangle$. If $C$ accepts then $m = m + 1$.
+\item Run $B$ on input $\langle x, y, (m+1) \rangle$. If $B$ accepts then $m = m + 1$.
 \item Let $i = 1$, and $j = m$.
-\item Repeat for $m - 1$ steps:
+\item Repeat for $m$ steps:
 \item \hspace*{0.5cm} Run $B$ on $\langle x, y, i\rangle$. If $B$ accepts, then $b_i = 1$. Otherwise $b_i$ = 0.
 \item \hspace*{0.5cm} Run $B$ on $\langle x, y, j\rangle$. If $B$ accepts, then $b_j = 1$. Otherwise $b_j$ = 0.
 \item \hspace*{0.5cm} If $b_i$ and $b_j$ are different, then \textit{reject}.
 \item \hspace*{0.5cm} Increment $i$ by 1, and decrement $j$ by 1.
-\item \textit{Accept}.\textquotedblright
+\item \textit{Accept}.\textquotedblright \\
 \end{enumerate}
 
-Next, we give implementation details of algorithms $C$ and $B$. \\
-
-$C =$ \textquotedblleft On input $\langle x, y \rangle$, where $x$ and $y$ are binary integers greater than 0:
-\begin{enumerate}
-\item Let $i$ and $m$ be binary integers on work tape where $i = 1$ and $m = max(n_x$, $n_y)$. 
-\item Let $s$ and $c$ be binary digits on work tape where $s, \ c = 0$.
-\item Repeat for $m$ steps:
-\item \hspace*{0.5cm} Let $s$ be the sum of $c$ and $i^{th}$ binary digits of $x$ and $y$. If either $x$ or $y$ does not have \\
-\hspace*{0.5cm} $i^{th}$ binary digit, then the digit is 0.
-\item \hspace*{0.5cm} If the addition produces a carry, then $c = 1$. 
-Otherwise, $c = 0$.
-\item \hspace*{0.5cm} Increment $i$ by 1.
-\item If $c = 1$ then \textit{accept}. Otherwise, \textit{reject}.\textquotedblright
-\end{enumerate}
-
-\newpage
-
-$B =$ \textquotedblleft On input $\langle x, y, b \rangle$, where $x$, $y$ and $b$ are binary integers greater than 0:
+$B =$\textquotedblleft On input $\langle x, y, b \rangle$, where $x$, $y$ and $b$ are binary integers greater than 0:
 \begin{enumerate}
 \item Let $i$ and $m$ be binary integers on work tape where $m$ is maximum of $|x|$ and $|y|$. 
 \item Let $s$ and $c$ be binary digits on work tape where $s, \ c = 0$.
