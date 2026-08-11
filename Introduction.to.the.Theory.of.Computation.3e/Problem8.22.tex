@@ -52,12 +52,20 @@ $M =$ \textquotedblleft On input $\langle x, y, z \rangle$, where $x$, $y$ and $
 \newpage
 
 \begin{problem}[Part]{b}
-Let $PAL-ADD = \{\langle x, y \rangle \ | \ x, y > 0 \text{ are binary integers where } x + y \text{ is an integer whose } \\ \text{binary representation is a palindrome}\}$. (Note that the binary
+Let $PAL\text{-}ADD = \{\langle x, y \rangle \ | \ x, y > 0 \text{ are binary integers where } x + y \text{ is an integer whose } \\ \text{binary representation is a palindrome}\}$. (Note that the binary
 representation of the sum is assumed not to have leading zeros. A palindrome is a string that equals its reverse.) \\ Show that $PAL-ADD \in$ L.
 \end{problem}
 
 \begin{proof} 
-To show that $PAL-ADD \in$ L, we give a log space algorithm $M$ that decides $PAL-ADD$. \\
+To show that $PAL\text{-}ADD \in$ L, we give a log space algorithm $M$ that decides $PAL\text{-}ADD$. Let
+\[
+CARRY = \{\langle x, y \rangle \ | \ x, y > 0 \text{ are binary integers whose sum produces a carry}\}.
+\]
+and
+\[
+BIT = \{\langle x, y, i \rangle \ | \ x, y, i > 0 \text{ are binary integers, and } i^{th} \text{ digit of } x + y \text{ is } 1\}.
+\]
+The algorithm $M$ uses log space algorithms $C$ and $B$ that decide $CARRY$ and $BIT$ respectively. \\
 
 $M =$ \textquotedblleft On input $\langle x, y \rangle$, where $x$ and $y$ are binary integers greater than 0:
 \begin{enumerate}
@@ -73,9 +81,7 @@ $M =$ \textquotedblleft On input $\langle x, y \rangle$, where $x$ and $y$ are b
 \item \textit{Accept}.\textquotedblright
 \end{enumerate}
 
-\newpage
-
-Let $CARRY = \{\langle x, y \rangle \ | \ x, y > 0 \text{ are binary integers whose sum produces a carry}\}$. The algorithm $C$ decides $CARRY$ in log space. \\
+Next, we give implementation details of algorithms $C$ and $B$. \\
 
 $C =$ \textquotedblleft On input $\langle x, y \rangle$, where $x$ and $y$ are binary integers greater than 0:
 \begin{enumerate}
@@ -90,26 +96,22 @@ Otherwise, $c = 0$.
 \item If $c = 1$ then \textit{accept}. Otherwise, \textit{reject}.\textquotedblright
 \end{enumerate}
 
-Let $BIT = \{\langle x, y, i \rangle \ | \ x, y, i > 0 \text{ are binary integers, and } i^{th} \text{ digit of } x + y \text{ is } 1\}$. The algorithm $B$ decides $BIT$ in log space. \\
+\newpage
 
-$M =$ \textquotedblleft On input $\langle x, y \rangle$, where $x$ and $y$ are binary integers greater than 0:
+$B =$ \textquotedblleft On input $\langle x, y, b \rangle$, where $x$, $y$ and $b$ are binary integers greater than 0:
 \begin{enumerate}
-\item Let $i$, $j$, $k$, $n_x$, $n_y$, $m$ and $n$ be binary integers, and $s$, $c$, $b_i$ and $b_j$ be binary digits on work tape.
-\item Let $n_x$ = $|x|$, $n_y$ = $|y|$, and $m$ be maximum of $n_x$ and $n_y$.
-\item Run $C$ on input $\langle x, y \rangle$. If $C$ accepts then $n = m + 1$. Otherwise $n = m$.
-\item Let $i = 1$, and $j = n$.
-\item Repeat for $n$ steps:
-\item \hspace*{0.5cm} Let $k = 1$, and $c = 0$.
-\item \hspace*{0.5cm} Repeat for $m$ steps:
-\item \hspace*{1.0cm} Let $s$ be the sum of $c$ and $k^{th}$ binary digits of $x$ and $y$. If either $x$ or $y$ does not have \\
-\hspace*{1.0cm} $k^{th}$ binary digit, then assume the digit to be 0.
-\item \hspace*{1.0cm} If the addition produces a carry, then $c = 1$. 
+\item Let $i$ and $m$ be binary integers on work tape where $m$ is maximum of $|x|$ and $|y|$. 
+\item Let $s$ and $c$ be binary digits on work tape where $s, \ c = 0$.
+\item Repeat for each $i = 1,\ldots,m$:
+\item \hspace*{0.5cm} Let $s$ be the sum of $c$ and $i^{th}$ binary digits of $x$ and $y$. If either $x$ or $y$ does not have \\
+\hspace*{0.5cm} $i^{th}$ digit, then the digit is 0.
+\item \hspace*{0.5cm} If the addition produces a carry, then $c = 1$. 
 Otherwise, $c = 0$.
-\item \hspace*{1.0cm} If $i = k$, then $b_i = s$.
-\item \hspace*{1.0cm} If $j = k$, then $b_j = s$.
-\item \hspace*{1.0cm} Increment $j$ by 1.
-\item \hspace*{0.5cm} If $c = 1$ Repeat for $m$ steps:
-\item \textit{Accept}.\textquotedblright
+\item \hspace*{0.5cm} If $i = b$:
+\item \hspace*{1.0cm} If $s = 1$, then \textit{accept}.
+Otherwise, \textit{reject}.
+\item If $c = 1$ and $b = (m+1)$, then \textit{accept}.
+\item \textit{Reject}.\textquotedblright
 \end{enumerate}
 
 \end{proof}
