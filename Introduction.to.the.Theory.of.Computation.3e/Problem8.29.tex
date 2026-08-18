@@ -1,0 +1,56 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 8: Space Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{8.29}
+Show that $A_{NFA}$ is NL-complete.
+\end{problem}
+
+\begin{proof}
+To show that $A_{NFA}$ is NL-complete, we must show that it is in NL and that all NL problems are log space reducible to it. To show $A_{NFA} \in$ NL, we give an algorithm $M$ that decides $A_{NFA}$ in non-deterministic log space. \\
+
+$M =$ \textquotedblleft On input $\langle N, w \rangle$, where $N = (Q, \Sigma, \delta, q_0, F)$ is an NFA and $w$ is a string:
+\begin{enumerate}
+\item If some $w_i \notin \Sigma$, then \textit{reject}.
+\item Let $q$, $i$ and $n$ be binary integers on the work tape, where $q$ is index of $q_0$, $n = |w|$ and $i = 0$.
+\item If $i > n$, then:
+\item \hspace*{0.5cm} If $q$ is an accept state in $N$, then \textit{accept}. Otherwise, \textit{reject}. 
+\item Non-deterministically, repeat for binary index $q_i$ of each state in $N$:
+\item \hspace*{0.5cm} If $q_i \notin \delta(q, w_i)$, then \textit{reject}.
+\item \hspace*{0.5cm} Let $q = q_i$, $i = i + 1$, and go to step 2. 
+\item \textit{Reject}.\textquotedblright
+\end{enumerate}
+
+To prove that $A_{NFA}$ is NL-hard, we give a log space reduction from $PATH$ to $A_{NFA}$. This reduction converts a directed graph $G$ and two nodes $s$ and $t$ to an NFA $N$ and a string $w$ so that $G$ has a directed path from $s$ to $t$, iff $N$ accepts $w$. NFA $N = (Q, \Sigma, \delta, q_0, F)$ and $w$ are constructed as follows:
+\begin{enumerate}
+\item Every node in $G$ is a state in $N$.
+\item $\Sigma = \{1\}$.
+\item Every edge $(u, v)$ in $G$ is a transition from state $u$ to $v$ by reading symbol 1. Each state in $N$ also contains a transition to it self by reading symbol 1.
+\item $q_0 = s$.
+\item $F = \{t\}$.
+\item Finally, $w = 1^{n-1}$, where $n$ is the number of states in $N$.
+\end{enumerate}
+
+Suppose graph $G$ contains a path $P = (v_1,v_2,\dots,v_k)$ where $v_1 = s$ and $v_k = t$. Then, each edge in path $P$ is a transition in $N$. The length of string $w$ equals the maximum number of edges in a longest path in $G$. Therefore, after reading the last symbol of $w$, at least one branch of $N$ would be at accept state $t$. \\ 
+
+Suppose NFA $N$ accepts string $w$. Then, an accepting branch of $N$ on $w$ gives a path in $G$ from $s$ to $t$.
+
+\end{proof}
+\end{document}
