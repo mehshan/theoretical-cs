@@ -1,0 +1,42 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 8: Space Complexity}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{8.30}
+Show that $E_{\text{DFA}}$ is NL-complete.
+\end{problem}
+
+\begin{proof}
+To show that $E_{\text{DFA}}$ is NL-complete, we must show that it is in NL and that all NL problems are log space reducible to it. To show $E_{\text{DFA}} \in$ NL, we show that $\overline{E_{\text{DFA}}} \in$ NL. We give an algorithm $M$ that decides $\overline{E_{\text{DFA}}}$ in non-deterministic log space. \\
+
+$M =$ \textquotedblleft On input $\langle D \rangle$, where $D = (Q, \Sigma, \delta, q_0, F)$ is a DFA and every state $q_i \in Q$ is a binary integer greater than 0:
+\begin{enumerate}
+\item Let $i$, $k$, $n$ and $q$ be binary integers on work tape.
+\item Let $n = |Q|$.
+\item Non-deterministically, repeat for each $k = 0, 1, \dots, n$:
+\item \hspace*{0.5cm} Let $q = q_0$ and $i = 0$.
+\item \hspace*{0.5cm} If $i < k$, then:
+\item \hspace*{1.0cm} Non-deterministically, repeat for each $a \in \Sigma$:
+\item \hspace*{1.5cm} Let $q = \delta(q, a)$ and $i = i + 1$.
+\item \hspace*{1.5cm} Go to step 5. 
+\item \hspace*{0.5cm} If $q \in F$, then \textit{accept}. Otherwise, \textit{reject}.\textquotedblright
+\end{enumerate}
+\end{proof}
+\end{document}
