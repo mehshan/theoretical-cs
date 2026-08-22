@@ -69,7 +69,18 @@
 - [ ] 7.51*
 - [ ] 7.52*
 - [ ] 7.53*
-- [ ] 8.15 - explain why the reduction works, suppose phi is true... suppose Player 1 has winning strategy...
+- [ ] 8.14
+- [ ] 8.19 - Using parts a & b, show NIM in L.
+- [ ] 8.20
+- [ ] 8.23
+- [ ] 8.24
+- [ ] 8.26
+- [ ] 8.28
+- [ ] 8.30
+- [ ] 8.31
+- [ ] 8.32
+- [ ] 8.33
+- [ ] 8.34
 
 ### In Progress
 
