@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 9: Intractability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{9.13}
+Consider the function $pad\text{:} \ \Sigma \times \mathbb{N} \longrightarrow \Sigma^*\#^*$ that is defined as follows. Let $pad(s, l) = s\#^j$ , where $j = \text{max}(0, l-m)$ and $m$ is the length of $s$. Thus, $pad(s, l)$ simply adds enough copies of the new symbol $\#$ to the end of $s$ so that the length of the result is at least $l$. For any language $A$ and function $f\text{:} \ \mathbb{N} \longrightarrow \mathbb{N}$, define the language $pad(A, f)$ as
+\[
+pad(A, f) = \{pad(s, f(m)) \ | \text{ where } s \in A \text{ and } m \text{ is the length of } s \}.
+\]
+Prove that if $A \in \text{TIME}(n^6)$, then $pad(A, n^2) \in \text{TIME}(n^3)$.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+\end{document}
