@@ -81,6 +81,13 @@
 - [ ] 8.32
 - [ ] 8.33
 - [ ] 8.34 (See if we can apply Immerman-Szelepcsényi count/check technique NL questions)
+- [ ] 8.28
+- [ ] 8.30
+- [ ] 8.31
+- [ ] 8.32
+- [ ] 9.14
+- [ ] 9.17
+- [ ] 9.22
 
 ### In Progress
 
