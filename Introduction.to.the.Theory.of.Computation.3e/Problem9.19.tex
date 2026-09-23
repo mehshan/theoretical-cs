@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 9: Intractability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{9.19}
+Define the \textit{\textbf{unique-sat}} problem to be
+\[
+USAT = \{\langle \phi \rangle \ | \ \phi \text{ is a Boolean formula that has a single satisfying assignment}\}.
+\]
+Show that $USAT \in \text{P}^{SAT}$.
+\end{problem}
+
+\begin{proof}
+To show that $USAT \in \text{P}^{SAT}$, we give an oracle Turing machine $M^{SAT}$ that decides $USAT$ in polynomial time. \\
+
+$M^{SAT} =$ \textquotedblleft On input $\langle \phi \rangle$, where $\phi$ is a Boolean formula:
+\begin{enumerate}
+\item Query the oracle to determine whether $\phi \in SAT$. If the oracle answers NO, then \textit{reject}.
+\item Repeat for each variable $x_i$ in $\phi$:
+\item \hspace*{0.5cm} Make a new copy $\phi^T$ of $\phi$, and replace all occurrences of $x_i$ in $\phi^T$ with TRUE.
+\item \hspace*{0.5cm} Query the oracle to determine whether $\phi^T \in SAT$.
+\item \hspace*{0.5cm} Make a new copy $\phi^F$ of $\phi$, and replace all occurrences of $x_i$ in $\phi^F$ with FALSE.
+\item \hspace*{0.5cm} Query the oracle to determine whether $\phi^F \in SAT$.
+\item \hspace*{0.5cm} If the oracle answers YES both times, then \textit{reject}.
+\item \textit{Accept}.\textquotedblright
+\end{enumerate}
+
+\end{proof}
+
+\end{document}
