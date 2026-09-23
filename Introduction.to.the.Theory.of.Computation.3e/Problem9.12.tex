@@ -20,10 +20,10 @@ Computation}\hfill\textbf{\myname}\\[0.01in]
 \smallskip\hrule\bigskip
 
 \begin{problem}{9.12}
-Describe the error in the following fallacious ``proof" that P $\neq$ NP. Assume that $\text{P} = \text{NP}$ and obtain a contradiction. If P = NP, then $SAT \in \text{P}$ and so for some $k$, $SAT \in \text{TIME}(n^k)$. Because every language in NP is polynomial time reducible to $SAT$, you have $\text{NP} \subseteq \text{TIME}(n^k)$. Therefore, $\text{P} \subseteq \text{TIME}(n^k)$. But by the time hierarchy theorem, $\text{TIME}(n^{k+1})$ contains a language that isn't in $\text{TIME}(n^k)$, which contradicts $P \subseteq \text{TIME}(n^k)$. Therefore, P $\neq$ NP.
+Describe the error in the following fallacious ``proof" that P $\neq$ NP. Assume that $\text{P} = \text{NP}$ and obtain a contradiction. If P = NP, then $SAT \in \text{P}$ and so for some $k$, $SAT \in \text{TIME}(n^k)$. Because every language in NP is polynomial time reducible to $SAT$, you have $\text{NP} \subseteq \text{TIME}(n^k)$. Therefore, $\text{P} \subseteq \text{TIME}(n^k)$. But by the time hierarchy theorem, $\text{TIME}(n^{k+1})$ contains a language that isn't in $\text{TIME}(n^k)$, which contradicts $\text{P} \subseteq \text{TIME}(n^k)$. Therefore, P $\neq$ NP.
 \end{problem}
 
 \begin{solution}
-The error is in argument ``Because every language in NP is polynomial time reducible to $SAT$, you have $\text{NP} \subseteq \text{TIME}(n^k)$". For  $\text{NP} \subseteq \text{TIME}(n^k)$, every language in NP must be reducible to $SAT$ in $\text{TIME}(n^k)$.
+The error is in argument ``Because every language in NP is polynomial time reducible to $SAT$, you have $\text{NP} \subseteq \text{TIME}(n^k)$". For  $\text{NP} \subseteq \text{TIME}(n^k)$, every language in NP must be reducible to $SAT$ in $\text{TIME}(n^k)$ for some fixed $k$.
 \end{solution}
 \end{document}
