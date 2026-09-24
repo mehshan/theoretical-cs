@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 9: Intractability}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{9.16}
+Prove that $TQBF \notin \text{SPACE}(n^{1/3})$.
+\end{problem}
+
+\begin{proof}
+We know that
+\[
+TQBF \in \text{PSPACE},
+\]
+and
+\[
+\text{SPACE}(n) \subseteq \text{PSPACE}.
+\]
+According to Space hierarchy theorem
+\[
+\text{SPACE}(n^{1/3}) \subsetneq \text{SPACE}(n).
+\]
+
+Therefore,
+\[
+TQBF \notin \text{SPACE}(n^{1/3}).
+\]
+\end{proof}
+
+\end{document}
