@@ -27,6 +27,20 @@ pad(A, f) = \{pad(s, f(m)) \ | \text{ where } s \in A \text{ and } m \text{ is t
 Prove that if $A \in \text{TIME}(n^6)$, then $pad(A, n^2) \in \text{TIME}(n^3)$.
 \end{problem}
 
-\begin{solution}
-\end{solution}
+\begin{proof}
+To show $pad(A, n^2) \in \text{TIME}(n^3)$, we give a TM $M$ that decides $pad(A, n^2)$ in $\text{TIME}(n^3)$. \\
+
+$M =$ \textquotedblleft On input string $w = w_1 \cdots w_n$:
+\begin{enumerate}
+\item Let $n$ be the length of $w$.
+\item If $n$ is not a perfect square, then \textit{reject}.
+\item Find integer $m$, such that $m^2 = n.$
+\item Run TM for $A$ on input $w_1 \cdots w_m$.
+\item If TM for $A$ rejects, then \textit{reject}.
+\item If some $w_i$ in $w_{m+1} \cdots w_n$ is not symbol $\#$, then \textit{reject}.
+\item \textit{Accept}.\textquotedblright
+\end{enumerate}
+
+\end{proof}
+
 \end{document}
