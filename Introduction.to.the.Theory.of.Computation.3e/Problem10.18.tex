@@ -1,0 +1,39 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 10: Advanced Topics in Complexity Theory}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{10.18}
+Prove that if $A \subseteq \{0, 1\}^*$, a family of branching programs $(B_1,B_2, . . .)$ exists wherein each $B_n$ accepts exactly the strings in $A$ of length $n$ and is bounded in size by a constant times $n$.
+\end{problem}
+
+\begin{proof}
+$A$ is a regular language. Therefore, a DFA $D$ exists that accepts every string in $A$.    Construct each $B_n$ as follows.
+\begin{enumerate}
+\item States of $D$ are query nodes in $B_n$, and transitions of $D$ are outgoing edges in $B_n$.
+\item Each input symbol $w_i$ in string $w_1w_2 \cdots w_n$ corresponds to variable $x_i$ in $B_n$.
+\item $B_n$ includes all nodes and transitions of $D$ required for accepting all strings of length $n$ and loops are unrolled as many times as needed.
+\item Start node in $D$ is also the start node in $B_n$.
+\item Each query node $q$ in $B_n$ is labeled $x_{p + 1}$, where $p$ is the length of path from start node to $q$.
+\item Finally, accepts node of $D$ are replaced by single output node labeled 1, and all reject paths end at output node labeled 0.     
+\end{enumerate}
+
+\end{proof}
+
+\end{document}
