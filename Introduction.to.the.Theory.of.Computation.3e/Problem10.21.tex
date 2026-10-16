@@ -1,0 +1,30 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+\newcommand{\token}[1]{\langle \text{#1} \rangle}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 10: Advanced Topics in Complexity Theory}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{10.21}
+Let $EQ_{BP} = \{\langle B_1, B_2 \rangle \ | \ B_1 \text{ and } B_2 \text{ are equivalent branching programs} \}$. Show that $EQ_{BP}$ is coNP-complete.
+\end{problem}
+
+\begin{proof}
+To show that $EQ_{BP}$ is coNP-complete, we must show that it is in coNP and that all coNP-problems are polynomial time reducible to it. $\overline{EQ_{BP}}$ is in NP as the certificate is simply an assignment of truth values to variables on which two branching programs give different outputs. Therefore, $EQ_{BP}$ is in coNP. To prove the second part, we show that $\overline{SAT}$ is polynomial time reducible to $EQ_{BP}$. The reduction converts a Boolean formula $\phi$ into two branching programs $B_1$ and $B_2$, so that $\phi$ is not satisfiable, iff $B_1$ and $B_2$ are equivalent. $B_1$ is constructed to implement $\phi$'s Boolean function. Such construction can be done in polynomial time. $B_2$ is constructed to always output 0.
+\end{proof}
+
+\end{document}
