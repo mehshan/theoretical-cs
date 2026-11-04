@@ -5,12 +5,16 @@
 ### To Do
 
 - [ ] Chapter name is misspelled
-- [ ] 1.38 - redo the proof (all-NFA)
+- [x] 1.38 - redo the proof (all-NFA)
+- [ ] 1.41 - perfect shuffle
+- [ ] 1.42 - shuffle
 - [ ] 1.43 - proof by construction
 - [ ] 1.45 - revise and typeset (A/B)
 - [ ] 1.49 - part (a) requires more work and typeset
 - [ ] 1.51 - part (3) same dummy variable (z) is used twice in application of the definition, better use different variables and then show that dummy renaming is possible?
 - [ ] 1.56
+- [ ] 1.57 - write formal proof from proof idea and typeset
+- [ ] 1.58 - write formal proof from proof idea and typeset
 - [ ] 1.59
 - [ ] 1.60 - typeset
 - [ ] 1.61 - typeset
@@ -90,9 +94,3 @@
 - [ ] 9.20
 - [ ] 9.21
 - [ ] 9.22
-
-### In Progress
-
-- [ ] 1.57 - write formal proof from proof idea and typeset
-- [ ] 1.58 - write formal proof from proof idea and typeset
-
