@@ -6,7 +6,7 @@
 
 - [ ] Chapter name is misspelled
 - [x] 1.38 - redo the proof (all-NFA)
-- [ ] 1.41 - perfect shuffle
+- [x] 1.41 - perfect shuffle
 - [ ] 1.42 - shuffle
 - [ ] 1.43 - proof by construction
 - [ ] 1.45 - revise and typeset (A/B)
