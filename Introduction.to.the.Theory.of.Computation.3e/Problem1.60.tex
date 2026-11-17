@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 1: Regular Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{1.60}
+Let $\Sigma = \{a, b\}$. For each $k \geq 1$, let $C_k$ be the language consisting of all strings that contain an a exactly $k$ places from the right-hand end. Thus $C_k = \Sigma^*a\Sigma^{k-1}$. Describe an NFA with $k + 1$ states that recognizes $C_k$ in terms of both a state diagram and a formal description.
+\end{problem}
+
+\begin{proof}
+Construct the NFA $N_k = (Q,\Sigma, \delta, q_0, F)$ to recognize $C_k$:
+\begin{enumerate}
+\item $Q = \{q_1, q_2, \cdots, q_{k+1}\}$, where $k \geq 1$.
+\item $\Sigma = \{a,b\}$.
+\item $q_{0} = q_1$.
+\item $F = \{q_{k+1}\}$
+\item Define $\delta$(q, a) so that for any $q_i \in Q$ and any $\alpha \in \Sigma$:
+\end{enumerate}
+
+\begin{center}
+$\displaystyle \delta(q_i, \alpha) \ =\begin{cases}
+\{q_1\} & \alpha \neq a \text{ and } q_i = q_1 \\
+\{q_1, q_2\} & \alpha = a \text{ and } q_i = q_1 \\
+\{q_{i+1}\} & q_i \in \{q_2, q_3, \cdots, q_k\} \\
+\phi & q_i = q_{k+1} \\
+\end{cases} \ \ $
+\end{center}
+
+\begin{center}
+\includegraphics[scale=1.0]{Figures/Problem1.60.pdf} \\
+State diagrams of NFAs that recognize $C_{1}$, $C_{2}$ and $C_{k > 2}$.
+\end{center}
+
+\end{proof}
+
+\end{document}
