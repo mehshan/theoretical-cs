@@ -16,7 +16,7 @@
 - [ ] 1.57 - write formal proof from proof idea and typeset
 - [ ] 1.58 - write formal proof from proof idea and typeset
 - [ ] 1.59
-- [ ] 1.60 - typeset
+- [x] 1.60 - typeset
 - [ ] 1.61 - typeset
 - [ ] 1.62 - write formal proof from proof idea and typeset
 - [ ] 1.63 - write formal proof from proof idea and typeset
