@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 1: Regular Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{1.61}
+Consider the languages $C_k$ defined in Problem 1.60. Prove that for each $k$, no DFA
+can recognize $C_k$ with fewer than $2^k$ states.
+\end{problem}
+
+\begin{proof}
+To prove that for each $k$, no DFA can recognize $C_k$ with fewer than $2^k$ states, we give a general solution for constructing the index\footnote{\textbf{Myhill–Nerode theorem}. Let $L$ be a language and let $X$ be a set of strings. Say that $X$ is pairwise distinguishable by $L$ if every two distinct strings in $X$ are distinguishable by $L$. Define the \textbf{\textit{index of L}} to be the maximum number of elements in any set that is pairwise distinguishable by $L$. The index of L may be finite or infinite.} $X_k$ of language $C_k$, where $|X_k| = 2^k$. Construct the index of $C_k$ as follows.
+\[
+X_1 = \{a,b\}.
+\]
+\[
+X_k = X_{k-1} \bigcup a\Sigma^{k-1}.
+\]
+For example, $X_2 = \{a,b,aa,ab\}$, and $X_3 = \{a,b,aa,ab,aaa,aab,aba,abb\}$.
+
+% TODO: Prove construction of index works and its size is 2^k.
+
+\end{proof}
+
+\end{document}

@@ -17,8 +17,8 @@
 - [ ] 1.58 - write formal proof from proof idea and typeset
 - [ ] 1.59
 - [x] 1.60 - typeset
-- [ ] 1.61 - typeset
-- [ ] 1.62 - write formal proof from proof idea and typeset
+- [ ] 1.61 - prove construction of index and its size
+- [x] 1.62 - write formal proof from proof idea and typeset
 - [ ] 1.63 - write formal proof from proof idea and typeset
 - [ ] 1.64
 - [ ] 1.65 - part (b)
