@@ -41,6 +41,12 @@ Let $B$ and $D$ be two languages. Write $B \Subset D$ if $B \subseteq D$ and $D$
 \end{problem}
 
 \begin{proof}
+Construct a regular language $C$ where $B \Subset C \Subset D$ as follows.
+\begin{enumerate}
+\item Let $s$ be a string, such that $s \in D$ and $s \notin B$.
+\item Using $s$, construct the two splits $D_1$ and $D_2$ of $D$ as shown in Part 1.
+\item $C = B \cup D_1$.
+\end{enumerate}
 \end{proof}
 
 \end{document}
