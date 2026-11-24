@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+
+\input{Shared.tex}
+
+\parindent0in
+\pagestyle{plain}
+\thispagestyle{plain}
+
+\usepackage{csquotes}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\dated}{\today}
+
+\begin{document}
+
+\textbf{Introduction to the Theory of
+Computation}\hfill\textbf{\myname}\\[0.01in]
+\textbf{Chapter 1: Regular Languages}\hfill\textbf{\dated}\\
+\smallskip\hrule\bigskip
+
+\begin{problem}{1.63}
+\end{problem}
+
+\begin{problem}[Part]{1}
+Let $A$ be an infinite regular language. Prove that $A$ can be split into two infinite disjoint regular subsets.
+\end{problem}
+
+\begin{proof}
+If $A$ is a regular language, then according to Pumping lemma, some string $s$ in $A$ of length at least $p$ (the pumping length) can be divided into three pieces, $s = xyz$, where for any $i \geq 0$, the string $xy^iz \in A$. Split $A$ into two disjoint sets $A_1$ and $A_2$ as follows.
+
+\[
+A_1 = (A - \{s\}) \cup \{w \ | \ w = xy^iz, \text{ where } i \text{ is any odd integer greater than or equal to 0}\}. 
+\]
+\[
+A_2 = (A - \{s\}) \cup \{w \ | \ w = xy^iz, \text{ where } i \text{ is any even integer greater than or equal to 0}\}. 
+\]
+\end{proof}
+
+\begin{problem}[Part]{2}
+Let $B$ and $D$ be two languages. Write $B \Subset D$ if $B \subseteq D$ and $D$ contains infinitely many strings that are not in $B$. Show that if $B$ and $D$ are two regular languages where $B \Subset D$, then we can find a regular language $C$ where $B \Subset C \Subset D$.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+\end{document}
